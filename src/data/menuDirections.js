@@ -1,2 +1,4 @@
-export const menuDirections=['Modern Cafe','Premium Restaurant','Minimal Contemporary','Modern Indian Restaurant','Laundry & Dry Cleaning','Salon & Beauty','Local Service Business','Custom Menu Design'].map(name=>({id:name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''),name,description:name==='Custom Menu Design'?'A custom direction based on the client business.':'Template direction only; does not increase price by itself.'}))
-export const serviceTypes=['Business Website','Digital Menu','Website + Digital Menu','Custom Digital Solution','AI / Interactive Experience','Other']
+export const menuDirections = [
+  'Modern Cafe','Premium Restaurant','Minimal Contemporary','Modern Indian Restaurant','Laundry & Dry Cleaning','Salon & Beauty','Local Service Business','Custom Menu Design'
+].map(name => ({ id: name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''), name, description: name === 'Custom Menu Design' ? 'Custom direction based on the client business.' : 'Template direction only; it does not increase price by itself.' }));
+export const serviceTypes = ['Business Website','Digital Menu','Website + Digital Menu','Custom Digital Solution','AI / Interactive Experience','Other'];
