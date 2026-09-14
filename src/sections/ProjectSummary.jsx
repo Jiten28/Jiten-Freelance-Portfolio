@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
+import { estimatePackage, FEATURE_OPTIONS } from '../data/data.js';
 import './ProjectSummary.css';
 
-// We'll use a simple context or props to get planner data
-// For now, we'll simulate with localStorage or props from parent
+// We'll use a simple state to get planner data
+// For now, we'll simulate with localStorage
 // In a real app, this would come from Redux, Context API, or props
 
 const ProjectSummary = () => {
   // Simulate getting data from planner context or localStorage
-  const [summaryData, setSummaryData] = React.useState(null);
-  const [loading, setLoading] = React.useState(false);
+  const [summaryData, setSummaryData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   React.useEffect(() => {
     // Simulate loading summary data
@@ -124,21 +125,28 @@ function renderSummaryContent(data) {
   const budget = data.budget || 'Not specified';
   const deployment = data.deployment || 'Not specified';
 
+  // Create a mapping from stored feature keys to display names
+  const featureDisplayMap = {
+    whatsapp: 'WhatsApp Integration',
+    'qr-code': 'QR Code Integration',
+    'google-maps': 'Google Maps Integration',
+    'contact-form': 'Contact Form',
+    'online-booking': 'Online Booking System',
+    'product-catalog': 'Product Catalog',
+    'online-ordering': 'Online Ordering System',
+    'payment-integration': 'Payment Processing',
+    gallery: 'Image Gallery',
+    reviews: 'Customer Reviews',
+    blog: 'Blog / News Section',
+    'social-media-links': 'Social Media Integration',
+    'admin-dashboard': 'Admin Dashboard',
+    'custom-feature': 'Custom Feature'
+  };
+
   // Format features for display
   const featuresText = features.length > 0
-    ? features.map(f => {
-        const featureMap = {
-          'responsive-design': 'Responsive Design',
-          'cms': 'Content Management System',
-          'ecommerce': 'E-commerce Functionality',
-          'booking-system': 'Booking / Appointment System',
-          'member-area': 'Member / Login Area',
-          'seo-optimized': 'SEO Optimized',
-          'multilingual': 'Multilingual Support',
-          'analytics': 'Analytics & Reporting'
-        };
-        return featureMap[f] || f;
-      }).join(', ')
+    ? features.map(f => featureDisplayMap[f] || f.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()))
+      .join(', ')
     : 'None selected';
 
   return (
@@ -166,7 +174,7 @@ function renderSummaryContent(data) {
                 <span>Selected Features</span><span>{featuresText}</span>
               </div>
               <div className="row">
-                <span>Budget Range</span><span>{budget}</span>
+                <span>Budget Range</span><span>{estimatePackage(projectType)}</span>
               </div>
               <div className="row">
                 <span>Deployment Preference</span><span>{deployment}</span>
@@ -188,16 +196,6 @@ function renderSummaryContent(data) {
                   </div>
                 </>
               )}
-            </div>
-
-            <div className="summary-block">
-              <h4>Recommended Package</h4>
-              <div className="row">
-                <span>Estimated Starting Point</span><span>{getRecommendedPackage(projectType, features)}</span>
-              </div>
-              <div className="row">
-                <span>Scope Notes</span><span>{getScopeNotes(projectType, features)}</span>
-              </div>
             </div>
 
             <div className="summary-block">
@@ -223,48 +221,6 @@ function renderSummaryContent(data) {
       </div>
     </section>
   );
-}
-
-function getRecommendedPackage(projectType, features) {
-  const packageMap = {
-    'digital-menu': 'Digital Menu Pro (₹4,999)',
-    'business-website': 'Business Website (₹7,999)',
-    'ecommerce': 'E-commerce Website (₹12,999+)',
-    'web-app': 'Custom Web Application (₹15,000+)',
-    'ai-solution': 'AI-Powered Solution (₹20,000+)'
-  };
-
-  const basePackage = packageMap[projectType] || 'Custom Package (To Be Determined)';
-
-  // Add notes for premium features
-  const premiumFeatures = ['ecommerce', 'ai-solution', 'member-area'];
-  const hasPremium = features.some(f => premiumFeatures.includes(f));
-
-  return hasPremium && !projectType.includes('ecommerce') && !projectType.includes('ai-solution')
-    ? `${basePackage} + Premium Features`
-    : basePackage;
-}
-
-function getScopeNotes(projectType, features) {
-  const notes = [];
-
-  if (features.includes('ecommerce')) {
-    notes.push('Includes product catalog, shopping cart, and payment processing');
-  }
-
-  if (features.includes('member-area')) {
-    notes.push('Includes user authentication, profile management, and access controls');
-  }
-
-  if (features.includes('ai-solution')) {
-    notes.push('Includes AI model integration, data processing, and intelligent features');
-  }
-
-  if (features.length > 4) {
-    notes.push('Extended functionality may affect timeline and budget');
-  }
-
-  return notes.length > 0 ? notes.join('; ') : 'Standard scope applies';
 }
 
 function generateProposal() {

@@ -1,4 +1,15 @@
 import React, { useState } from 'react';
+import {
+  BUSINESS_TYPES,
+  PROJECT_TYPES,
+  FEATURE_OPTIONS,
+  DESIGN_STYLES,
+  BUDGET_OPTIONS,
+  DEPLOY_PLATFORMS,
+  DEPLOY_CHOICE_MAP,
+  estimatePackage,
+  recommendedPlatformFor
+} from '../data/data.js';
 import './ProjectPlanner.css';
 
 const ProjectPlanner = () => {
@@ -152,9 +163,15 @@ const ProjectPlanner = () => {
                 id="businessType"
                 value={formData.businessType || ''}
                 onChange={(e) => handleInputChange('businessType', e.target.value)}
+                list="business-type-list"
                 placeholder="e.g., Restaurant, Retail Store, Consulting Agency"
                 aria-label="Business type or industry"
               />
+              <datalist id="business-type-list">
+                {BUSINESS_TYPES.map(type => (
+                  <option key={type} value={type} />
+                ))}
+              </datalist>
             </div>
             <div className="form-group">
               <label htmlFor="projectGoals">Project Goals:</label>
@@ -183,12 +200,11 @@ const ProjectPlanner = () => {
                 aria-label="Project type"
               >
                 <option value="">Select a project type</option>
-                <option value="business-website">Business Website</option>
-                <option value="digital-menu">Digital Menu System</option>
-                <option value="ecommerce">E-commerce Website</option>
-                <option value="web-app">Custom Web Application</option>
-                <option value="ai-solution">AI-Powered Solution</option>
-                <option value="other">Other</option>
+                {PROJECT_TYPES.map(type => (
+                  <option key={type.n} value={type.n}>
+                    {type.n}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -201,70 +217,19 @@ const ProjectPlanner = () => {
             <div className="form-group features">
               <h5>Select Features:</h5>
               <div className="feature-checkboxes">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={formData.features.includes('responsive-design')}
-                    onChange={(e) => handleCheckboxChange('responsive-design', e.target.checked)}
-                  />
-                  Responsive Design
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={formData.features.includes('cms')}
-                    onChange={(e) => handleCheckboxChange('cms', e.target.checked)}
-                  />
-                  Content Management System
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={formData.features.includes('ecommerce')}
-                    onChange={(e) => handleCheckboxChange('ecommerce', e.target.checked)}
-                  />
-                  E-commerce Functionality
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={formData.features.includes('booking-system')}
-                    onChange={(e) => handleCheckboxChange('booking-system', e.target.checked)}
-                  />
-                  Booking / Appointment System
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={formData.features.includes('member-area')}
-                    onChange={(e) => handleCheckboxChange('member-area', e.target.checked)}
-                  />
-                  Member / Login Area
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={formData.features.includes('seo-optimized')}
-                    onChange={(e) => handleCheckboxChange('seo-optimized', e.target.checked)}
-                  />
-                  SEO Optimized
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={formData.features.includes('multilingual')}
-                    onChange={(e) => handleCheckboxChange('multilingual', e.target.checked)}
-                  />
-                  Multilingual Support
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={formData.features.includes('analytics')}
-                    onChange={(e) => handleCheckboxChange('analytics', e.target.checked)}
-                  />
-                  Analytics & Reporting
-                </label>
+                {FEATURE_OPTIONS.map(feature => {
+                  const featureKey = feature.toLowerCase().replace(/\s+/g, '-');
+                  return (
+                    <label key={feature}>
+                      <input
+                        type="checkbox"
+                        checked={formData.features.includes(featureKey)}
+                        onChange={(e) => handleCheckboxChange(featureKey, e.target.checked)}
+                      />
+                      {feature}
+                    </label>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -283,26 +248,11 @@ const ProjectPlanner = () => {
                 aria-label="Design style"
               >
                 <option value="">Select a design style</option>
-                <option value="glassmorphism">Glassmorphism</option>
-                <option value="minimalistic">Minimalistic</option>
-                <option value="dark-mode">Dark Mode</option>
-                <option value="colorful-vibrant">Colorful / Vibrant</option>
-                <option value="neumorphism">Neumorphism</option>
-                <option value="brutalist">Brutalist</option>
-                <option value="vintage-retro">Vintage / Retro</option>
-                <option value="hand-drawn">Hand-Drawn / Sketch</option>
-                <option value="parallax">Parallax</option>
-                <option value="landing-page">Landing Page</option>
-                <option value="one-page-scroll">One Page Scroll</option>
-                <option value="portfolio">Portfolio</option>
-                <option value="ecommerce">E-Commerce</option>
-                <option value="magazine-blog">Magazine / Blog</option>
-                <option value="corporate-business">Corporate / Business</option>
-                <option value="educational">Educational</option>
-                <option value="saas-dashboard">SaaS / Dashboard</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="nature-eco">Nature / Eco</option>
-                <option value="ai-tech">AI / Tech</option>
+                {DESIGN_STYLES.map(style => (
+                  <option key={style.n} value={style.n}>
+                    {style.n}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -372,12 +322,11 @@ const ProjectPlanner = () => {
                 aria-label="Budget range"
               >
                 <option value="">Select budget range</option>
-                <option value="under-5000">Under ₹5,000</option>
-                <option value="5000-15000">₹5,000 - ₹15,000</option>
-                <option value="15000-30000">₹15,000 - ₹30,000</option>
-                <option value="30000-50000">₹30,000 - ₹50,000</option>
-                <option value="50000-100000">₹50,000 - ₹1,00,000</option>
-                <option value="100000-above">Above ₹1,00,000</option>
+                {BUDGET_OPTIONS.map(option => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="form-group">
@@ -413,19 +362,114 @@ const ProjectPlanner = () => {
                 aria-label="Deployment preference"
               >
                 <option value="">Select deployment preference</option>
-                <option value="netlify">Netlify</option>
-                <option value="vercel">Vercel</option
-              >
-                <option value="render">Render</option>
-                <option value="cloudflare-pages">Cloudflare Pages</option>
-                <option value="firebase">Firebase</option>
-                <option value="supabase">Supabase</option>
-                <option value="google-cloud">Google Cloud / Cloud Run</option>
-                <option value="aws">AWS</option>
-                <option value="traditional-hosting">Traditional Hosting</option>
-                <option value="client-server">Client to Provide Server</option>
+                {Object.keys(DEPLOY_PLATFORMS).map(key => {
+                  const platform = DEPLOY_PLATFORMS[key];
+                  return (
+                    <option key={key} value={key}>
+                      {platform.name}
+                    </option>
+                  );
+                })}
+                <option key="existing" value="existing">
+                  {DEPLOY_CHOICE_MAP.existing.label}
+                </option>
+                <option key="unsure" value="unsure">
+                  {DEPLOY_CHOICE_MAP.unsure.label}
+                </option>
               </select>
             </div>
+
+            {/* Show recommendation if user selected "I'm not sure — recommend one" */}
+            {formData.deployment === "unsure" && (
+              <div className="hosting-recommendation">
+                <div className="recommendation-header">
+                  <h4>Our Recommendation Based on Your Project</h4>
+                  <p style={{ color: 'var(--text-ink-mid)', fontSize: '0.9rem' }}>
+                    Based on your project requirements, we suggest:
+                  </p>
+                </div>
+                <div className="recommendation-details">
+                  <div className="row">
+                    <span>Platform</span>
+                    <span>
+                      {recommendedPlatformFor({
+                        ...formData,
+                        deployChoice: "unsure"
+                      }) &&
+                      DEPLOY_PLATFORMS[
+                        recommendedPlatformFor({
+                          ...formData,
+                          deployChoice: "unsure"
+                        })
+                      ]?.name ||
+                      "Netlify"
+                    }
+                  </span>
+                  </div>
+                  <div className="row">
+                    <span>Best for</span>
+                    <span>
+                      {recommendedPlatformFor({
+                        ...formData,
+                        deployChoice: "unsure"
+                      }) &&
+                      DEPLOY_PLATFORMS[
+                        recommendedPlatformFor({
+                          ...formData,
+                          deployChoice: "unsure"
+                        })
+                      ]?.best ||
+                      "Business websites, digital menus, React/Vite frontends"
+                    }
+                  </span>
+                  </div>
+                  <div className="row">
+                    <span>Hosting Cost</span>
+                    <span>
+                      {recommendedPlatformFor({
+                        ...formData,
+                        deployChoice: "unsure"
+                      }) &&
+                      DEPLOY_PLATFORMS[
+                        recommendedPlatformFor({
+                          ...formData,
+                          deployChoice: "unsure"
+                        })
+                      ]?.cost ||
+                      "Free tier available"
+                    }
+                  </span>
+                  </div>
+                  <div className="row">
+                    <span>JITEN LABS Setup Fee</span>
+                    <span>
+                      {recommendedPlatformFor({
+                        ...formData,
+                        deployChoice: "unsure"
+                      }) &&
+                      DEPLOY_PLATFORMS[
+                        recommendedPlatformFor({
+                          ...formData,
+                          deployChoice: "unsure"
+                        })
+                      ]?.jitenLabsSetupFee ||
+                      "₹999–₹1,999"
+                    }
+                  </span>
+                  </div>
+                  <div className="row">
+                    <span>Domain</span>
+                    <span>Separate (billed at registrar's current price)</span>
+                  </div>
+                  <p className="disclaimer">
+                    *Subject to the platform's current pricing and usage limits.
+                  </p>
+                  <p style={{ marginTop: '12px', color: 'var(--text-ink-mid)', fontSize: '0.9rem' }}>
+                    <strong>Note:</strong> This is just a suggestion — you can still manually select any other option above if you prefer a different provider.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         );
       case 8:
@@ -434,7 +478,6 @@ const ProjectPlanner = () => {
             <h4>{step.title}</h4>
             <p>{step.description}</p>
             <div className="planner-summary">
-              <h5>Project Summary</h5>
               <div className="summary-item">
                 <strong>Business Type:</strong> {formData.businessType || 'Not specified'}
               </div>
@@ -451,7 +494,7 @@ const ProjectPlanner = () => {
                 <strong>Business Info:</strong> {formData.businessInfo || 'Not provided'}
               </div>
               <div className="summary-item">
-                <strong>Budget:</strong> {formData.budget || 'Not specified'}
+                <strong>Budget:</strong> {estimatePackage(formData.projectType) || 'Not specified'}
               </div>
               <div className="summary-item">
                 <strong>Deployment:</strong> {formData.deployment || 'Not specified'}

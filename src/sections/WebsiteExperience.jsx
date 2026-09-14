@@ -1,73 +1,17 @@
 import React from 'react';
+import { EXPERIENCE_ITEMS } from '../data/data.js';
 import './WebsiteExperience.css';
 
-const EXPERIENCE_ITEMS = [
-  {
-    id: 1,
-    name: "Smooth Scrolling",
-    desc: "Native-like scrolling with momentum and physics",
-    visual: "↕️",
-    ariaLabel: "Smooth scrolling visualization: vertical arrows indicating fluid motion"
-  },
-  {
-    id: 2,
-    name: "Responsive Design",
-    desc: "Adapts seamlessly to all screen sizes",
-    visual: "📱💻🖥️",
-    ariaLabel: "Responsive design visualization: phone, tablet, and desktop icons"
-  },
-  {
-    id: 3,
-    name: "Modern UI",
-    desc: "Contemporary interfaces with current design trends",
-    visual: "✨",
-    ariaLabel: "Modern UI visualization: sparkles indicating contemporary design"
-  },
-  {
-    id: 4,
-    name: "Micro-interactions",
-    desc: "Subtle animations and feedback for user actions",
-    visual: "•→",
-    ariaLabel: "Micro-interactions visualization: dot transforming into arrow indicating feedback"
-  },
-  {
-    id: 5,
-    name: "Subtle Parallax",
-    desc: "Layered depth perception on scroll",
-    visual: "↖️↘️",
-    ariaLabel: "Subtle parallax visualization: diagonal arrows indicating layered movement"
-  },
-  {
-    id: 6,
-    name: "Mobile First",
-    desc: "Optimized for touch and small screens",
-    visual: "👆",
-    ariaLabel: "Mobile first visualization: hand pointing at mobile screen"
-  },
-  {
-    id: 7,
-    name: "Fast Performance",
-    desc: "Optimized loading and runtime efficiency",
-    visual: "⚡",
-    ariaLabel: "Fast performance visualization: lightning bolt indicating speed"
-  },
-  {
-    id: 8,
-    name: "Accessible Design",
-    desc: "WCAG compliant with proper contrast and navigation",
-    visual: "♿",
-    ariaLabel: 'Accessible design visualization: wheelchair symbol indicating accessibility'
-  },
-  {
-    id: 9,
-    name: "Business-Focused UX",
-    desc: "Conversion-oriented design for business goals",
-    visual: "🎯",
-    ariaLabel: "Business-focused UX visualization: target indicating goal-oriented design"
-  }
-];
-
 const WebsiteExperience = () => {
+  // Map the string items to objects with the needed properties for the UI
+  const experienceItems = EXPERIENCE_ITEMS.map((item, index) => ({
+    id: index + 1,
+    name: item,
+    desc: getDescription(item),
+    visual: getVisual(item),
+    ariaLabel: getAriaLabel(item)
+  }));
+
   return (
     <section id="experience" className="dark-section">
       <div className="wrap">
@@ -77,7 +21,7 @@ const WebsiteExperience = () => {
           <p>Every build is engineered with the same quality standards, regardless of style.</p>
         </div>
         <div className="exp-grid" id="expGrid" role="list">
-          {EXPERIENCE_ITEMS.map((item) => (
+          {experienceItems.map((item) => (
             <div key={item.id} className="exp-card" role="listitem" aria-label={item.ariaLabel}>
               <div className="exp-visual">{item.visual}</div>
               <h4>{item.name}</h4>
@@ -89,5 +33,51 @@ const WebsiteExperience = () => {
     </section>
   );
 };
+
+// Helper functions to maintain the same descriptions, visuals, and aria-labels
+function getDescription(name) {
+  const descriptions = {
+    "Smooth Scrolling": "Native-like scrolling with momentum and physics",
+    "Responsive Design": "Adapts seamlessly to all screen sizes",
+    "Modern UI": "Contemporary interfaces with current design trends",
+    "Micro-interactions": "Subtle animations and feedback for user actions",
+    "Subtle Parallax": "Layered depth perception on scroll",
+    "Mobile First": "Optimized for touch and small screens",
+    "Fast Performance": "Optimized loading and runtime efficiency",
+    "Accessible Design": "WCAG compliant with proper contrast and navigation",
+    "Business-Focused UX": "Conversion-oriented design for business goals"
+  };
+  return descriptions[name] || "";
+}
+
+function getVisual(name) {
+  const visuals = {
+    "Smooth Scrolling": "↕️",
+    "Responsive Design": "📱💻🖥️",
+    "Modern UI": "✨",
+    "Micro-interactions": "•→",
+    "Subtle Parallax": "↖️↘️",
+    "Mobile First": "👆",
+    "Fast Performance": "⚡",
+    "Accessible Design": "♿",
+    "Business-Focused UX": "🎯"
+  };
+  return visuals[name] || "";
+}
+
+function getAriaLabel(name) {
+  const labels = {
+    "Smooth Scrolling": "Smooth scrolling visualization: vertical arrows indicating fluid motion",
+    "Responsive Design": "Responsive design visualization: phone, tablet, and desktop icons",
+    "Modern UI": "Modern UI visualization: sparkles indicating contemporary design",
+    "Micro-interactions": "Micro-interactions visualization: dot transforming into arrow indicating feedback",
+    "Subtle Parallax": "Subtle parallax visualization: diagonal arrows indicating layered movement",
+    "Mobile First": "Mobile first visualization: hand pointing at mobile screen",
+    "Fast Performance": "Fast performance visualization: lightning bolt indicating speed",
+    "Accessible Design": "Accessible design visualization: wheelchair symbol indicating accessibility",
+    "Business-Focused UX": "Business-focused UX visualization: target indicating goal-oriented design"
+  };
+  return labels[name] || "";
+}
 
 export default WebsiteExperience;

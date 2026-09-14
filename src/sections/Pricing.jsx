@@ -1,4 +1,5 @@
 import React from 'react';
+import { PRICING_PACKAGES } from '../data/data.js';
 import './Pricing.css';
 
 const Pricing = () => {
@@ -6,60 +7,28 @@ const Pricing = () => {
     <section id="pricing" className="dark-section">
       <div className="wrap">
         <div className="section-head">
-          <span className="kicker">Investment</span>
-          <h2>Pricing</h2>
-          <p>Starting packages — final pricing is confirmed after reviewing your project requirements.</p>
+          <span className="kicker">{PRICING_PACKAGES.sectionHead.kicker}</span>
+          <h2>{PRICING_PACKAGES.sectionHead.title}</h2>
+          <p>{PRICING_PACKAGES.sectionHead.description}</p>
         </div>
         <div className="price-grid">
-          <div className="price-card" role="region" aria-labelledby="basic-price">
-            <h3 id="basic-price">Digital Menu Basic</h3>
-            <div className="price-amt">₹1,999</div>
-            <ul className="price-list">
-              <li>Up to 30 items</li>
-              <li>Mobile responsive</li>
-              <li>QR code</li>
-              <li>WhatsApp button</li>
-              <li>1 revision</li>
-            </ul>
-          </div>
-          <div className="price-card hi" role="region" aria-labelledby="pro-price" aria-roledescription="highlighted">
-            <h3 id="pro-price">Digital Menu Pro</h3>
-            <div className="price-amt">₹4,999</div>
-            <ul className="price-list">
-              <li>Custom modern design</li>
-              <li>Up to 60 items</li>
-              <li>QR code</li>
-              <li>WhatsApp</li>
-              <li>Contact/location</li>
-              <li>2 revisions</li>
-            </ul>
-          </div>
-          <div className="price-card" role="region" aria-labelledby="website-price">
-            <h3 id="website-price">Business Website</h3>
-            <div className="price-amt">₹7,999</div>
-            <ul className="price-list">
-              <li>4–5 sections/pages</li>
-              <li>Responsive design</li>
-              <li>WhatsApp</li>
-              <li>Google Maps</li>
-              <li>Contact form</li>
-              <li>Basic SEO</li>
-              <li>2 revisions</li>
-            </ul>
-          </div>
-          <div className="price-card" role="region" aria-labelledby="combo-price">
-            <h3 id="combo-price">Website + Digital Menu</h3>
-            <div className="price-amt">₹12,999</div>
-            <ul className="price-list">
-              <li>Complete website</li>
-              <li>Dedicated digital menu</li>
-              <li>Custom design</li>
-              <li>WhatsApp</li>
-              <li>Google Maps</li>
-              <li>Responsive</li>
-              <li>Includes all revisions</li>
-            </ul>
-          </div>
+          {PRICING_PACKAGES.packages.map((pkg) => (
+            <div
+              key={pkg.id}
+              className={`price-card ${pkg.highlighted ? 'hi' : ''}`}
+              role="region"
+              aria-labelledby={`${pkg.id}-price`}
+              aria-roledescription={pkg.highlighted ? "highlighted" : undefined}
+            >
+              <h3 id={`${pkg.id}-price`}>{pkg.title}</h3>
+              <div className="price-amt">{pkg.price}</div>
+              <ul className="price-list">
+                {pkg.features.map((feature, index) => (
+                  <li key={index}>{feature}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
         {/* Add-ons Section */}
@@ -67,22 +36,12 @@ const Pricing = () => {
           <h3>Add-ons</h3>
           <p>Enhance your project with these optional services:</p>
           <div className="add-ons-grid">
-            <div className="add-on-item">
-              <h4>Google Business setup/help</h4>
-              <p>₹1,000–₹2,500</p>
-            </div>
-            <div className="add-on-item">
-              <h4>Maintenance</h4>
-              <p>₹500–₹1,500/month</p>
-            </div>
-            <div className="add-on-item">
-              <h4>Extra page</h4>
-              <p>₹1,000–₹2,500</p>
-            </div>
-            <div className="add-on-item">
-              <h4>Custom features</h4>
-              <p>On request</p>
-            </div>
+            {PRICING_PACKAGES.addons.map((addon, index) => (
+              <div key={index} className="add-on-item">
+                <h4>{addon.title}</h4>
+                <p>{addon.price}</p>
+              </div>
+            ))}
           </div>
           <p className="add-ons-note">Add-ons are optional and not automatically included in any package.</p>
         </div>
@@ -92,36 +51,14 @@ const Pricing = () => {
           <h3>Hosting & Deployment</h3>
           <p>JITEN LABS setup/deployment charges are separate from third-party hosting/platform costs.</p>
           <div className="hosting-grid">
-            <div className="hosting-item">
-              <h4>Netlify</h4>
-              <p>₹999–₹1,999</p>
-            </div>
-            <div className="hosting-item">
-              <h4>Vercel</h4>
-              <p>₹999–₹2,499</p>
-            </div>
-            <div className="hosting-item">
-              <h4>Render</h4>
-              <p>₹1,499–₹3,499</p>
-            </div>
-            <div className="hosting-item">
-              <h4>Cloudflare Pages</h4>
-              <p>₹999–₹1,999</p>
-            </div>
-            <div className="hosting-item">
-              <h4>Firebase</h4>
-              <p>₹1,499–₹3,499</p>
-            </div>
-            <div className="hosting-item">
-              <h4>Supabase</h4>
-              <p>₹1,999–₹4,999+</p>
-            </div>
-            <div className="hosting-item">
-              <h4>Google Cloud / Cloud Run</h4>
-              <p>₹2,499–₹5,999+</p>
-            </div>
+            {PRICING_PACKAGES.hosting.map((host, index) => (
+              <div key={index} className="hosting-item">
+                <h4>{host.name}</h4>
+                <p>{host.setupFee}</p>
+              </div>
+            ))}
           </div>
-          <p className="hosting-disclaimer">Hosting/platform costs are separate from JITEN LABS setup charges and may vary based on the provider, plan, usage, and current pricing.</p>
+          <p className="hosting-disclaimer">{PRICING_PACKAGES.disclaimer}</p>
         </div>
 
         <p className="price-note">

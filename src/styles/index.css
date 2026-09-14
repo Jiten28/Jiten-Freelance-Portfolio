@@ -1,13 +1,13 @@
 /* Visual Design System - Exact Palette from Task Requirements */
-/* Primary dark/petrol palette: #2C3531, #116466, #D9B08C, #FFCB9A, #D1E8E2 */
-/* Light/ivory palette: #EAE7DC, #D8C3A5, #8E8D8A, #E98074, #E85A4F */
+/* Primary dark/petrol palette: #0B1413, #2C3531, #116466, #D9B08C, #FFCB9A, #D1E8E2, #F4F0E8, #A8B3AE */
+/* Light/ivory palette: #EAE7DC, #D8C3A5, #8E8D8A, #E98074, #E85A4F, #2C3531, #252A28, #6B6A67 */
 
 :root {
   /* Dark Theme (Default) */
-  --bg: #0B1413;               /* --bg: #0B1413; from task: #0B1413 */
+  --bg: #0B1413;               /* Near-black / deep navy */
   --surface: #2C3531;          /* Primary dark/petrol */
   --surface-2: #116466;        /* Secondary dark/petrol */
-  --accent-warm: #D9B08C;      /* Warm accent */
+  --accent-warm: #D9B08C;      /* Warm accent (muted gold) */
   --accent-soft: #FFCB9A;      /* Soft accent */
   --text: #F4F0E8;             /* Primary text */
   --text-soft: #D1E8E2;        /* Secondary text */
@@ -48,6 +48,9 @@
 
   /* Layout */
   --maxw: 1200px;
+  /* Reduced default section padding to prevent huge empty spaces */
+  --section-padding-top: clamp(50px, 6vh, 80px);
+  --section-padding-bottom: clamp(50px, 6vh, 80px);
 }
 
 [data-theme="light"] {
@@ -93,36 +96,41 @@ body {
   padding:0 clamp(20px,5vw,40px);
 }
 
-/* Section Spacing */
+/* Section Spacing - NATURAL HEIGHTS, no excessive padding */
+/* Sections should size naturally to content with comfortable padding */
 section{
-  padding:clamp(60px,8vw,120px) 0;
+  padding-top: var(--section-padding-top);
+  padding-bottom: var(--section-padding-bottom);
 }
 
+/* First section doesn't need top padding (usually hero) */
 section:first-of-type{
   padding-top:0;
 }
 
+/* Last section doesn't need bottom padding (usually footer) */
 section:last-of-type{
   padding-bottom:0;
 }
 
-/* Dividers & Decorative Elements */
+/* Dividers & Decorative Elements - Use sparingly and intentionally */
 .divider{
   height:1px;
   background:var(--line);
-  margin:clamp(24px,4vw,48px) 0;
+  margin:24px 0;
 }
 
+/* Accent dividers should be used intentionally, not excessively */
 .divider.accent{
   background:var(--grad);
   height:3px;
-  margin:clamp(32px,6vw,64px) 0;
+  margin:32px 0;
 }
 
 .hairline{
   height:1px;
   background:var(--border-light);
-  margin:clamp(16px,2vw,32px) 0;
+  margin:16px 0;
 }
 
 /* Elevation & Shadows */

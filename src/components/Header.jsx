@@ -1,20 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { NAV_ITEMS } from '../data/data.js';
 import './Header.css';
-
-const navItems = [
-  { id: 'home', label: 'Home' },
-  { id: 'services', label: 'Services' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'styles', label: 'Styles' },
-  { id: 'pricing', label: 'Pricing' },
-  { id: 'about', label: 'About' },
-  { id: 'planner', label: "Let's Plan" },
-  { id: 'contact', label: 'Contact' }
-];
 
 const Header = () => {
   const [activeItem, setActiveItem] = useState('home');
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const magicLineRef = useRef(null);
   const [isReducedMotion, setIsReducedMotion] = useState(() =>
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -30,7 +21,7 @@ const Header = () => {
 
   // Update magic line position
   useEffect(() => {
-    if (magicLineRef.current) {
+    if (magicLineRef.current && !isReducedMotion) {
       const navItems = document.querySelectorAll('.nav-item');
 
       // Determine which item to base the magic line on
@@ -55,6 +46,7 @@ const Header = () => {
   const handleNavClick = (id) => {
     setActiveItem(id);
     setHoveredItem(null);
+    setIsMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
       // Account for header height
@@ -68,6 +60,34 @@ const Header = () => {
       });
     }
   };
+
+  // Handle theme toggle
+  const handleThemeToggle = () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? '' : 'light';
+    if (newTheme) {
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('jitenLabsTheme', newTheme);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.removeItem('jitenLabsTheme');
+    }
+  };
+
+  // Check for saved theme preference on load
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('jitenLabsTheme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else {
+      // Respect system preference on first visit
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (!systemPrefersDark) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('jitenLabsTheme', 'light');
+      }
+    }
+  }, []);
 
   return (
     <header className="header">
@@ -85,7 +105,7 @@ const Header = () => {
           {/* Navigation */}
           <nav className="nav">
             <ul className="nav-list" role="menubar" aria-label="Primary">
-              {navItems.map((item) => (
+              {NAV_ITEMS.map((item) => (
                 <li
                   key={item.id}
                   className={`nav-item ${activeItem === item.id ? 'active' : ''} ${hoveredItem === item.id ? 'hovered' : ''}`}
@@ -111,6 +131,7 @@ const Header = () => {
           <button
             className="cta-button"
             aria-label="Start a new project"
+            onClick={() => handleNavClick('planner')}
           >
             Start a Project
           </button>
@@ -119,21 +140,50 @@ const Header = () => {
           <div
             className="theme-toggle"
             role="switch"
-            aria-checked="false"
+            aria-checked={document.documentElement.getAttribute('data-theme') === 'light'}
             aria-label="Toggle theme"
-            onClick={() => {
-              const currentTheme = document.documentElement.getAttribute('data-theme');
-              const newTheme = currentTheme === 'light' ? '' : 'light';
-              if (newTheme) {
-                document.documentElement.setAttribute('data-theme', newTheme);
-              } else {
-                document.documentElement.removeAttribute('data-theme');
-              }
-            }}
+            onClick={handleThemeToggle}
           >
-            <span className="theme-toggle-slider" aria-hidden="true"></span>
+            <div className="theme-toggle-slider" aria-hidden="true"></div>
           </div>
+
+          {/* Mobile Menu Button (hamburger) */}
+          <button
+            className="mobile-menu-button"
+            aria-label="Open menu"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
         </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={`nav-menu-mobile ${isMenuOpen ? 'open' : ''}`}>
+        <nav className="nav">
+          <ul className="nav-list" role="menubar" aria-label="Mobile">
+            {NAV_ITEMS.map((item) => (
+              <li
+                key={item.id}
+                className={`nav-item ${activeItem === item.id ? 'active' : ''}`}
+                data-id={item.id}
+                onClick={() => {
+                  handleNavClick(item.id);
+                  setIsMenuOpen(false);
+                }}
+                role="menuitem"
+                tabIndex={0}
+                aria-label={`Navigate to ${item.label} section`}
+              >
+                {item.label}
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </header>
   );

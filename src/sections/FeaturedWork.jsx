@@ -57,11 +57,13 @@ const FeaturedWork = () => {
   // Filter projects based on selected filter
   const getFilteredProjects = () => {
     if (filter === 'all') return FEATURED_PROJECTS;
-    if (filter === 'menu') return FEATURED_PROJECTS.filter(p => p.category.toLowerCase().includes('menu'));
+    if (filter === 'menu') return FEATURED_PROJECTS.filter(p =>
+      p.name.toLowerCase().includes('menu') ||
+      p.category.toLowerCase().includes('menu')
+    );
     if (filter === 'websites') return FEATURED_PROJECTS.filter(p =>
-      !p.category.toLowerCase().includes('menu') &&
-      !p.category.toLowerCase().includes('ai') &&
-      !p.category.toLowerCase().includes('healthcare')
+      !(p.name.toLowerCase().includes('menu') ||
+        p.category.toLowerCase().includes('menu'))
     );
     return FEATURED_PROJECTS;
   };

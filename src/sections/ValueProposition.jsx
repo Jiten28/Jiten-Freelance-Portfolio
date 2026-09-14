@@ -1,4 +1,5 @@
 import React from 'react';
+import { VALUE_PROPOSITION } from '../data/data.js';
 import './ValueProposition.css';
 
 const ValueProposition = () => {
@@ -6,16 +7,16 @@ const ValueProposition = () => {
     <section className="value-proposition">
       <div className="value-grid">
         <div className="value-content">
-          <h2>What I Deliver</h2>
+          <h2>{VALUE_PROPOSITION.heading}</h2>
           <p className="lede">
-            Tailored digital solutions that combine technical excellence with business acumen to drive real results for your business.
+            {VALUE_PROPOSITION.lede}
           </p>
           <div className="chip-row">
-            <span className="chip">Custom Development</span>
-            <span className="chip">User-Centered Design</span>
-            <span className="chip">Performance Optimized</span>
-            <span className="chip">Scalable Architecture</span>
-            <span className="chip">Ongoing Support</span>
+            {VALUE_PROPOSITION.chips.map((chip, index) => (
+              <span key={index} className="chip">
+                {chip}
+              </span>
+            ))}
           </div>
         </div>
       </div>
