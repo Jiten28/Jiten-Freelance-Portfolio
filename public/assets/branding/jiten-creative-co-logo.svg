@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 160" role="img" aria-label="Jiten Creative Co."><rect width="160" height="160" rx="36" fill="#0d0f0c"/><path d="M42 52c18-30 49-47 85-47 24 0 46 7 64 21l-19 34c-13-11-28-16-46-16-45 0-74 32-74 69 0 40 31 68 73 68 18 0 35-5 49-17l17 33c-19 15-42 23-68 23-37 0-68-13-89-37-20-21-30-47-30-75 0-21 6-40 18-58h20z" transform="scale(.82) translate(18 18)" fill="#c9964c"/><path d="M299 74h103v74h-54v189c0 84-47 133-127 133-37 0-69-10-95-29l29-64c18 14 38 21 60 21 39 0 61-24 61-68V148h-58V74h81z" transform="scale(.32) translate(410 30)" fill="#f8f1e4"/><text x="190" y="72" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#f8f1e4">Jiten Creative Co.</text><text x="190" y="108" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="800" letter-spacing="5" fill="#d3a35b">WEB DEVELOPER &amp; DIGITAL SOLUTIONS</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 220" role="img" aria-label="Jiten Creative Co.">
+  <defs><linearGradient id="gold" x1="30" y1="30" x2="185" y2="185"><stop offset="0" stop-color="#e6bd6a"/><stop offset=".55" stop-color="#b88428"/><stop offset="1" stop-color="#8b641c"/></linearGradient></defs>
+  <rect x="0" y="0" width="220" height="220" rx="44" fill="#fbfaf6"/>
+  <path d="M168 70c-13-16-33-26-56-26-39 0-71 30-71 66s32 66 71 66c23 0 43-10 56-26l-20-19c-8 11-21 18-36 18-24 0-43-18-43-40s19-40 43-40c15 0 28 7 36 18l20-17z" fill="url(#gold)"/>
+  <path d="M102 28h52v29h-20v72c0 33-20 53-51 53-19 0-34-7-45-19l17-22c7 8 16 12 26 12 15 0 24-10 24-27V57h-3V28z" fill="#050505"/>
+  <path d="M119 42h19v83c0 25-14 40-37 42" fill="none" stroke="#fbfaf6" stroke-width="8" stroke-linecap="round"/>
+  <text x="260" y="92" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900" fill="#f8f1e4">Jiten Creative Co.</text>
+  <text x="262" y="138" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="5" fill="#d3a35b">WEB DEVELOPER &amp; DIGITAL SOLUTIONS</text>
+</svg>

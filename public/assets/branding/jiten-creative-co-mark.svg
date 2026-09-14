@@ -1,13 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Jiten Creative Co. JC monogram">
   <defs>
-    <linearGradient id="gold" x1="120" y1="60" x2="420" y2="450" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#f7d18b"/><stop offset="0.42" stop-color="#c9964c"/><stop offset="1" stop-color="#8f5f1e"/>
+    <linearGradient id="gold" x1="90" y1="90" x2="430" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e6bd6a"/><stop offset="0.52" stop-color="#b88428"/><stop offset="1" stop-color="#8b641c"/>
     </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".36"/></filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000" flood-opacity=".18"/></filter>
   </defs>
-  <rect width="512" height="512" rx="112" fill="#0d0f0c"/>
-  <path d="M132 162c34-56 91-87 158-87 45 0 86 13 119 39l-35 64c-24-20-53-30-86-30-83 0-138 60-138 129 0 74 58 127 136 127 34 0 65-10 91-31l32 61c-36 28-78 42-126 42-69 0-126-24-166-68-37-40-55-87-55-139 0-39 11-75 34-107h36z" fill="url(#gold)" opacity=".94"/>
-  <path d="M299 74h103v74h-54v189c0 84-47 133-127 133-37 0-69-10-95-29l29-64c18 14 38 21 60 21 39 0 61-24 61-68V148h-58V74h81z" fill="#f8f1e4" filter="url(#shadow)"/>
-  <path d="M312 94v235c0 55-29 90-83 90" fill="none" stroke="#c9964c" stroke-width="18" stroke-linecap="round" opacity=".9"/>
-  <path d="M117 278c0-73 52-136 126-154" fill="none" stroke="#f8f1e4" stroke-width="20" stroke-linecap="round" opacity=".98"/>
+  <rect width="512" height="512" rx="76" fill="#fbfaf6"/>
+  <!-- Gold C: clean geometric crescent, open right side -->
+  <path d="M391 159c-31-38-78-62-132-62-93 0-168 71-168 159s75 159 168 159c54 0 101-24 132-62l-48-45c-20 27-51 44-86 44-57 0-103-43-103-96s46-96 103-96c35 0 66 17 86 44l48-45z" fill="url(#gold)" filter="url(#soft)"/>
+  <!-- Black J: dominant, vertical, premium, not reversed -->
+  <path d="M234 68h120v66h-45v165c0 75-47 122-119 122-43 0-78-16-103-43l39-51c17 18 36 27 59 27 35 0 56-22 56-61V134h-7V68z" fill="#050505"/>
+  <!-- Carved inner highlight to make J readable over C -->
+  <path d="M272 101h44v191c0 56-32 91-84 96" fill="none" stroke="#fbfaf6" stroke-width="18" stroke-linecap="round" opacity=".96"/>
 </svg>
