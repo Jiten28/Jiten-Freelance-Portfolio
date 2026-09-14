@@ -1,10 +1,10 @@
 Architecture.md
 
-# Jiten Labs — Architecture Document
+# Jiten Creative Co. — Architecture Document
 
 ## 1. Purpose
 
-This document defines the technical architecture and structural direction for the Jiten Labs portfolio.
+This document defines the technical architecture and structural direction for the Jiten Creative Co. portfolio.
 
 The goal is to create a maintainable, scalable, production-ready website without unnecessarily rewriting the existing project.
 
@@ -784,7 +784,7 @@ The goal is a professional codebase, not maximum complexity.
 
 34. Final Architecture Principle
 
-The website should be built so that today's portfolio can become tomorrow's complete Jiten Labs business platform without requiring a complete rewrite.
+The website should be built so that today's portfolio can become tomorrow's complete Jiten Creative Co. business platform without requiring a complete rewrite.
 
 However, future scalability must not be used as an excuse to overengineer the current version.
 ```

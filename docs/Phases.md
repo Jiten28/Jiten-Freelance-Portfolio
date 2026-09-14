@@ -351,7 +351,7 @@ Platform
 Best for
 Benefits
 Limitations
-Jiten Labs setup fee
+Jiten Creative Co. setup fee
 Third-party pricing disclaimer
 Setup fee ranges
 Netlify: ₹999–₹1,999
@@ -491,7 +491,7 @@ Cover
 
 Include:
 
-JITEN LABS
+JITEN CREATIVE CO.
 Digital Experiences. Built for Business.
 PROJECT PROPOSAL
 Client/business name
@@ -522,7 +522,7 @@ Pricing separation
 
 Clearly distinguish:
 
-Jiten Labs project/setup fee
+Jiten Creative Co. project/setup fee
 
 from:
 

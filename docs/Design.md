@@ -1,13 +1,13 @@
 Design.md
 
-Purpose: This document defines the visual design system for the Jiten Labs portfolio.
+Purpose: This document defines the visual design system for the Jiten Creative Co. portfolio.
 It describes how the website should look and behave. It is a design specification, not a list of files to create.
 
-Jiten Labs — Design System
+Jiten Creative Co. — Design System
 
 1. Design Direction
 
-Jiten Labs should feel like a premium modern digital agency, not a generic developer portfolio.
+Jiten Creative Co. should feel like a premium modern digital agency, not a generic developer portfolio.
 
 The overall impression should be:
 
@@ -21,7 +21,7 @@ Visually interactive
 Clean
 Responsive
 
-The design should communicate that Jiten Labs builds real digital products for businesses, rather than simply creating websites.
+The design should communicate that Jiten Creative Co. builds real digital products for businesses, rather than simply creating websites.
 
 Core message
 
@@ -225,7 +225,7 @@ The exact values should be adapted to the existing design.
 
 9. Hero Section
 
-The hero should immediately establish Jiten Labs as a premium digital solutions agency.
+The hero should immediately establish Jiten Creative Co. as a premium digital solutions agency.
 
 Primary message
 
@@ -233,7 +233,7 @@ Your Business. Your Style. Your Digital Presence.
 
 Supporting message
 
-Communicate that Jiten Labs provides:
+Communicate that Jiten Creative Co. provides:
 
 Business websites
 Digital menus
@@ -583,11 +583,11 @@ Provide a clear path for users who need something outside predefined packages.
 
 21. Hosting Pricing Presentation
 
-Hosting costs must not be visually confused with Jiten Labs project fees.
+Hosting costs must not be visually confused with Jiten Creative Co. project fees.
 
 Use separate labels such as:
 
-Jiten Labs Setup Fee
+Jiten Creative Co. Setup Fee
 
 and
 
@@ -713,7 +713,7 @@ The planner itself must remain usable.
 
 27. Proposal PDF Design
 
-The proposal should visually represent Jiten Labs as a professional agency.
+The proposal should visually represent Jiten Creative Co. as a professional agency.
 
 Style
 Clean
@@ -726,7 +726,7 @@ Cover
 
 Use:
 
-JITEN LABS
+JITEN CREATIVE CO.
 
 Digital Experiences. Built for Business.
 
@@ -740,7 +740,7 @@ The footer should be visually strong but not oversized.
 
 Include:
 
-Jiten Labs logo/name
+Jiten Creative Co. logo/name
 Short description
 Contact
 Email
@@ -1000,11 +1000,11 @@ Would this look credible on a professional web-development agency's website?
 
 If the answer is no, improve the visual hierarchy, spacing, imagery, interaction, or content.
 
-The portfolio should feel like something that could convince a real business owner to contact Jiten Labs.
+The portfolio should feel like something that could convince a real business owner to contact Jiten Creative Co..
 
 45. Final Design Principle
 
-The website should not merely tell visitors that Jiten Labs can build modern websites.
+The website should not merely tell visitors that Jiten Creative Co. can build modern websites.
 
 It should demonstrate that ability through the website itself.
 
@@ -1014,6 +1014,6 @@ Does this demonstrate technical ability?
 Does this demonstrate design ability?
 Does this demonstrate business understanding?
 Does this make the service easier to understand?
-Does this make contacting Jiten Labs easier?
+Does this make contacting Jiten Creative Co. easier?
 
 If a visual element does none of these, it should be reconsidered.

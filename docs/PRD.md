@@ -1,10 +1,10 @@
-# Jiten Labs — Product Requirements Document
+# Jiten Creative Co. — Product Requirements Document
 
 ## 1. Document Purpose
 
-This document defines the product requirements for the Jiten Labs portfolio website.
+This document defines the product requirements for the Jiten Creative Co. portfolio website.
 
-Jiten Labs is a freelance web development and digital solutions brand operated by Jiten Kumar.
+Jiten Creative Co. is a freelance web development and digital solutions brand operated by Jiten Kumar.
 
 The website is intended to be a real, production-ready client-facing portfolio and lead-generation platform.
 
@@ -24,7 +24,7 @@ The final product must be functional, responsive, maintainable, and suitable for
 
 ## Brand
 
-JITEN LABS
+JITEN CREATIVE CO.
 
 ## Positioning
 
@@ -59,7 +59,7 @@ https://www.instagram.com/buildwithjiten/
 
 # 3. Product Vision
 
-Jiten Labs should present itself as a premium freelance digital solutions studio capable of creating:
+Jiten Creative Co. should present itself as a premium freelance digital solutions studio capable of creating:
 
 - Business websites
 - Digital menus
@@ -674,7 +674,7 @@ Include:
 
 Separate:
 
-- Jiten Labs fees
+- Jiten Creative Co. fees
 - hosting
 - domain
 - third-party services
@@ -711,7 +711,7 @@ State:
 
 "Provider pricing, free tiers, usage limits, and billing policies are subject to change."
 
-Jiten Labs setup/deployment fees are separate.
+Jiten Creative Co. setup/deployment fees are separate.
 
 ---
 
@@ -763,7 +763,7 @@ No horizontal overflow.
 
 The project is successful when a real visitor can:
 
-1. Understand Jiten Labs.
+1. Understand Jiten Creative Co..
 2. View real projects.
 3. Open real project links.
 4. Explore services.

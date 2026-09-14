@@ -35,7 +35,7 @@ Follow Design.md for the visual direction.
 
 # 12. Brand Consistency
 
-Maintain the Jiten Labs visual identity.
+Maintain the Jiten Creative Co. visual identity.
 
 Primary visual language:
 
@@ -450,7 +450,7 @@ The PDF must not contain hard-coded client information.
 
 Keep these separate:
 
-Jiten Labs project/setup fee
+Jiten Creative Co. project/setup fee
 +
 hosting/platform cost
 +
@@ -458,7 +458,7 @@ domain cost
 +
 third-party/API costs
 
-Do not merge third-party charges into Jiten Labs pricing without explanation.
+Do not merge third-party charges into Jiten Creative Co. pricing without explanation.
 
 Provider pricing can change.
 
@@ -517,7 +517,7 @@ Use wording similar to:
 
 "Provider pricing, free tiers, usage limits, and billing policies are subject to change."
 
-Jiten Labs setup/deployment pricing is separate.
+Jiten Creative Co. setup/deployment pricing is separate.
 
 41. Error Handling
 
@@ -580,7 +580,7 @@ Do not collect unnecessary personal information.
 
 Only request information needed for the project planning workflow.
 
-If information is sent through WhatsApp, make it clear to the user that they are choosing to send their requirements to Jiten Labs.
+If information is sent through WhatsApp, make it clear to the user that they are choosing to send their requirements to Jiten Creative Co..
 
 If persistent lead storage is introduced later, privacy requirements must be reviewed again.
 
@@ -713,7 +713,7 @@ It is complete when the intended user interaction actually works.
 
 54. Final Principle
 
-The AI is building a real Jiten Labs business website.
+The AI is building a real Jiten Creative Co. business website.
 
 Every implementation decision should be evaluated using this question:
 
