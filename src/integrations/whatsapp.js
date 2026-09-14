@@ -1,5 +1,5 @@
-import { brand } from '../data/brand';
-import { budgetLabel, estimateProject } from '../pricing/quoteEngine';
+import { brand } from '../data/brand.js';
+import { budgetLabel, estimateProject } from '../pricing/quoteEngine.js';
 
 export function whatsappUrl(data) {
   const est = estimateProject(data);
