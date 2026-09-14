@@ -1,0 +1,116 @@
+.how-it-works {
+  padding: clamp(60px, 8vw, 120px) 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.how-it-works .section-head {
+  text-align: center;
+  max-width: 48ch;
+  margin: 0 auto 48px;
+}
+
+.how-it-works .section-head .kicker {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: var(--grad);
+  color: var(--near-black);
+  font-size: 0.86rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.how-it-works .section-head h2 {
+  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.how-it-works .section-head p {
+  color: var(--text-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 40ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 0;
+}
+
+@media (max-width: 860px) {
+  .steps-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .steps-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step-card {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.12);
+}
+
+.step-card:focus-visible {
+  outline: 2px solid var(--grad);
+  outline-offset: -2px;
+}
+
+.step-visual {
+  font-family: "Manrope";
+  font-size: 1.8rem;
+  font-weight: 600;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--grad);
+  color: var(--near-black);
+  border-radius: 50%;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.step-card h4 {
+  font-size: 1rem;
+  color: var(--text);
+  margin: 0 0 12px 0;
+  flex-shrink: 0;
+}
+
+.step-card p {
+  color: var(--text-soft);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .step-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

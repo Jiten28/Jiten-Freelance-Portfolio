@@ -1,0 +1,232 @@
+.featured-work {
+  padding: clamp(60px, 8vw, 120px) 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.featured-work .section-head {
+  text-align: center;
+  max-width: 48ch;
+  margin: 0 auto 48px;
+}
+
+.featured-work .section-head .kicker {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: var(--grad);
+  color: var(--text);
+  font-size: 0.86rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.featured-work .section-head h2 {
+  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.featured-work .section-head p {
+  color: var(--text-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* Filter Controls */
+.proj-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.proj-filters button {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.proj-filters button:hover {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.proj-filters button.active {
+  background: var(--grad);
+  color: var(--near-black);
+  border-color: transparent;
+}
+
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 0;
+}
+
+@media (max-width: 980px) {
+  .proj-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .proj-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.proj-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+}
+
+.proj-thumb {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: #0d1224;
+  position: relative;
+}
+
+.proj-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform .4s, filter .35s;
+  outline: 2px solid transparent;
+  outline-offset: -14px;
+  filter: brightness(0.82);
+}
+
+.proj-card:hover .proj-thumb img,
+.proj-card:focus-visible .proj-thumb img {
+  transform: scale(1.04);
+  filter: brightness(1);
+  outline: 2px solid var(--accent-warm);
+  outline-offset: -8px;
+}
+
+.proj-card:hover .proj-thumb::before,
+.proj-card:focus-visible .proj-thumb::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(0,0,0,0.05));
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.proj-body {
+  padding: 18px 20px 20px;
+}
+
+.proj-body h3 {
+  color: var(--text);
+  font-size: 1.02rem;
+}
+
+.proj-tag {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-top: 4px;
+  display: block;
+}
+
+.proj-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11,20,19,0.15) 0%, rgba(11,20,19,0.96) 78%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px;
+  opacity: 0;
+  transition: opacity .25s;
+}
+
+.proj-card:hover .proj-overlay,
+.proj-card:focus-visible .proj-overlay {
+  opacity: 1;
+}
+
+.proj-overlay h3 {
+  color: var(--text);
+}
+
+.proj-overlay .tech {
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.proj-overlay .desc {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  margin-top: 8px;
+  line-height: 1.55;
+}
+
+.proj-overlay .live-btn {
+  margin-top: 14px;
+  display: inline-block;
+  background: var(--grad);
+  color: var(--near-black);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 9999px;
+  width: fit-content;
+}
+
+.proj-overlay .note {
+  color: var(--muted);
+  font-size: 0.72rem;
+  margin-top: 8px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .proj-thumb img,
+  .proj-card:hover .proj-thumb img,
+  .proj-card:focus-visible .proj-thumb img {
+    transition: none;
+  }
+
+  .proj-card:hover .proj-thumb::before,
+  .proj-card:focus-visible .proj-thumb::before {
+    transition: none;
+  }
+
+  .proj-overlay {
+    transition: none;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .proj-filters {
+    gap: 8px;
+  }
+
+  .proj-filters button {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+}

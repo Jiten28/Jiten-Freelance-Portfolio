@@ -1,0 +1,155 @@
+.contact {
+  padding: clamp(60px, 8vw, 120px) 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.contact .contact-cta {
+  text-align: center;
+  max-width: 48ch;
+  margin: 0 auto 48px;
+}
+
+.contact .contact-cta h2 {
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  color: var(--text);
+  max-width: 16ch;
+  margin-bottom: 16px;
+}
+
+.contact .contact-cta p {
+  color: var(--text-soft);
+  margin-top: 16px;
+  font-size: 1.05rem;
+  max-width: 48ch;
+  line-height: 1.7;
+}
+
+.contact .contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px;
+  margin-top: 36px;
+  justify-content: center;
+}
+
+.contact .contact-info a {
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s;
+}
+
+.contact .contact-info a:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+/* Contact Item Styles */
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.contact-link {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.contact-link:hover {
+  color: var(--accent-warm);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Button Styles */
+.cta-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--grad);
+  color: var(--near-black);
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.15);
+}
+
+.cta-btn:active {
+  transform: translateY(0);
+}
+
+.ghost-btn {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border-light);
+}
+
+.ghost-btn:hover {
+  background: var(--surface);
+  transform: translateY(-1px);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .cta-btn:hover,
+  .ghost-btn:hover {
+    transform: none;
+  }
+
+  .contact-link:hover {
+    text-decoration: none;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .contact .contact-cta {
+    margin-bottom: 24px;
+  }
+
+  .contact .contact-info {
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .contact .contact-info a {
+    font-size: 0.88rem;
+  }
+
+  .contact-label {
+    font-size: 0.8rem;
+  }
+
+  .contact-link {
+    font-size: 0.9rem;
+  }
+
+  .cta-btn {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+
+  .ghost-btn {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+}

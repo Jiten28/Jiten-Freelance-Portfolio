@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<!-- TEST EDIT WORKING -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiten Kumar | Web Developer &amp; Digital Solutions | JITEN LABS</title>
+<meta name="description" content="Jiten Kumar builds modern business websites, digital menus, e-commerce websites, AI applications and custom digital solutions for businesses and startups.">
+<meta property="og:title" content="JITEN LABS — Digital Experiences. Built for Business.">
+<meta property="og:description" content="Modern websites, digital menus, e-commerce and custom web applications for real businesses.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0C'/%3E%3Cpath d='M20 16h8v20a10 10 0 0 1-10 10H16v-7h2a3 3 0 0 0 3-3V16z' fill='%23C9A96A'/%3E%3Cpath d='M36 16h7v13l10-13h8L49 30l12 16h-8l-8-11-3 4v7h-7V16z' fill='%238A6E3C'/%3E%3C/svg%3E">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(8,11,20,0.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,40px);
+    height:72px;display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{display:flex;align-items:center;gap:12px;color:var(--text-hi);}
+  .brand svg{width:38px;height:38px;flex:0 0 auto;}
+  .brand-name{font-family:"Manrope";font-weight:600;font-size:1.05rem;letter-spacing:0.01em;}
+  .brand-name span{color:var(--text-mid);font-weight:400;font-size:0.72rem;display:block;letter-spacing:0.08em;}
+  nav.links{display:flex;gap:28px;align-items:center;}
+  nav.links a{color:var(--text-mid);font-size:0.92rem;transition:color .2s;position:relative;padding:4px 0;}
+  nav.links a::before,nav.links a::after{
+    content:"";position:absolute;left:0;width:0;height:1px;background:var(--grad);transform:scaleX(0);transition:transform .32s ease;
+  }
+  nav.links a::before{top:0;}
+  nav.links a::after{bottom:0;}
+  nav.links a:hover, nav.links a:focus-visible{color:var(--text-hi);}
+  nav.links a:hover::before, nav.links a:focus-visible::before,
+  nav.links a:hover::after, nav.links a:focus-visible::after{transform:scaleX(1);}
+  .cta-btn{
+    background:var(--grad);color:#fff;padding:11px 22px;border-radius:999px;font-weight:600;
+    font-size:0.9rem;border:none;display:inline-block;transition:transform .2s, box-shadow .2s;
+  }
+  .cta-btn:hover{transform:translateY(-1px);box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);}
+  .ghost-btn{
+    background:transparent;color:var(--text-hi);padding:11px 22px;border-radius:999px;font-weight:600;
+    font-size:0.9rem;border:1px solid rgba(255,255,255,0.18);
+  }
+  .ghost-btn.on-light{color:var(--text-ink);border-color:var(--paper-line);}
+  .hamburger{display:none;background:none;border:none;color:var(--text-hi);padding:8px;width:40px;height:40px;}
+  .hamburger .bars{position:relative;width:22px;height:16px;margin:0 auto;}
+  .hamburger .bars span{
+    position:absolute;left:0;width:100%;height:2px;background:currentColor;border-radius:2px;
+    transition:transform .35s ease, opacity .25s ease, top .35s ease;
+  }
+  .hamburger .bars span:nth-child(1){top:0;}
+  .hamburger .bars span:nth-child(2){top:7px;}
+  .hamburger .bars span:nth-child(3){top:14px;}
+  .hamburger.open .bars span:nth-child(1){top:7px;transform:rotate(45deg);}
+  .hamburger.open .bars span:nth-child(2){opacity:0;}
+  .hamburger.open .bars span:nth-child(3){top:7px;transform:rotate(-45deg);}
+  .mobile-menu{
+    display:none;flex-direction:column;gap:2px;background:var(--navy-2);border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{
+    padding:14px 24px;color:var(--text-mid);border-bottom:1px solid var(--line);
+    opacity:0;transform:translateY(-8px);transition:opacity .3s ease, transform .3s ease, color .2s;
+  }
+  .mobile-menu a:last-child{border-bottom:none;}
+  .mobile-menu.open a{opacity:1;transform:translateY(0);}
+  .mobile-menu.open a:nth-child(1){transition-delay:.04s;}
+  .mobile-menu.open a:nth-child(2){transition-delay:.08s;}
+  .mobile-menu.open a:nth-child(3){transition-delay:.12s;}
+  .mobile-menu.open a:nth-child(4){transition-delay:.16s;}
+  .mobile-menu.open a:nth-child(5){transition-delay:.2s;}
+  .mobile-menu.open a:nth-child(6){transition-delay:.24s;}
+  .mobile-menu.open a:nth-child(7){transition-delay:.28s;}
+  .mobile-menu a:hover{color:var(--text-hi);}
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+    header.site-nav .nav-inner .cta-btn{display:none;}
+    .hamburger{display:inline-flex;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    padding-top:clamp(70px,12vw,130px);padding-bottom:clamp(70px,12vw,130px);
+    background:
+      radial-gradient(1100px 500px at 15% -10%, rgba(201,169,106,0.28), transparent 60%),
+      radial-gradient(900px 500px at 90% 10%, rgba(138,110,60,0.22), transparent 55%),
+      var(--ink);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:clamp(30px,5vw,60px);align-items:center;}
+  @media (max-width:940px){.hero-grid{grid-template-columns:1fr;}}
+  .eyebrow-pill{
+    display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;
+    background:rgba(255,255,255,0.06);border:1px solid var(--line);color:var(--text-mid);font-size:0.82rem;margin-bottom:26px;
+  }
+  .eyebrow-pill i{width:6px;height:6px;border-radius:50%;background:var(--blue);display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.4rem,5.4vw,4.1rem);color:var(--text-hi);font-weight:600;
+  }
+  .hero h1 .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero p.lede{
+    margin-top:24px;color:var(--text-mid);font-size:1.08rem;line-height:1.65;max-width:52ch;
+  }
+  .hero-ctas{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+
+  .device-stack{position:relative;height:clamp(320px,42vw,460px);}
+  .device-browser{
+    position:absolute;top:0;left:0;width:88%;border-radius:14px;overflow:hidden;
+    background:var(--panel);border:1px solid var(--line);box-shadow:0 30px 70px -30px rgba(0,0,0,0.7);
+  }
+  .device-browser .bar{height:32px;display:flex;align-items:center;gap:6px;padding:0 12px;background:rgba(255,255,255,0.03);border-bottom:1px solid var(--line);}
+  .device-browser .bar span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.18);}
+  .device-browser .screen{aspect-ratio:16/10;background:linear-gradient(135deg, rgba(201,169,106,0.18), rgba(138,110,60,0.14));position:relative;}
+  .device-browser .screen .ui-block{position:absolute;border-radius:8px;background:rgba(255,255,255,0.08);}
+  .device-phone{
+    position:absolute;bottom:0;right:0;width:38%;aspect-ratio:9/18;border-radius:26px;
+    background:var(--panel);border:1px solid var(--line);box-shadow:0 30px 60px -25px rgba(0,0,0,0.75);
+    padding:10px;
+  }
+  .device-phone .screen{width:100%;height:100%;border-radius:18px;background:linear-gradient(160deg, rgba(138,110,60,0.22), rgba(201,169,106,0.14));position:relative;overflow:hidden;}
+  .float-chip{
+    position:absolute;background:rgba(20,27,54,0.9);border:1px solid var(--line);border-radius:12px;
+    padding:9px 13px;font-size:0.76rem;color:var(--text-hi);backdrop-filter:blur(6px);
+    box-shadow:0 15px 30px -12px rgba(0,0,0,0.6);
+  }
+  .float-chip.c1{top:8%;left:-8%;}
+  .float-chip.c2{bottom:14%;left:2%;}
+  @media (prefers-reduced-motion: no-preference){
+    .device-stack{animation:none;}
+    .float-chip.c1{animation:floaty 6s ease-in-out infinite;}
+    .float-chip.c2{animation:floaty 7s ease-in-out infinite 1s;}
+  }
+  @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
+
+  /* ---------- VALUE PROP ---------- */
+  .value-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
+  @media (max-width:800px){.value-grid{grid-template-columns:1fr;}}
+  .value-grid h2{font-size:clamp(1.7rem,3.4vw,2.4rem);}
+  .chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .chip{padding:9px 16px;border-radius:999px;background:#fff;border:1px solid var(--paper-line);font-size:0.86rem;font-weight:500;box-shadow:0 1px 0 rgba(10,14,30,0.03);}
+  .value-grid .lede{color:var(--text-ink-mid);font-size:1.05rem;line-height:1.7;}
+
+  /* ---------- SERVICES ---------- */
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .section-head .kicker{color:var(--blue);font-weight:600;font-size:0.9rem;margin-bottom:10px;display:block;}
+  .section-head h2{font-size:clamp(1.8rem,3.6vw,2.5rem);}
+  .section-head p{margin-top:14px;color:var(--text-ink-mid);font-size:1.02rem;line-height:1.6;}
+  .dark-section .section-head p{color:var(--text-mid);}
+
+  .service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  @media (max-width:980px){.service-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.service-grid{grid-template-columns:1fr;}}
+  .service-card{ perspective:1400px; height:230px; }
+  .flip-inner{
+    position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.3,1);
+    transform-style:preserve-3d;
+  }
+  .service-card:hover .flip-inner, .service-card:focus-within .flip-inner{transform:rotateY(180deg);}
+  .flip-face{
+    position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);
+    padding:26px 22px;display:flex;flex-direction:column;gap:14px;border:1px solid var(--paper-line);
+  }
+  .flip-front{background:#fff;}
+  .flip-back{background:var(--ink);color:var(--text-hi);transform:rotateY(180deg);justify-content:center;}
+  .service-icon{width:44px;height:44px;border-radius:12px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#0A0A0C;flex:0 0 auto;}
+  .service-card h3{font-size:1.12rem;}
+  .flip-front p{color:var(--text-ink-mid);font-size:0.86rem;line-height:1.5;}
+  .flip-back p{color:var(--text-mid);font-size:0.9rem;line-height:1.55;}
+  .flip-back .card-cta{font-size:0.86rem;font-weight:600;color:var(--blue);margin-top:4px;}
+  @media (max-width:700px){
+    /* touch devices: tap to flip */
+    .service-card{height:auto;perspective:none;}
+    .flip-inner{transform:none !important;}
+    .flip-face{position:relative;inset:auto;}
+    .service-card.tapped .flip-inner{transform:rotateY(180deg);}
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media (max-width:980px){.proj-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:640px){.proj-grid{grid-template-columns:1fr;}}
+  .proj-card{
+    position:relative;border-radius:var(--radius);overflow:hidden;background:var(--panel);
+    border:1px solid var(--line);cursor:pointer;
+  }
+  .proj-thumb{aspect-ratio:16/10;overflow:hidden;background:#0d1224;position:relative;}
+  .proj-thumb img{
+    width:100%;height:100%;object-fit:cover;object-position:top;
+    transition:transform .4s, filter .35s;
+    outline:2px solid transparent;outline-offset:-14px;filter:brightness(0.82);
+  }
+  .proj-card:hover .proj-thumb img, .proj-card:focus-within .proj-thumb img{
+    transform:scale(1.04);filter:brightness(1);outline:2px solid var(--blue);outline-offset:-8px;
+  }
+  .proj-card:hover .proj-thumb::before, .proj-card:focus-within .proj-thumb::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:20px;
+    background:linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(0,0,0,0.05));
+    border-bottom:1px solid rgba(255,255,255,0.2);
+  }
+  .proj-body{padding:18px 20px 20px;}
+  .proj-body h3{color:var(--text-hi);font-size:1.02rem;}
+  .proj-tag{color:var(--text-dim);font-size:0.78rem;margin-top:4px;display:block;}
+  .proj-overlay{
+    position:absolute;inset:0;background:linear-gradient(180deg, rgba(8,11,20,0.15) 0%, rgba(8,11,20,0.96) 78%);
+    display:flex;flex-direction:column;justify-content:flex-end;padding:22px;opacity:0;transition:opacity .25s;
+  }
+  .proj-card:hover .proj-overlay, .proj-card:focus-within .proj-overlay, .proj-card.tapped .proj-overlay{opacity:1;}
+  .proj-overlay h3{color:var(--text-hi);}
+  .proj-overlay .tech{color:var(--text-mid);font-size:0.8rem;margin-top:8px;line-height:1.5;}
+  .proj-overlay .desc{color:var(--text-mid);font-size:0.85rem;margin-top:8px;line-height:1.55;}
+  .proj-overlay .live-btn{margin-top:14px;display:inline-block;background:var(--grad);color:#fff;font-size:0.82rem;font-weight:600;padding:9px 16px;border-radius:999px;width:fit-content;}
+  .proj-overlay .note{color:var(--text-dim);font-size:0.72rem;margin-top:8px;}
+  .more-projects{margin-top:34px;}
+  .tag-list{display:flex;flex-wrap:wrap;gap:10px;}
+  .tag-pill{padding:9px 15px;border-radius:10px;background:var(--panel);border:1px solid var(--line);color:var(--text-mid);font-size:0.84rem;}
+
+  /* ---------- FEEDBACK ---------- */
+  .feedback-box{
+    border:1px dashed var(--paper-line);border-radius:var(--radius);padding:56px 30px;text-align:center;
+    background:linear-gradient(135deg, rgba(201,169,106,0.05), rgba(138,110,60,0.05));
+  }
+  .feedback-box h3{font-size:1.3rem;}
+  .feedback-box p{margin-top:10px;color:var(--text-ink-mid);max-width:46ch;margin-left:auto;margin-right:auto;}
+
+  /* ---------- STYLES GALLERY ---------- */
+  .style-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;perspective:1200px;}
+  @media (max-width:980px){.style-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.style-grid{grid-template-columns:1fr;}}
+  .style-card{
+    background:#fff;border:1px solid var(--paper-line);border-radius:var(--radius);overflow:hidden;
+    transition:border-color .2s, box-shadow .3s, transform .3s, opacity .3s; display:flex;flex-direction:column;
+    transform-style:preserve-3d;
+    tabindex:0;
+  }
+  .style-card:hover,.style-card:focus-within{transform:rotateX(4deg) rotateZ(-0.6deg) translateY(-6px);box-shadow:0 26px 46px -26px rgba(20,18,10,0.35);z-index:2;}
+  .style-grid.has-hover .style-card:not(:hover){opacity:0.55;}
+  .style-card.selected{border-color:var(--blue);box-shadow:0 0 0 3px rgba(201,169,106,0.18);}
+  .style-mini{aspect-ratio:4/3;position:relative;}
+  .style-body{padding:16px 16px 18px;flex:1;display:flex;flex-direction:column;gap:6px;}
+  .style-body h4{font-size:0.98rem;}
+  .style-body .fit{font-size:0.78rem;color:var(--text-dim);}
+  .style-body p{font-size:0.84rem;color:var(--text-ink-mid);line-height:1.45;flex:1;}
+  .style-pick{
+    margin-top:8px;padding:8px 12px;border-radius:8px;border:1px solid var(--paper-line);background:var(--paper);
+    font-size:0.8rem;font-weight:600;text-align:center;
+  }
+  .style-card.selected .style-pick{background:var(--grad);color:#fff;border-color:transparent;}
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media (max-width:860px){.exp-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:520px){.exp-grid{grid-template-columns:1fr;}}
+  .exp-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;color:var(--text-hi);}
+  .exp-card .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block;margin-bottom:12px;}
+  .exp-card h4{font-size:0.98rem;}
+  .exp-card p{color:var(--text-mid);font-size:0.84rem;margin-top:6px;line-height:1.5;}
+
+  /* ---------- PRICING ---------- */
+  .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media (max-width:980px){.price-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.price-grid{grid-template-columns:1fr;}}
+  .price-card{background:#fff;border:1px solid var(--paper-line);border-radius:var(--radius);padding:26px 22px;display:flex;flex-direction:column;}
+  .price-card.hi{border-color:transparent;position:relative;isolation:isolate;overflow:hidden;transition:transform .3s;}
+  .price-card.hi::before{content:"Most Picked";position:absolute;top:-11px;right:20px;background:var(--grad);color:#0A0A0C;font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:999px;z-index:2;}
+  .price-card.hi::after{
+    content:"";position:absolute;inset:-2px;border-radius:var(--radius);padding:2px;
+    background:var(--grad);
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+    filter:blur(0px);opacity:0.85;transition:filter .35s, opacity .35s;z-index:1;
+  }
+  .price-card.hi:hover{transform:translateY(-6px);}
+  .price-card.hi:hover::after{filter:blur(3px);opacity:1;}
+  .price-card.hi > *{position:relative;z-index:2;}
+  .price-card.hi{background:linear-gradient(#fff,#fff) padding-box;}
+  .price-card h3{font-size:1.02rem;}
+  .price-amt{font-family:"Manrope";font-size:2rem;margin-top:10px;}
+  .price-list{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-direction:column;gap:9px;flex:1;}
+  .price-list li{font-size:0.86rem;color:var(--text-ink-mid);padding-left:20px;position:relative;}
+  .price-list li::before{content:"";position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:2px;background:var(--grad);}
+  .price-note{margin-top:26px;color:var(--text-ink-mid);font-size:0.88rem;text-align:center;}
+
+  /* ---------- HOW IT WORKS ---------- */
+  .steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media (max-width:860px){.steps-row{grid-template-columns:1fr 1fr;}}
+  @media (max-width:520px){.steps-row{grid-template-columns:1fr;}}
+  .step-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;color:var(--text-hi);}
+  .step-num{font-family:"Manrope";font-size:1.6rem;color:var(--blue);}
+  .step-card h4{margin-top:10px;font-size:1rem;}
+
+  /* ---------- WHY / ABOUT ---------- */
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  @media (max-width:860px){.why-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:520px){.why-grid{grid-template-columns:1fr;}}
+  .why-item{padding:20px;border:1px solid var(--paper-line);border-radius:12px;background:#fff;}
+  .why-item h4{font-size:0.94rem;}
+  .about-grid{display:grid;grid-template-columns:0.9fr 1.4fr;gap:50px;align-items:center;}
+  @media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-avatar{
+    width:100%;aspect-ratio:1;border-radius:20px;background:linear-gradient(135deg, rgba(201,169,106,0.22), rgba(138,110,60,0.18));
+    border:1px solid var(--paper-line);display:flex;align-items:center;justify-content:center;
+  }
+  .about-avatar svg{width:46%;height:46%;}
+
+  /* ---------- PLANNER ---------- */
+  .planner-shell{background:#fff;border:1px solid var(--paper-line);border-radius:20px;padding:clamp(22px,4vw,44px);box-shadow:0 30px 70px -45px rgba(0,0,0,0.25);}
+  .planner-progress{display:flex;gap:6px;margin-bottom:30px;flex-wrap:wrap;}
+  .planner-progress .seg{height:5px;border-radius:3px;background:var(--paper-line);flex:1;min-width:16px;}
+  .planner-progress .seg.done{background:var(--grad);}
+  .planner-step-label{color:var(--text-dim);font-size:0.8rem;font-weight:600;letter-spacing:0.03em;margin-bottom:6px;}
+  .planner-step h3{font-size:1.35rem;margin-bottom:22px;}
+  .opt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  @media (max-width:700px){.opt-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:460px){.opt-grid{grid-template-columns:1fr;}}
+  .opt-btn{
+    padding:16px 14px;border-radius:12px;border:1.5px solid var(--paper-line);background:var(--paper);text-align:left;
+    font-size:0.92rem;font-weight:600;transition:border-color .2s, background .2s;
+  }
+  .opt-btn:hover{border-color:var(--blue);}
+  .opt-btn.selected{border-color:var(--blue);background:linear-gradient(135deg, rgba(201,169,106,0.08), rgba(138,110,60,0.06));color:var(--blue);}
+  .opt-btn small{display:block;font-weight:400;color:var(--text-dim);font-size:0.76rem;margin-top:3px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  @media (max-width:600px){.field-row{grid-template-columns:1fr;}}
+  label{font-size:0.84rem;font-weight:600;color:var(--text-ink-mid);display:block;margin-bottom:6px;}
+  input[type=text],input[type=tel],input[type=email],textarea,select{
+    width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--paper-line);font-family:inherit;font-size:0.94rem;background:var(--paper);
+  }
+  input:focus,textarea:focus,select:focus,.opt-btn:focus-visible,.style-pick:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
+  textarea{min-height:90px;resize:vertical;}
+  .planner-nav{display:flex;justify-content:space-between;margin-top:30px;gap:12px;flex-wrap:wrap;}
+  .btn-plain{background:var(--paper);border:1.5px solid var(--paper-line);padding:12px 22px;border-radius:999px;font-weight:600;font-size:0.9rem;}
+  .btn-plain:disabled{opacity:0.4;cursor:not-allowed;}
+
+  .summary-block{border:1px solid var(--paper-line);border-radius:14px;padding:20px 22px;margin-bottom:14px;}
+  .summary-block h4{font-size:0.86rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-dim);margin-bottom:10px;}
+  .summary-block .row{display:flex;justify-content:space-between;gap:14px;padding:6px 0;font-size:0.92rem;border-top:1px solid var(--paper-line);}
+  .summary-block .row:first-of-type{border-top:none;}
+  .summary-block .row span:first-child{color:var(--text-ink-mid);}
+  .summary-block .row span:last-child{font-weight:600;text-align:right;}
+  .disclaimer{font-size:0.8rem;color:var(--text-dim);margin-top:6px;line-height:1.5;}
+
+  .ai-preview-box{border:1px solid var(--paper-line);border-radius:14px;padding:24px;margin-top:6px;}
+  .ai-concept-card{
+    margin-top:16px;border-radius:14px;padding:26px;color:#fff;position:relative;overflow:hidden;
+  }
+  .ai-concept-card .badge{position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.18);font-size:0.68rem;padding:4px 10px;border-radius:999px;font-weight:700;letter-spacing:0.03em;}
+  .ai-concept-card h4{font-size:1.05rem;}
+  .ai-concept-card .palette{display:flex;gap:8px;margin-top:14px;}
+  .ai-concept-card .swatch{width:30px;height:30px;border-radius:8px;border:1px solid rgba(255,255,255,0.3);}
+  .ai-concept-card p{color:rgba(255,255,255,0.88);font-size:0.86rem;margin-top:12px;line-height:1.55;}
+  .action-row{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;}
+
+  .deploy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media (max-width:600px){.deploy-grid{grid-template-columns:1fr;}}
+
+  .final-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;}
+  .final-actions .cta-btn.on-light{color:#fff;}
+  .whatsapp-preview{
+    background:var(--paper);border:1px solid var(--paper-line);border-radius:12px;padding:18px;
+    font-family:ui-monospace,Menlo,monospace;font-size:0.82rem;white-space:pre-wrap;color:var(--text-ink);line-height:1.6;max-height:340px;overflow:auto;
+  }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact-cta h2{font-size:clamp(1.9rem,4vw,2.9rem);color:var(--text-hi);max-width:16ch;}
+  .contact-cta p{color:var(--text-mid);margin-top:16px;font-size:1.05rem;max-width:48ch;}
+  .contact-info{display:flex;flex-wrap:wrap;gap:26px;margin-top:36px;}
+  .contact-info a{color:var(--text-mid);font-size:0.92rem;border-bottom:1px solid transparent;}
+  .contact-info a:hover{color:var(--text-hi);border-color:var(--text-hi);}
+
+  footer{background:var(--ink);color:var(--text-dim);padding:50px 0 26px;border-top:1px solid var(--line);}
+  .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;}
+  .footer-links{display:flex;gap:20px;flex-wrap:wrap;font-size:0.86rem;}
+  .footer-links a{position:relative;padding:3px 0;transition:color .2s;}
+  .footer-links a::before,.footer-links a::after{content:"";position:absolute;left:0;width:0;height:1px;background:var(--grad);transition:width .3s ease;}
+  .footer-links a::before{top:0;} .footer-links a::after{bottom:0;}
+  .footer-links a:hover{color:var(--text-hi);}
+  .footer-links a:hover::before,.footer-links a:hover::after{width:100%;}
+
+  .social-row{display:flex;gap:12px;margin-top:16px;}
+  .social-icon{
+    width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;color:var(--text-mid);transition:color .3s, border-color .3s, transform .5s;
+  }
+  .social-icon svg{width:16px;height:16px;position:relative;z-index:1;transition:transform .5s;}
+  .social-icon::before{
+    content:"";position:absolute;inset:0;background:var(--grad);border-radius:50%;
+    transform:translateY(100%);transition:transform .35s ease;
+  }
+  .social-icon:hover::before,.social-icon:focus-visible::before{transform:translateY(0);}
+  .social-icon:hover,.social-icon:focus-visible{color:#0A0A0C;border-color:transparent;}
+  .social-icon:hover svg,.social-icon:focus-visible svg{transform:rotateY(360deg);}
+  .footer-bottom{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font-size:0.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  .skip-link{
+    position:absolute;
+    top:-40px;
+    left:0;
+    background:#fff;
+    color:#000;
+    padding:8px;
+    z-index:100;
+    border-radius:0 0 4px 4px;
+    transition:top .3s;
+  }
+  .skip-link:focus{
+    top:0;
+  }
+  .visually-hide-desktop{display:none;}
+  @media (max-width:700px){
+    .visually-hide-mobile{display:none;}
+    .visually-hide-desktop{display:block;}
+  }
+</style>
+</head>
+<body>
+  <a href="#home" class="skip-link">Skip to main content</a>
+
+<!-- ================= NAV ================= -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand" aria-label="JITEN LABS home">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="64" height="64" rx="16" fill="#0B0F1F"/>
+        <path d="M20 16h8v21a9 9 0 0 1-9 9h-3v-7h2a3 3 0 0 0 2-3V16z" fill="#C9A96A"/>
+        <path d="M36 16h7v13l10-13h8L50 30l12 16h-8l-8-11-3 4v7h-7V16z" fill="#8A6E3C"/>
+      </svg>
+      <span class="brand-name">JITEN LABS<span>Web Developer &amp; Digital Solutions</span></span>
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#styles">Styles</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+      <a href="#planner">Let's Plan</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#planner" class="cta-btn">Start a Project</a>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <span class="bars"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#styles">Styles</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#about">About</a>
+    <a href="#planner">Let's Plan</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow-pill"><i></i>Web Development &amp; Digital Solutions</span>
+      <h1>Your Business.<br>Your Style.<br><span class="accent">Your Digital Presence.</span></h1>
+      <p class="lede">I design and build modern websites, digital menus, e-commerce, custom web applications, digital solutions and provide visual direction that help businesses look professional, connect with customers and grow online.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="cta-btn">View My Work</a>
+        <a href="#planner" class="ghost-btn">Start a Project</a>
+      </div>
+    </div>
+    <div class="device-stack" aria-hidden="true">
+      <div class="device-browser">
+        <div class="bar"><span></span><span></span><span></span></div>
+        <div class="screen">
+          <div class="ui-block" style="top:14%;left:8%;width:40%;height:10%;"></div>
+          <div class="ui-block" style="top:32%;left:8%;width:26%;height:18%;"></div>
+          <div class="ui-block" style="top:32%;left:38%;width:26%;height:18%;"></div>
+          <div class="ui-block" style="top:32%;left:68%;width:26%;height:18%;"></div>
+        </div>
+      </div>
+      <div class="device-phone">
+        <div class="screen">
+          <div class="ui-block" style="top:10%;left:12%;width:76%;height:12%;"></div>
+          <div class="ui-block" style="top:28%;left:12%;width:76%;height:26%;"></div>
+        </div>
+      </div>
+      <div class="float-chip c1">✓ Mobile Responsive</div>
+      <div class="float-chip c2">⚡ Fast &amp; Modern</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VALUE PROP ================= -->
+<section>
+  <div class="wrap value-grid">
+    <h2>I don't just build websites — I build digital experiences around your business.</h2>
+    <div>
+      <p class="lede">I combine modern design, responsive development and practical business features to create digital experiences designed around the actual needs of each business — not a generic template.</p>
+      <div class="chip-row">
+        <span class="chip">Modern Design</span>
+        <span class="chip">Business-Focused</span>
+        <span class="chip">Mobile First</span>
+        <span class="chip">Fast &amp; Responsive</span>
+        <span class="chip">Custom Solutions</span>
+        <span class="chip">Premium</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services" class="dark-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">What I Build</span>
+      <h2>Services</h2>
+      <p>Four core ways I help businesses show up professionally online.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A0A0C" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div>
+            <h3>Business Websites</h3>
+            <p>Professional websites for local businesses, professionals, startups and growing brands.</p>
+          </div>
+          <div class="flip-face flip-back">
+            <h3>Business Websites</h3>
+            <p>Professional websites for local businesses, professionals, startups and growing brands — built to look credible and convert visitors into inquiries.</p>
+            <a href="#planner" class="card-cta">Start Project →</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-card" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A0A0C" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+            <h3>Digital Menus</h3>
+            <p>Mobile-friendly QR digital menus with modern design, categories and images.</p>
+          </div>
+          <div class="flip-face flip-back">
+            <h3>Digital Menus</h3>
+            <p>Mobile-friendly QR digital menus with modern design, categories, images and WhatsApp/contact options built in.</p>
+            <a href="#planner" class="card-cta">Start Project →</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-card" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A0A0C" stroke-width="2"><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M3 4h2l2.2 11h9.6L19 8H6"/></svg></div>
+            <h3>E-Commerce Websites</h3>
+            <p>Online stores with product catalogues and business-focused shopping experiences.</p>
+          </div>
+          <div class="flip-face flip-back">
+            <h3>E-Commerce Websites</h3>
+            <p>Online stores with product catalogues, responsive design, product pages and a business-focused shopping experience.</p>
+            <a href="#planner" class="card-cta">Start Project →</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-card" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A0A0C" stroke-width="2"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg></div>
+            <h3>Custom Web Applications</h3>
+            <p>Custom dashboards, AI tools, business systems and automation platforms.</p>
+          </div>
+          <div class="flip-face flip-back">
+            <h3>Custom Web Applications</h3>
+            <p>Custom dashboards, AI tools, business systems, automation platforms and web applications tailored to how your business runs.</p>
+            <a href="#planner" class="card-cta">Start Project →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REAL PROJECTS ================= -->
+<section id="projects" class="dark-section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Real, Live Work</span>
+      <h2>Featured Projects</h2>
+      <p>Projects I've actually designed and built — not design concepts. Tap or hover a project to preview it.</p>
+    </div>
+    <div class="proj-grid" id="projGrid"></div>
+
+    <div class="more-projects">
+      <h3 style="color:var(--text-hi);font-size:1.1rem;margin-bottom:16px;">Explore All Projects</h3>
+      <div class="tag-list" id="moreProjTags"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIGITAL MENU EXPERIENCES ================= -->
+<section class="dark-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Future Menu Experiences</span>
+      <h2>Digital Menu Experiences</h2>
+      <p>Digital menus are a separate product category from client projects. They represent Jiten Labs' service offerings for creating modern, QR-accessible dining experiences.</p>
+    </div>
+
+    <!-- Digital Menu Architecture Overview -->
+    <div class="menu-architecture">
+      <h3>How It Works</h3>
+      <div class="menu-flow">
+        <!-- Normal Digital Menu Flow -->
+        <div class="menu-flow-item">
+          <h4>Normal Digital Menu</h4>
+          <div class="flow-step qr-code">QR Code</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step menu-landing">Menu Landing Page</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step menu-experience">Menu Experience</div>
+          <div class="flow-actions">
+            <span class="action-item">View Digital Menu</span>
+            <span class="action-item">View/Download PDF</span>
+            <span class="action-item">Share</span>
+            <span class="action-item">WhatsApp</span>
+            <span class="action-item">Call</span>
+            <span class="action-item">Location</span>
+          </div>
+        </div>
+
+        <!-- AR Digital Menu Flow -->
+        <div class="menu-flow-item">
+          <h4>AR Digital Menu</h4>
+          <div class="flow-step qr-code">QR Code</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step menu-landing">Menu Landing Page</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step decision">Normal Menu / View in AR</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step device-check">Device Support Check</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step ar-branch">AR Experience</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step ar-fallback">Normal Menu Fallback</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Architecture -->
+    <div class="menu-data-architecture">
+      <h3>Data-Driven Architecture</h3>
+      <p>One shared data structure supports multiple menu formats:</p>
+      <div class="data-flow">
+        <div class="data-source">Business & Menu Data</div>
+        <div class="data-arrow">↓</div>
+        <div class="data-output">A4 Printable Menu</div>
+        <div class="data-arrow">↓</div>
+        <div class="data-output">PDF Menu</div>
+        <div class="data-arrow">↓</div>
+        <div class="data-output">Normal Web Menu</div>
+        <div class="data-arrow">↓</div>
+        <div class="data-output">AR Menu</div>
+        <div class="data-arrow">↓</div>
+        <div class="data-output">Future Integrations</div>
+      </div>
+    </div>
+
+    <!-- Service Distinction -->
+    <div class="menu-service-note">
+      <h3>Service vs Portfolio</h3>
+      <p><strong>Featured Projects:</strong> Real completed client work</p>
+      <p><strong>Digital Menu Experiences:</strong> Jiten Labs service offerings</p>
+      <p>These experiences represent what we can build for you — not completed projects in our portfolio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DESIGN STYLES ================= -->
+<section id="styles">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">For Your Future Website</span>
+      <h2>Choose Your Design Style</h2>
+      <p>These are visual directions you can pick for your own website — not completed projects. Your selection carries through to the planner, summary, WhatsApp message and proposal PDF.</p>
+    </div>
+    <div class="style-grid" id="styleGrid"></div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section class="dark-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Under The Hood</span>
+      <h2>The Website Experience</h2>
+      <p>Every build is engineered with the same quality standards, regardless of style.</p>
+    </div>
+    <div class="exp-grid" id="expGrid"></div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Investment</span>
+      <h2>Pricing</h2>
+      <p>Starting packages — final pricing is confirmed after reviewing your project requirements.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Digital Menu Basic</h3>
+        <div class="price-amt">₹1,999</div>
+        <ul class="price-list">
+          <li>Up to 30 items</li><li>Mobile responsive</li><li>QR code</li><li>WhatsApp button</li><li>1 revision</li>
+        </ul>
+      </div>
+      <div class="price-card hi">
+        <h3>Digital Menu Pro</h3>
+        <div class="price-amt">₹4,999</div>
+        <ul class="price-list">
+          <li>Custom modern design</li><li>Up to 60 items</li><li>QR code</li><li>WhatsApp</li><li>Contact/location</li><li>2 revisions</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <h3>Business Website</h3>
+        <div class="price-amt">₹7,999</div>
+        <ul class="price-list">
+          <li>4–5 sections/pages</li><li>Responsive design</li><li>WhatsApp</li><li>Google Maps</li><li>Contact form</li><li>Basic SEO</li><li>2 revisions</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <h3>Website + Digital Menu</h3>
+        <div class="price-amt">₹12,999</div>
+        <ul class="price-list">
+          <li>Complete website</li><li>Dedicated digital menu</li><li>Custom design</li><li>WhatsApp</li><li>Google Maps</li><li>Responsive</li><li>Extra revision</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Add-ons Section -->
+    <div class="add-ons-section">
+      <h3>Add-ons</h3>
+      <p>Enhance your project with these optional services:</p>
+      <div class="add-ons-grid">
+        <div class="add-on-item">
+          <h4>Google Business setup/help</h4>
+          <p>₹1,000–₹2,500</p>
+        </div>
+        <div class="add-on-item">
+          <h4>Maintenance</h4>
+          <p>₹500–₹1,500/month</p>
+        </div>
+        <div class="add-on-item">
+          <h4>Extra page</h4>
+          <p>₹1,000–₹2,500</p>
+        </div>
+        <div class="add-on-item">
+          <h4>Custom features</h4>
+          <p>On request</p>
+        </div>
+      </div>
+      <p class="add-ons-note">Add-ons are optional and not automatically included in any package.</p>
+    </div>
+
+    <!-- Hosting/Deployment Pricing Section -->
+    <div class="hosting-pricing-section">
+      <h3>Hosting & Deployment</h3>
+      <p>JITEN LABS setup/deployment charges are separate from third-party hosting/platform costs.</p>
+      <div class="hosting-grid">
+        <div class="hosting-item">
+          <h4>Netlify</h4>
+          <p>₹999–₹1,999</p>
+        </div>
+        <div class="hosting-item">
+          <h4>Vercel</h4>
+          <p>₹999–₹2,499</p>
+        </div>
+        <div class="hosting-item">
+          <h4>Render</h4>
+          <p>₹1,499–₹3,499</p>
+        </div>
+        <div class="hosting-item">
+          <h4>Cloudflare Pages</h4>
+          <p>₹999–₹1,999</p>
+        </div>
+        <div class="hosting-item">
+          <h4>Firebase</h4>
+          <p>₹1,499–₹3,499</p>
+        </div>
+        <div class="hosting-item">
+          <h4>Supabase</h4>
+          <p>₹1,999–₹4,999+</p>
+        </div>
+        <div class="hosting-item">
+          <h4>Google Cloud / Cloud Run</h4>
+          <p>₹2,499–₹5,999+</p>
+        </div>
+      </div>
+      <p class="hosting-disclaimer">Hosting/platform costs are separate from JITEN LABS setup charges and may vary based on the provider, plan, usage, and current pricing.</p>
+    </div>
+
+    <p class="price-note">Custom projects: <a href="#planner" style="color:var(--blue);font-weight:600;">let's discuss your requirements →</a><br>Final pricing is confirmed after reviewing the project requirements and scope.</p>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="dark-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Process</span>
+      <h2>How It Works</h2>
+    </div>
+    <div class="steps-row">
+      <div class="step-card"><div class="step-num">01</div><h4>Tell Me About Your Business</h4></div>
+      <div class="step-card"><div class="step-num">02</div><h4>Choose Your Website Direction</h4></div>
+      <div class="step-card"><div class="step-num">03</div><h4>I Design &amp; Build</h4></div>
+      <div class="step-card"><div class="step-num">04</div><h4>Launch &amp; Support</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY CHOOSE ME ================= -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Why Work With Me</span>
+      <h2>Why Choose Me</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><h4>Custom Design</h4></div>
+      <div class="why-item"><h4>Modern Technology</h4></div>
+      <div class="why-item"><h4>Mobile First</h4></div>
+      <div class="why-item"><h4>Business-Focused</h4></div>
+      <div class="why-item"><h4>Direct Communication</h4></div>
+      <div class="why-item"><h4>Flexible Solutions</h4></div>
+      <div class="why-item"><h4>AI &amp; Automation Experience</h4></div>
+      <div class="why-item"><h4>Performance Focused</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="dark-section">
+  <div class="wrap about-grid">
+    <div class="about-avatar" aria-hidden="true">
+      <svg viewBox="0 0 64 64" fill="none">
+        <path d="M20 16h8v21a9 9 0 0 1-9 9h-3v-7h2a3 3 0 0 0 2-3V16z" fill="#C9A96A"/>
+        <path d="M36 16h7v13l10-13h8L50 30l12 16h-8l-8-11-3 4v7h-7V16z" fill="#8A6E3C"/>
+      </svg>
+    </div>
+    <div>
+      <span class="kicker" style="color:var(--blue);font-weight:600;">About</span>
+      <h2 style="font-size:clamp(1.7rem,3.4vw,2.3rem);color:var(--text-hi);margin-top:10px;">Jiten Kumar — Web Developer &amp; Digital Solutions</h2>
+      <p style="color:var(--text-mid);margin-top:18px;font-size:1.02rem;line-height:1.7;">I build modern websites, AI-powered applications, digital experiences and practical technology solutions for businesses — combining clean design with dependable engineering so every project actually helps the business it's built for.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLANNER ================= -->
+<section id="planner">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Let's Build This</span>
+      <h2>Let's Plan Your Project</h2>
+      <p>Answer a few quick questions and I'll generate a project summary, a downloadable proposal PDF, and a pre-filled WhatsApp message you can send me directly.</p>
+    </div>
+
+    <div class="planner-shell">
+      <div class="planner-progress" id="plannerProgress"></div>
+      <div id="plannerStepArea"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="dark-section" id="contact">
+  <div class="wrap">
+    <div class="contact-cta">
+      <h2>Let's build something that works for your business.</h2>
+      <p>Tell me what you need and I'll help turn it into a practical digital solution.</p>
+      <div class="hero-ctas">
+        <a href="#planner" class="cta-btn">Start a Project</a>
+        <a href="https://wa.me/917675023149" target="_blank" rel="noopener" class="ghost-btn">WhatsApp Me</a>
+      </div>
+      <div class="contact-info">
+        <a href="tel:+917675023149">+91 76750 23149</a>
+        <a href="mailto:jiten.freelance@gmail.com">jiten.freelance@gmail.com</a>
+        <a href="https://www.linkedin.com/in/jiten-kumar-85a03217/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Jiten28" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.instagram.com/buildwithjiten/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:10px;">
+          <svg viewBox="0 0 64 64" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="64" height="64" rx="16" fill="#0B0F1F"/>
+            <path d="M20 16h8v21a9 9 0 0 1-9 9h-3v-7h2a3 3 0 0 0 2-3V16z" fill="#C9A96A"/>
+            <path d="M36 16h7v13l10-13h8L50 30l12 16h-8l-8-11-3 4v7h-7V16z" fill="#8A6E3C"/>
+          </svg>
+          <span style="font-family:'Manrope';color:var(--text-hi);font-weight:600;">JITEN LABS</span>
+        </div>
+        <p style="max-width:32ch;">Digital Experiences. Built for Business.</p>
+        <div class="social-row">
+          <a class="social-icon" href="https://github.com/Jiten28" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5v-1.94c-2.78.62-3.37-1.36-3.37-1.36-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.34 1.12 2.92.85.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.8c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.94.68 1.9v2.82c0 .28.18.61.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+          </a>
+          <a class="social-icon" href="https://www.linkedin.com/in/jiten-kumar-85a03217/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3a1.96 1.96 0 1 0 0 3.92A1.96 1.96 0 0 0 5.25 3zM20.44 21h-3.37v-6.28c0-1.5-.03-3.42-2.08-3.42-2.08 0-2.4 1.63-2.4 3.31V21H9.22V8.5h3.24v1.71h.05c.45-.86 1.56-1.77 3.21-1.77 3.44 0 4.07 2.26 4.07 5.21V21z"/></svg>
+          </a>
+          <a class="social-icon" href="https://www.instagram.com/buildwithjiten/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.55.22.95.47 1.37.89.42.42.67.82.89 1.37.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.55-.47.95-.89 1.37-.42.42-.82.67-1.37.89-.42.16-1.06.36-2.23.41-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.55-.22-.95-.47-1.37-.89a3.9 3.9 0 0 1-.89-1.37c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.55.47-.95.89-1.37.42-.42.82-.67 1.37-.89.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.7a6.14 6.14 0 1 0 0 12.28 6.14 6.14 0 0 0 0-12.28zm0 10.13a3.99 3.99 0 1 1 0-7.98 3.99 3.99 0 0 1 0 7.98zm6.4-10.38a1.44 1.44 0 1 1-2.87 0 1.44 1.44 0 0 1 2.87 0z"/></svg>
+          </a>
+          <a class="social-icon" href="https://wa.me/917675023149" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.1 3.9C17.9 1.7 15 .5 12 .5 5.8.5.7 5.6.7 11.9c0 2 .5 3.9 1.2 5.6l-.3 4c-.4 1.3-.3 2.7.5 3.5l2.7.8c.9.3 1.8.3 2.5-.1l1.2-1c.7-.4 1.2-1.1 1.4-1.9l2-3.9c.4-.8.5-1.1.5-1.2 0-.1-.1-.3-.3-.5-.1-.1-.3-.3-.4-.5-.2-.2-.4-.3-.6-.3l-.2-.1c-.2-.1-.4-.1-.6-.1-2.8-.1-3.7.8-4.2 2.6l-.1.5-.2.9c-.1.4-.1.9-.1 1.8.1.9.6 1.6 1.2 1.8l1.6.8c1 .4 2 .7 3 .8l1.5-.1c.4-.1.9-.2 1.3-.3l2.1-1.1c.5-.3 1-.6 1.3-1.1l.7-1.4c.3-.6.4-1.2.2-1.8-.1-.5-.5-1.1-1-1.5-.4-.5-1-.9-1.4-1.3l-.2-.2v-.5c0-.1 0-.2.1-.3.1-.1.3-.3.4-.4l2-1.1c.5-.3 1-.5 1.4-.6l1.6-.6c.4-.2.9-.3 1.4-.1l.6.3c.2.1.5.2.6.4l.2.1c.2.1.4.2.5.4l.3.2c.2.1.5.1.6.1l.2-.1c.2-.1.4-.1.6-.1z"/></svg>
+          </a>
+        </div>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="#home">Home</a><a href="#services">Services</a><a href="#projects">Projects</a>
+        <a href="#styles">Styles</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#planner">Let's Plan</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Jiten Kumar / JITEN LABS. All rights reserved.</span>
+      <span>jiten.freelance@gmail.com · +91 76750 23149</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   DATA LAYER — structured data, kept separate from render logic
+   ============================================================ */
+
+const REAL_PROJECTS = [
+  { name:"Perfume Shop", category:"Full-Stack E-Commerce", tech:"React, TailwindCSS, Vite, Node.js, MongoDB",
+    desc:"Responsive perfume storefront with product pages, reviews and a trending section.",
+    url:"https://perfume-shop-digital.netlify.app/", img:"assets/perfume-shop.png", hosting:"netlify" },
+  { name:"E-Commerce Website", category:"Sports E-Commerce", tech:"HTML, CSS, JavaScript",
+    desc:"Responsive sports e-commerce site optimized for desktop and mobile browsing and checkout.",
+    url:null, img:"assets/ecommerce.png", hosting:null },
+  { name:"Voyage-AI", category:"Intelligent Travel Planner", tech:"Google AI Studio / AI-powered application",
+    desc:"AI travel planner generating itineraries, budgets, hotel picks and destination visuals.",
+    url:"https://voyage-ai-p1bd.onrender.com/", img:"assets/voyage-ai.png", hosting:"render" },
+  { name:"Wonderful Crown", category:"Healthcare Recommendation System", tech:"Full-stack AI / machine learning",
+    desc:"AI healthcare platform predicting conditions from symptoms with specialist matching.",
+    url:"https://wonderful-crown.onrender.com/", img:"assets/wonderful-crown-desktop.png", mobileImg:"assets/wonderful-crown-mobile.png", hosting:"render" },
+  { name:"Cindrix", category:"Intelligent AI Assistant", tech:"Gemini, RAG, persistent memory, Flask, Three.js",
+    desc:"AI assistant with persistent memory, voice interaction, web/image search and a 3D interface.",
+    url:"https://cindrix-ai.onrender.com/", img:"assets/cindrix-desktop.png", mobileImg:"assets/cindrix-mobile.png", hosting:"render" },
+  { name:"AgriVision-XAI", category:"Explainable AI", tech:"EfficientNetB0, CBAM, Grad-CAM, LIME, TensorFlow Lite, Streamlit",
+    desc:"Explainable plant-disease detection with severity estimation and an interactive Streamlit app.",
+    url:null, img:null, hosting:null },
+];
+
+const MORE_PROJECTS = ["BizLink — Buyer & Seller Matching Platform","CrowdPulse — AI Crowd Analytics","StockMentor — AI Stock Analysis",
+"NeuralRetail — AI Sales Analytics","Plant Disease Detection","AI Voice Assistant","Legal AI Assistant",
+"Facial Recognition Attendance System","Malware Detection using Deep Learning","Rubik's Cube Solver",
+"Sentiment Analysis App","ToDo List Application","Login/Register Page","Hand Tracking Program",
+"Eye Tracking with Face Distance Finder","Daily Reflection Tree"];
+
+const DESIGN_STYLES = [
+  {n:"Glassmorphism", g:["#7c9eff","#c9a6ff"], fit:"Startups, SaaS, AI products", d:"Frosted translucent panels over soft gradients for a modern, airy feel."},
+  {n:"Minimalistic", g:["#e9e9ec","#ffffff"], fit:"Professionals, studios, personal brands", d:"Generous whitespace and restrained typography that let content lead."},
+  {n:"Dark Mode", g:["#141821","#2b3346"], fit:"Tech, gaming, premium studios", d:"Deep dark backdrops with bright accents for a bold, technical mood."},
+  {n:"Colorful / Vibrant", g:["#ff7a7a","#ffd36b"], fit:"Cafés, salons, youth brands", d:"Energetic gradients and playful color for a lively, memorable brand."},
+  {n:"Neumorphism", g:["#e6e9ef","#f4f6fa"], fit:"Wellness, lifestyle apps", d:"Soft embossed surfaces with subtle shadows for a tactile, gentle UI."},
+  {n:"Brutalist", g:["#111111","#f4f4f4"], fit:"Creative agencies, portfolios", d:"Raw grids, hard edges and bold type that reject decorative polish."},
+  {n:"Vintage / Retro", g:["#d8c19a","#8a5a44"], fit:"Bakeries, heritage brands", d:"Warm muted tones and classic typefaces evoking nostalgia and craft."},
+  {n:"Hand-Drawn / Sketch", g:["#fff6e5","#ffd88a"], fit:"Kids brands, creative studios", d:"Playful sketch-style illustration and hand-lettered accents."},
+  {n:"Parallax", g:["#294b7a","#5c86c9"], fit:"Travel, real estate, tourism", d:"Layered scroll depth that turns a page into an immersive journey."},
+  {n:"Landing Page", g:["#6a5bff","#9c7bff"], fit:"Product launches, startups", d:"Single focused page built entirely around one clear conversion goal."},
+  {n:"One Page Scroll", g:["#232735","#4a5270"], fit:"Portfolios, small businesses", d:"Every section flows on one page — quick to browse, easy to build."},
+  {n:"Portfolio", g:["#f4f0ea","#dcd4c6"], fit:"Freelancers, designers, photographers", d:"Work-first layout that showcases a curated body of projects."},
+  {n:"E-Commerce", g:["#111827","#374151"], fit:"Retail shops, online stores", d:"Product-grid driven layout optimized for browsing and checkout."},
+  {n:"Magazine / Blog", g:["#fafafa","#d1d5db"], fit:"Publishers, content creators", d:"Editorial columns and featured-story layout for long-form content."},
+  {n:"Corporate / Business", g:["#1d3a63","#4b7bb5"], fit:"Consultancies, B2B services", d:"Structured, trustworthy layout suited to formal business audiences."},
+  {n:"Educational", g:["#0f766e","#5eead4"], fit:"Coaching, courses, institutes", d:"Clear hierarchy and friendly visuals built to guide a learner."},
+  {n:"SaaS / Dashboard", g:["#1e293b","#3b82f6"], fit:"Software products, tools", d:"Data-forward layout with cards, charts and clean product screens."},
+  {n:"Entertainment", g:["#1a0b2e","#7c2ae8"], fit:"Events, media, nightlife", d:"High-contrast, dramatic visuals built for excitement and buzz."},
+  {n:"Nature / Eco", g:["#2f5233","#8bc34a"], fit:"Sustainable brands, gyms, wellness", d:"Organic tones and natural imagery for an earthy, grounded feel."},
+  {n:"AI / Tech", g:["#0a0e27","#3b82f6"], fit:"AI products, tech startups", d:"Futuristic gradients and geometric detail signalling technology."},
+];
+
+const EXPERIENCE_ITEMS = ["Smooth Scrolling","Responsive Design","Modern UI","Micro-interactions","Subtle Parallax","Mobile First","Fast Performance","Accessible Design","Business-Focused UX"];
+
+const BUSINESS_TYPES = ["Restaurant","Café","Salon","Dry Cleaner","Bakery","Gym","Retail Shop","Professional Service","Startup","Other"];
+const PROJECT_TYPES = [
+  {n:"Digital Menu", hosting:"netlify"}, {n:"QR Digital Menu", hosting:"netlify"},
+  {n:"Business Website", hosting:"netlify"}, {n:"E-commerce Website", hosting:"vercel"},
+  {n:"Web Application", hosting:"render"}, {n:"Custom Solution", hosting:"cloudrun"}
+];
+const FEATURE_OPTIONS = ["WhatsApp","QR Code","Google Maps","Contact Form","Online Booking","Product Catalog","Online Ordering","Payment Integration","Gallery","Reviews","Blog","Social Media Links","Admin Dashboard","Custom Feature"];
+const BUDGET_OPTIONS = ["₹2,000–₹5,000","₹5,000–₹10,000","₹10,000–₹20,000"];
+
+const DEPLOY_PLATFORMS = {
+  netlify:{ name:"Netlify", best:"Business websites, digital menus, React/Vite frontends", cost:"Free tier — $0/month*", fee:"₹999 – ₹1,999", note:"Good low-cost option for websites that don't need a dedicated backend." },
+  vercel:{ name:"Vercel", best:"React / Next.js applications", cost:"Hobby $0/month, Pro $20/month*", fee:"₹999 – ₹2,499", note:"Free tier is used when technically sufficient; Pro isn't recommended by default." },
+  render:{ name:"Render", best:"Node.js, Python, Flask/FastAPI, full-stack & AI apps", cost:"Free/paid tiers, usage-based for compute*", fee:"₹1,499 – ₹3,499", note:"Free dynamic services may have startup delays or reduced resources." },
+  cloudflare:{ name:"Cloudflare Pages", best:"Static websites, landing pages", cost:"Free tier for static assets*", fee:"₹999 – ₹1,999", note:"For server-side functionality, Workers or another backend is evaluated separately." },
+  firebase:{ name:"Firebase", best:"Auth, real-time apps, Firebase-based apps", cost:"Free Spark plan, pay-as-you-go Blaze*", fee:"₹1,499 – ₹3,499", note:"Cost depends on the services and usage — not free at all traffic levels." },
+  cloudrun:{ name:"Google Cloud / Cloud Run", best:"AI apps, Gemini-powered apps, secure backend APIs", cost:"Usage-based, free-tier allowances may apply*", fee:"₹2,499 – ₹5,999+", note:"Used when secure server-side API keys or scalable backend infra are required." },
+};
+const DEPLOY_CHOICE_MAP = {
+  existing:{ label:"I already have hosting", platform:null },
+  affordable:{ label:"I need the most affordable option", platform:"netlify" },
+  recommended:{ label:"I want a recommended option", platform:null }, // resolved from project type
+  fullstack:{ label:"I need full-stack / backend hosting", platform:"render" },
+  ai:{ label:"I need AI / API hosting", platform:"cloudrun" },
+  unsure:{ label:"I'm not sure — recommend one for me", platform:null }, // resolved from project type
+};
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const state = {
+  businessType:null, projectType:null, styleIndex:null, features:[],
+  business:{ name:"", owner:"", phone:"", email:"", location:"", web:"", notes:"" },
+  budget:null, deployChoice:null,
+  aiConcept:null,
+};
+
+/* ============================================================
+   NAV — mobile menu
+   ============================================================ */
+const hamburgerBtn = document.getElementById("hamburgerBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+hamburgerBtn.addEventListener("click", ()=>{
+  const open = mobileMenu.classList.toggle("open");
+  hamburgerBtn.classList.toggle("open", open);
+  hamburgerBtn.setAttribute("aria-expanded", open ? "true":"false");
+  hamburgerBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+});
+mobileMenu.querySelectorAll("a").forEach(a=>a.addEventListener("click", ()=>{
+  mobileMenu.classList.remove("open"); hamburgerBtn.classList.remove("open");
+  hamburgerBtn.setAttribute("aria-expanded","false"); hamburgerBtn.setAttribute("aria-label","Open menu");
+}));
+
+/* ============================================================
+   PROJECTS RENDER
+   ============================================================ */
+const projGrid = document.getElementById("projGrid");
+REAL_PROJECTS.forEach(p=>{
+  const card = document.createElement("div");
+  card.className = "proj-card";
+  card.tabIndex = 0;
+  const liveNote = p.hosting === "render" ? '<div class="note">Live demo may take a few seconds to start if the server has been inactive.</div>' : "";
+  const liveBtn = p.url ? `<a class="live-btn" href="${p.url}" target="_blank" rel="noopener">Open Live Project</a>` : `<div class="note">Live demo coming soon.</div>`;
+  card.innerHTML = `
+    <div class="proj-thumb">${p.img ? `<img src="${p.img}" alt="${p.name} screenshot" loading="lazy">` : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:0.85rem;">Preview coming soon</div>`}</div>
+    <div class="proj-body">
+      <h3>${p.name}</h3>
+      <span class="proj-tag">${p.category}</span>
+    </div>
+    <div class="proj-overlay">
+      <h3>${p.name}</h3>
+      <div class="tech">${p.tech}</div>
+      <div class="desc">${p.desc}</div>
+      ${liveBtn}
+      ${liveNote}
+    </div>
+  `;
+  card.addEventListener("click", ()=>{ card.classList.toggle("tapped"); });
+  projGrid.appendChild(card);
+});
+
+const moreTags = document.getElementById("moreProjTags");
+MORE_PROJECTS.forEach(name=>{
+  const t = document.createElement("span");
+  t.className = "tag-pill";
+  t.textContent = name;
+  moreTags.appendChild(t);
+});
+
+/* ============================================================
+   DESIGN STYLES RENDER
+   ============================================================ */
+const styleGrid = document.getElementById("styleGrid");
+function renderStyles(){
+  styleGrid.innerHTML = "";
+  DESIGN_STYLES.forEach((s, i)=>{
+    const card = document.createElement("div");
+    card.className = "style-card" + (state.styleIndex === i ? " selected":"");
+    card.innerHTML = `
+      <div class="style-mini" style="background:linear-gradient(135deg, ${s.g[0]}, ${s.g[1]});"></div>
+      <div class="style-body">
+        <h4>${s.n}</h4>
+        <span class="fit">Best for: ${s.fit}</span>
+        <p>${s.d}</p>
+        <button class="style-pick" data-i="${i}">${state.styleIndex === i ? "Selected" : "Choose This Style"}</button>
+      </div>`;
+    styleGrid.appendChild(card);
+  });
+  styleGrid.querySelectorAll(".style-pick").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      state.styleIndex = Number(btn.dataset.i);
+      renderStyles();
+      renderPlannerStep(); // keep planner in sync if user is on style step
+    });
+  });
+  styleGrid.querySelectorAll(".style-card").forEach(card=>{
+    card.addEventListener("mouseenter", ()=>styleGrid.classList.add("has-hover"));
+    card.addEventListener("mouseleave", ()=>styleGrid.classList.remove("has-hover"));
+  });
+}
+renderStyles();
+
+/* ============================================================
+   EXPERIENCE RENDER
+   ============================================================ */
+const expGrid = document.getElementById("expGrid");
+EXPERIENCE_ITEMS.forEach(item=>{
+  const c = document.createElement("div");
+  c.className = "exp-card";
+  c.innerHTML = `<span class="dot"></span><h4>${item}</h4>`;
+  expGrid.appendChild(c);
+});
+
+/* ============================================================
+   PLANNER — multi-step wizard
+   ============================================================ */
+const TOTAL_STEPS = 8; // business type, project type, style, features, business info, budget, deployment, summary
+let currentStep = 1;
+
+const progressEl = document.getElementById("plannerProgress");
+function renderProgress(){
+  progressEl.innerHTML = "";
+  for(let i=1;i<=TOTAL_STEPS;i++){
+    const seg = document.createElement("div");
+    seg.className = "seg" + (i<=currentStep ? " done":"");
+    progressEl.appendChild(seg);
+  }
+}
+
+function optButtons(options, selected, onPick, getLabel, getSub){
+  const wrap = document.createElement("div");
+  wrap.className = "opt-grid";
+  options.forEach(opt=>{
+    const label = getLabel ? getLabel(opt) : opt;
+    const sub = getSub ? getSub(opt) : null;
+    const btn = document.createElement("button");
+    btn.className = "opt-btn" + (selected === opt ? " selected":"");
+    btn.type = "button";
+    btn.innerHTML = label + (sub ? `<small>${sub}</small>` : "");
+    btn.addEventListener("click", ()=>{ onPick(opt); renderPlannerStep(); });
+    wrap.appendChild(btn);
+  });
+  return wrap;
+}
+
+function recommendedPlatformFor(){
+  if(state.deployChoice === "affordable") return "netlify";
+  if(state.deployChoice === "fullstack") return "render";
+  if(state.deployChoice === "ai") return "cloudrun";
+  if(state.deployChoice === "existing") return null;
+  // recommended / unsure -> infer from project type
+  const pt = PROJECT_TYPES.find(p=>p.n === state.projectType);
+  return pt ? pt.hosting : "netlify";
+}
+
+function renderPlannerStep(){
+  renderProgress();
+  const area = document.getElementById("plannerStepArea");
+  area.innerHTML = "";
+
+  const stepWrap = document.createElement("div");
+  stepWrap.className = "planner-step";
+
+  if(currentStep === 1){
+    stepWrap.innerHTML = `<div class="planner-step-label">STEP 1 OF ${TOTAL_STEPS}</div><h3>What kind of business is this for?</h3>`;
+    stepWrap.appendChild(optButtons(BUSINESS_TYPES, state.businessType, v=>state.businessType=v));
+  }
+  else if(currentStep === 2){
+    stepWrap.innerHTML = `<div class="planner-step-label">STEP 2 OF ${TOTAL_STEPS}</div><h3>What are you looking to build?</h3>`;
+    stepWrap.appendChild(optButtons(PROJECT_TYPES.map(p=>p.n), state.projectType, v=>state.projectType=v));
+  }
+  else if(currentStep === 3){
+    stepWrap.innerHTML = `<div class="planner-step-label">STEP 3 OF ${TOTAL_STEPS}</div><h3>Pick a design direction</h3><p style="color:var(--text-ink-mid);margin-bottom:18px;">Selecting here updates your choice in the Design Style gallery above.</p>`;
+    const grid = document.createElement("div");
+    grid.className = "opt-grid";
+    DESIGN_STYLES.forEach((s,i)=>{
+      const btn = document.createElement("button");
+      btn.className = "opt-btn" + (state.styleIndex === i ? " selected":"");
+      btn.type = "button";
+      btn.innerHTML = `${s.n}<small>${s.fit}</small>`;
+      btn.addEventListener("click", ()=>{ state.styleIndex = i; renderStyles(); renderPlannerStep(); });
+      grid.appendChild(btn);
+    });
+    stepWrap.appendChild(grid);
+  }
+  else if(currentStep === 4){
+    stepWrap.innerHTML = `<div class="planner-step-label">STEP 4 OF ${TOTAL_STEPS}</div><h3>Which features do you need?</h3>`;
+    const grid = document.createElement("div");
+    grid.className = "opt-grid";
+    FEATURE_OPTIONS.forEach(f=>{
+      const on = state.features.includes(f);
+      const btn = document.createElement("button");
+      btn.className = "opt-btn" + (on ? " selected":"");
+      btn.type = "button";
+      btn.textContent = f;
+      btn.addEventListener("click", ()=>{
+        if(on) state.features = state.features.filter(x=>x!==f); else state.features.push(f);
+        renderPlannerStep();
+      });
+      grid.appendChild(btn);
+    });
+    stepWrap.appendChild(grid);
+  }
+  else if(currentStep === 5){
+    stepWrap.innerHTML = `<div class="planner-step-label">STEP 5 OF ${TOTAL_STEPS}</div><h3>Tell me about your business</h3>`;
+    const form = document.createElement("div");
+    form.innerHTML = `
+      <div class="field-row">
+        <div><label for="f-bname">Business Name</label><input type="text" id="f-bname" value="${state.business.name}"></div>
+        <div><label for="f-oname">Owner Name</label><input type="text" id="f-oname" value="${state.business.owner}"></div>
+      </div>
+      <div class="field-row">
+        <div><label for="f-phone">Phone</label><input type="tel" id="f-phone" value="${state.business.phone}"></div>
+        <div><label for="f-email">Email</label><input type="email" id="f-email" value="${state.business.email}"></div>
+      </div>
+      <div class="field-row">
+        <div><label for="f-loc">Business Location</label><input type="text" id="f-loc" value="${state.business.location}"></div>
+        <div><label for="f-web">Website / Instagram</label><input type="text" id="f-web" value="${state.business.web}"></div>
+      </div>
+      <div>
+        <label for="f-notes">Additional Requirements</label>
+        <textarea id="f-notes">${state.business.notes}</textarea>
+      </div>
+    `;
+    stepWrap.appendChild(form);
+    setTimeout(()=>{
+      document.getElementById("f-bname").addEventListener("input", e=>state.business.name = e.target.value);
+      document.getElementById("f-oname").addEventListener("input", e=>state.business.owner = e.target.value);
+      document.getElementById("f-phone").addEventListener("input", e=>state.business.phone = e.target.value);
+      document.getElementById("f-email").addEventListener("input", e=>state.business.email = e.target.value);
+      document.getElementById("f-loc").addEventListener("input", e=>state.business.location = e.target.value);
+      document.getElementById("f-web").addEventListener("input", e=>state.business.web = e.target.value);
+      document.getElementById("f-notes").addEventListener("input", e=>state.business.notes = e.target.value);
+    },0);
+  }
+  else if(currentStep === 6){
+    stepWrap.innerHTML = `<div class="planner-step-label">STEP 6 OF ${TOTAL_STEPS}</div><h3>What's your budget range?</h3>`;
+    stepWrap.appendChild(optButtons(BUDGET_OPTIONS, state.budget, v=>state.budget=v));
+  }
+  else if(currentStep === 7){
+    stepWrap.innerHTML = `<div class="planner-step-label">STEP 7 OF ${TOTAL_STEPS}</div><h3>Deployment &amp; Hosting</h3><p style="color:var(--text-ink-mid);margin-bottom:18px;">Where would you like your website/application deployed? Hosting/platform charges and my deployment/setup fee are always shown separately.</p>`;
+    stepWrap.appendChild(optButtons(Object.keys(DEPLOY_CHOICE_MAP), state.deployChoice,
+      v=>state.deployChoice=v, key=>DEPLOY_CHOICE_MAP[key].label));
+
+    if(state.deployChoice){
+      const key = recommendedPlatformFor();
+      const box = document.createElement("div");
+      box.className = "summary-block";
+      box.style.marginTop = "22px";
+      if(key && DEPLOY_PLATFORMS[key]){
+        const d = DEPLOY_PLATFORMS[key];
+        box.innerHTML = `<h4>Recommended Platform</h4>
+          <div class="row"><span>Platform</span><span>${d.name}</span></div>
+          <div class="row"><span>Best for</span><span>${d.best}</span></div>
+          <div class="row"><span>Hosting Cost</span><span>${d.cost}</span></div>
+          <div class="row"><span>Jiten Labs Deployment Fee</span><span>${d.fee}</span></div>
+          <div class="row"><span>Domain</span><span>Separate (billed at registrar's current price)</span></div>
+          <p class="disclaimer">*Subject to the platform's current pricing and usage limits. ${d.note}</p>`;
+      } else {
+        box.innerHTML = `<h4>Deployment</h4><p style="font-size:0.92rem;color:var(--text-ink-mid);">No problem — since you already have hosting (or aren't sure yet), I'll confirm the right setup approach once we discuss your project. Deployment/setup and hosting costs are always itemized separately from development.</p>`;
+      }
+      stepWrap.appendChild(box);
+    }
+  }
+  else if(currentStep === 8){
+    stepWrap.innerHTML = `<div class="planner-step-label">STEP 8 OF ${TOTAL_STEPS}</div><h3>Project Summary</h3>`;
+    stepWrap.appendChild(buildSummaryDOM());
+    stepWrap.appendChild(buildAIPreviewDOM());
+    stepWrap.appendChild(buildFinalActionsDOM());
+  }
+
+  area.appendChild(stepWrap);
+
+  // nav buttons
+  const nav = document.createElement("div");
+  nav.className = "planner-nav";
+  const backBtn = document.createElement("button");
+  backBtn.className = "btn-plain"; backBtn.textContent = "Back"; backBtn.disabled = currentStep===1;
+  backBtn.addEventListener("click", ()=>{ currentStep = Math.max(1,currentStep-1); renderPlannerStep(); });
+  nav.appendChild(backBtn);
+
+  if(currentStep < TOTAL_STEPS){
+    const nextBtn = document.createElement("button");
+    nextBtn.className = "cta-btn"; nextBtn.style.border="none"; nextBtn.textContent = "Next";
+    nextBtn.addEventListener("click", ()=>{ currentStep = Math.min(TOTAL_STEPS,currentStep+1); renderPlannerStep(); window.scrollTo({top: document.getElementById('planner').offsetTop - 90, behavior:'smooth'}); });
+    nav.appendChild(nextBtn);
+  }
+  area.appendChild(nav);
+}
+
+function estimatePackage(){
+  if(state.projectType === "Digital Menu" || state.projectType === "QR Digital Menu") return "Digital Menu Basic / Pro (₹1,999 – ₹4,999)";
+  if(state.projectType === "Business Website") return "Business Website (₹7,999)";
+  if(state.projectType === "E-commerce Website") return "Website + Digital Menu tier or Custom Project (from ₹12,999)";
+  if(state.projectType === "Web Application" || state.projectType === "Custom Solution") return "Custom Project — quoted after requirements review";
+  return "To be confirmed after requirements review";
+}
+
+function buildSummaryDOM(){
+  const wrap = document.createElement("div");
+  const styleName = state.styleIndex !== null ? DESIGN_STYLES[state.styleIndex].n : "Not selected yet";
+  const deployKey = state.deployChoice ? recommendedPlatformFor() : null;
+  const deployInfo = deployKey && DEPLOY_PLATFORMS[deployKey] ? DEPLOY_PLATFORMS[deployKey] : null;
+
+  wrap.innerHTML = `
+    <div class="summary-block">
+      <h4>Project</h4>
+      <div class="row"><span>Business Type</span><span>${state.businessType || "—"}</span></div>
+      <div class="row"><span>Project Type</span><span>${state.projectType || "—"}</span></div>
+      <div class="row"><span>Preferred Design</span><span>${styleName}${state.aiConcept ? " + AI Concept" : ""}</span></div>
+      <div class="row"><span>Selected Features</span><span>${state.features.length ? state.features.join(", ") : "—"}</span></div>
+      <div class="row"><span>Budget</span><span>${state.budget || "—"}</span></div>
+      <div class="row"><span>Estimated Starting Package</span><span>${estimatePackage()}</span></div>
+    </div>
+    <div class="summary-block">
+      <h4>Business Information</h4>
+      <div class="row"><span>Business Name</span><span>${state.business.name || "—"}</span></div>
+      <div class="row"><span>Owner</span><span>${state.business.owner || "—"}</span></div>
+      <div class="row"><span>Phone</span><span>${state.business.phone || "—"}</span></div>
+      <div class="row"><span>Email</span><span>${state.business.email || "—"}</span></div>
+      <div class="row"><span>Location</span><span>${state.business.location || "—"}</span></div>
+      <div class="row"><span>Website/Instagram</span><span>${state.business.web || "—"}</span></div>
+    </div>
+    ${state.business.notes ? `<div class="summary-block"><h4>Additional Requirements</h4><p style="font-size:0.92rem;">${state.business.notes}</p></div>` : ""}
+    <div class="summary-block">
+      <h4>Deployment</h4>
+      ${state.deployChoice === "existing" ? `
+        <div class="row"><span>Hosting Selection</span><span>I already have hosting</span></div>
+                <div class="row"><span>Deployment &amp; Setup Fee</span><span>${deployInfo.fee}</span></div>
+                ` : `<p style="font-size:0.92rem;color:var(--text-ink-mid);">Not selected yet — go back to Step 7.</p>`}
+    </div>
+    <p class="disclaimer">Estimated pricing is based on the information provided. Final pricing is confirmed after reviewing the complete project requirements. Third-party hosting, domain, API and cloud service charges are separate from development and deployment service fees unless explicitly included in the quotation.</p>
+  `;
+  return wrap;
+}
+
+function buildAIPreviewDOM(){
+  const wrap = document.createElement("div");
+  wrap.className = "ai-preview-box";
+  wrap.innerHTML = `
+    <h3 style="font-size:1.1rem;">Visualize Your Website Before We Build It</h3>
+    <p style="color:var(--text-ink-mid);font-size:0.92rem;margin-top:8px;">Generate a visual concept direction based on your business, selected style and requirements.</p>
+    <div id="aiConceptOutput"></div>
+    <div class="action-row">
+      <button id="genConceptBtn" class="cta-btn" style="border:none;">Generate Concept</button>
+      <button id="useDirectionBtn" class="ghost-btn on-light" style="color:var(--text-ink);border-color:var(--paper-line);display:${state.aiConcept ? 'inline-block':'none'};">Use This Direction</button>
+    </div>
+  `;
+  setTimeout(()=>{
+    renderAIConceptOutput();
+    document.getElementById("genConceptBtn").addEventListener("click", ()=>{
+      generateConcept();
+      renderAIConceptOutput();
+    });
+    document.getElementById("useDirectionBtn").addEventListener("click", ()=>{
+      state.aiConcept.used = true;
+      renderPlannerStep();
+    });
+  },0);
+  return wrap;
+}
+
+function generateConcept(){
+  const style = state.styleIndex !== null ? DESIGN_STYLES[state.styleIndex] : DESIGN_STYLES[19];
+  state.aiConcept = {
+    style: style.n,
+    palette: style.g,
+    used:false,
+    blurb:`A ${style.n.toLowerCase()} direction for ${state.business.name || "your business"}${state.businessType ? " ("+state.businessType+")" : ""}, built around ${state.features.length ? state.features.slice(0,3).join(", ") : "your core features"}.`
+  };
+}
+
+function renderAIConceptOutput(){
+  const out = document.getElementById("aiConceptOutput");
+  if(!out) return;
+  if(!state.aiConcept){
+    out.innerHTML = `<p style="font-size:0.86rem;color:var(--text-dim);margin-top:14px;">AI preview is currently running in offline/fallback mode — your project planner still works fully without it.</p>`;
+    return;
+  }
+  const c = state.aiConcept;
+  out.innerHTML = `
+    <div class="ai-concept-card" style="background:linear-gradient(135deg, ${c.palette[0]}, ${c.palette[1]});">
+      <span class="badge">CONCEPT</span>
+      <h4>${c.style} direction${c.used ? " — Selected" : ""}</h4>
+      <div class="palette">${c.palette.map(col=>`<div class="swatch" style="background:${col};"></div>`).join("")}</div>
+      <p>${c.blurb}</p>
+      <p style="font-size:0.76rem;margin-top:14px;opacity:0.85;">AI-generated concept for visual direction only. The final website design may differ after consultation and implementation.</p>
+    </div>
+  `;
+  const useBtn = document.getElementById("useDirectionBtn");
+  if(useBtn) useBtn.style.display = "inline-block";
+}
+
+function buildWhatsAppMessage(){
+  const styleName = state.styleIndex !== null ? DESIGN_STYLES[state.styleIndex].n : "Not selected";
+  const lines = [
+    "NEW PROJECT REQUIREMENT","",
+    `Business: ${state.business.name || "—"}`,
+    `Business Type: ${state.businessType || "—"}`,
+    `Project: ${state.projectType || "—"}`,
+    `Preferred Design: ${styleName}${state.aiConcept && state.aiConcept.used ? " (AI Concept selected)" : ""}`,
+    `Features: ${state.features.length ? state.features.join(", ") : "—"}`,
+    `Budget: ${state.budget || "—"}`, "",
+    "Additional Requirements:",
+    state.business.notes || "—", "",
+    `Owner: ${state.business.owner || "—"}`,
+    `Phone: ${state.business.phone || "—"}`,
+  ];
+
+  // Handle deployment info for WhatsApp message
+  if(state.deployChoice === "existing"){
+    lines.push("", "DEPLOYMENT");
+    lines.push("Hosting Selection: I already have hosting");
+    lines.push("Hosting details: To be provided during consultation");
+  } else if(state.deployChoice === "unsure"){
+    const deployKey = recommendedPlatformFor();
+    const deployInfo = deployKey && DEPLOY_PLATFORMS[deployKey] ? DEPLOY_PLATFORMS[deployKey] : null;
+    if(deployInfo){
+      lines.push("", "DEPLOYMENT");
+      lines.push("Hosting Preference: I'm not sure — recommend one");
+      lines.push(`Suggested Platform: ${deployInfo.name}`);
+      lines.push(`Hosting: ${deployInfo.cost}`);
+      lines.push(`Deployment Setup: ${deployInfo.fee}`);
+      lines.push("Domain: Separate");
+    } else {
+      lines.push("", "DEPLOYMENT");
+      lines.push("Hosting Preference: I'm not sure — recommend one");
+      lines.push("No recommendation available yet");
+    }
+  } else if(state.deployChoice && DEPLOY_PLATFORMS[state.deployChoice]){
+    const deployInfo = DEPLOY_PLATFORMS[state.deployChoice];
+    lines.push("", "DEPLOYMENT");
+    lines.push(`Selected Platform: ${deployInfo.name}`);
+    lines.push(`Hosting: ${deployInfo.cost}`);
+    lines.push(`Deployment Setup: ${deployInfo.fee}`);
+    lines.push("Domain: Separate");
+  }
+
+  lines.push("", "Final hosting/platform costs may vary based on usage and the provider's current pricing.");
+  return lines.join("\n");
+}
+
+function buildFinalActionsDOM(){
+  const wrap = document.createElement("div");
+  wrap.innerHTML = `
+    <div class="summary-block">
+      <h4>Send Your Requirements</h4>
+      <div class="whatsapp-preview" id="waPreview"></div>
+      <div class="final-actions">
+        <a id="waSendBtn" href="#" target="_blank" rel="noopener" class="cta-btn">Send Requirements on WhatsApp</a>
+        <button id="copyReqBtn" class="ghost-btn on-light" style="color:var(--text-ink);border-color:var(--paper-line);">Copy Requirements</button>
+        <a id="emailSendBtn" href="#" class="ghost-btn on-light" style="color:var(--text-ink);border-color:var(--paper-line);">Send via Email</a>
+        <button id="pdfBtn" class="ghost-btn on-light" style="color:var(--text-ink);border-color:var(--paper-line);">Download Project Proposal (PDF)</button>
+      </div>
+      <p class="disclaimer" id="copyStatus" role="status"></p>
+    </div>
+  `;
+  setTimeout(()=>{
+    const msg = buildWhatsAppMessage();
+    document.getElementById("waPreview").textContent = msg;
+    document.getElementById("waSendBtn").href = `https://wa.me/917675023149?text=${encodeURIComponent(msg)}`;
+    document.getElementById("emailSendBtn").href = `mailto:jiten.freelance@gmail.com?subject=${encodeURIComponent("New Project Requirement — "+(state.business.name||"Untitled"))}&body=${encodeURIComponent(msg)}`;
+    document.getElementById("copyReqBtn").addEventListener("click", async ()=>{
+      try{ await navigator.clipboard.writeText(msg); document.getElementById("copyStatus").textContent = "Copied to clipboard."; }
+      catch(e){ document.getElementById("copyStatus").textContent = "Couldn't copy automatically — please select and copy the text above."; }
+    });
+    document.getElementById("pdfBtn").addEventListener("click", generateProposalPDF);
+  },0);
+  return wrap;
+}
+
+/* ============================================================
+   PDF PROPOSAL GENERATION (jsPDF)
+   ============================================================ */
+function generateProposalPDF(){
+  const status = document.getElementById("copyStatus");
+  try{
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit:"pt", format:"a4" });
+    const pageW = doc.internal.pageSize.getWidth();
+    const pageH = doc.internal.pageSize.getHeight();
+    const margin = 54;
+    let y = 0;
+
+    const NAVY = [10,10,12], BLUE=[201,169,106], VIOLET=[138,110,60], INK=[20,24,38], MUTE=[110,118,150];
+
+    function watermark(){
+      doc.saveGraphicsState();
+      doc.setGState(new doc.GState({opacity:0.05}));
+      doc.setFont("helvetica","bold");
+      doc.setFontSize(84);
+      doc.setTextColor(20,24,38);
+      doc.text("JITEN KUMAR", pageW/2, pageH/2, {angle:35, align:"center"});
+      doc.restoreGraphicsState();
+    }
+    function footer(pageNum){
+      doc.setFontSize(8.5); doc.setTextColor(...MUTE); doc.setFont("helvetica","normal");
+      doc.text("JITEN LABS — Digital Solutions", margin, pageH-28);
+      doc.text(`Page ${pageNum}`, pageW-margin, pageH-28, {align:"right"});
+    }
+    function header(title){
+      doc.setFillColor(...NAVY); doc.rect(0,0,pageW,64,"F");
+      doc.setFont("helvetica","bold"); doc.setFontSize(13); doc.setTextColor(255,255,255);
+      doc.text("JITEN LABS", margin, 38);
+      doc.setFont("helvetica","normal"); doc.setFontSize(9); doc.setTextColor(200,206,230);
+      doc.text("Jiten Kumar — Digital Solutions", margin, 52);
+      doc.setFont("helvetica","bold"); doc.setFontSize(11); doc.setTextColor(255,255,255);
+      doc.text(title, pageW-margin, 45, {align:"right"});
+      y = 96;
+    }
+    function sectionTitle(t){
+      if(y > pageH-100){ doc.addPage(); watermark(); y = 60; }
+      doc.setFont("helvetica","bold"); doc.setFontSize(12.5); doc.setTextColor(...NAVY);
+      doc.text(t, margin, y);
+      doc.setDrawColor(...BLUE); doc.setLineWidth(1.4);
+      doc.line(margin, y+6, margin+34, y+6);
+      y += 24;
+    }
+    function row(label, value){
+      if(y > pageH-80){ doc.addPage(); watermark(); y = 60; }
+      doc.setFont("helvetica","bold"); doc.setFontSize(9.5); doc.setTextColor(...MUTE);
+      doc.text(label, margin, y);
+      doc.setFont("helvetica","normal"); doc.setFontSize(10.5); doc.setTextColor(...INK);
+      const lines = doc.splitTextToSize(String(value||"—"), pageW - margin*2 - 170);
+      doc.text(lines, margin+170, y);
+      y += Math.max(16, lines.length*13) + 6;
+    }
+    function paragraph(text){
+      if(y > pageH-100){ doc.addPage(); watermark(); y = 60; }
+      doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor(...INK);
+      const lines = doc.splitTextToSize(text, pageW - margin*2);
+      doc.text(lines, margin, y);
+      y += lines.length*13 + 14;
+    }
+
+    // ---- COVER PAGE ----
+    doc.setFillColor(...NAVY); doc.rect(0,0,pageW,pageH,"F");
+    // JK mark
+    doc.setFillColor(...BLUE); doc.roundedRect(margin, 70, 26, 60, 4, 4, "F");
+    doc.setFillColor(...VIOLET); doc.roundedRect(margin+34, 70, 26, 60, 4, 4, "F");
+    doc.setFont("helvetica","bold"); doc.setFontSize(20); doc.setTextColor(255,255,255);
+    doc.text("JITEN LABS", margin, 158);
+    doc.setFont("helvetica","normal"); doc.setFontSize(11); doc.setTextColor(190,198,224);
+    doc.text("Jiten Kumar — Digital Solutions", margin, 178);
+
+    doc.setFont("helvetica","bold"); doc.setFontSize(34); doc.setTextColor(255,255,255);
+    doc.text("PROJECT PROPOSAL", margin, pageH/2 - 20);
+
+    doc.setDrawColor(120,140,220); doc.setLineWidth(0.7);
+    doc.line(margin, pageH/2, pageW-margin, pageH/2);
+
+    doc.setFont("helvetica","normal"); doc.setFontSize(11); doc.setTextColor(210,215,235);
+    doc.text(`Business Name:  ${state.business.name || "—"}`, margin, pageH/2 + 34);
+    doc.text(`Project Type:  ${state.projectType || "—"}`, margin, pageH/2 + 54);
+    doc.text(`Date:  ${new Date().toLocaleDateString("en-IN",{year:'numeric',month:'long',day:'numeric'})}`, margin, pageH/2 + 74);
+
+    doc.setFontSize(9); doc.setTextColor(150,158,190);
+    doc.text("jiten.freelance@gmail.com   ·   +91 76750 23149", margin, pageH-50);
+
+    // ---- PAGE 2: Overview + Business Info ----
+    doc.addPage(); watermark(); header("Project Proposal");
+    sectionTitle("1. Project Overview");
+    paragraph(`This proposal outlines the recommended approach for building a ${(state.projectType||'digital solution').toLowerCase()} for ${state.business.name || 'your business'}, based on the requirements gathered through the JITEN LABS project planner.`);
+
+    sectionTitle("2. Business Information");
+    row("Business Name", state.business.name);
+    row("Owner Name", state.business.owner);
+    row("Business Type", state.businessType);
+    row("Phone", state.business.phone);
+    row("Email", state.business.email);
+    row("Location", state.business.location);
+    row("Website / Instagram", state.business.web);
+
+    sectionTitle("3. Project Type");
+    row("Selected Project Type", state.projectType);
+
+    sectionTitle("4. Preferred Design Style");
+    const styleName = state.styleIndex !== null ? DESIGN_STYLES[state.styleIndex].n : "Not selected";
+    row("Design Direction", styleName);
+    if(state.aiConcept && state.aiConcept.used){
+      row("AI Visual Direction", state.aiConcept.blurb + " (AI-generated concept for visual direction only.)");
+    }
+
+    sectionTitle("5. Selected Features");
+    paragraph(state.features.length ? state.features.join(", ") : "No specific features selected yet — to be finalized during consultation.");
+
+    footer(2);
+
+    // ---- PAGE 3: Requirements, Pricing, Workflow ----
+    doc.addPage(); watermark(); header("Project Proposal");
+    sectionTitle("6. Client Requirements");
+    paragraph(state.business.notes || "No additional requirements provided.");
+
+    sectionTitle("7. Estimated Starting Package");
+    paragraph(estimatePackage());
+    paragraph("Final pricing is confirmed after reviewing the complete requirements and project scope.");
+
+    sectionTitle("8. Project Vision");
+    paragraph(`A ${styleName.toLowerCase()} digital presence for ${state.business.name || 'the business'}, focused on ${state.businessType ? state.businessType.toLowerCase()+' customers' : 'the target audience'} and built to convert visitors into real inquiries and sales.`);
+
+    sectionTitle("9. Proposed Workflow");
+    ["01  Understand business goals and requirements","02  Confirm design direction and content",
+     "03  Design and build the website/application","04  Review, refine and test across devices",
+     "05  Deploy, connect domain, and launch","06  Handover with optional ongoing support"].forEach(step=>{
+      doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor(...INK);
+      if(y > pageH-80){ doc.addPage(); watermark(); y=60; }
+      doc.text(step, margin, y); y += 18;
+    });
+    y += 8;
+
+    footer(3);
+
+    // ---- PAGE 4: Deployment, Next steps, Contact ----
+    doc.addPage(); watermark(); header("Project Proposal");
+
+    sectionTitle("10. Deployment & Hosting");
+    if(state.deployChoice === "existing"){
+      row("Hosting Selection", "I already have hosting");
+      paragraph("Hosting details to be provided during consultation. Hosting, domain registration and third-party platform charges are separate from development and deployment service fees unless explicitly included in the quotation.");
+    } else if(state.deployChoice === "unsure"){
+      const deployKey = recommendedPlatformFor();
+      const deployInfo = deployKey && DEPLOY_PLATFORMS[deployKey] ? DEPLOY_PLATFORMS[deployKey] : null;
+      if(deployInfo){
+        row("Hosting Preference", "I'm not sure — recommend one");
+        row("Suggested Platform", deployInfo.name);
+        row("Hosting Tier / Cost", deployInfo.cost);
+        row("Deployment Setup Fee", deployInfo.fee);
+        row("Domain Cost", "Not included — billed separately at registrar's current price");
+        row("Estimated Recurring Cost", deployInfo.cost);
+        paragraph("Note: Hosting, domain registration and third-party platform charges are separate from development and deployment service fees unless explicitly included in the quotation. *Subject to the platform's current pricing and usage limits.");
+      } else {
+        row("Hosting Preference", "I'm not sure — recommend one");
+        paragraph("No recommendation available yet. Hosting, domain and platform charges will always be itemized separately from development and deployment service fees.");
+      }
+    } else if(state.deployChoice && DEPLOY_PLATFORMS[state.deployChoice]){
+      const deployInfo = DEPLOY_PLATFORMS[state.deployChoice];
+      row("Selected Platform", deployInfo.name);
+      row("Hosting Tier / Cost", deployInfo.cost);
+      row("Deployment Setup Fee", deployInfo.fee);
+      row("Domain Cost", "Not included — billed separately at registrar's current price");
+      row("Estimated Recurring Cost", deployInfo.cost);
+      paragraph("Note: Hosting, domain registration and third-party platform charges are separate from development and deployment service fees unless explicitly included in the quotation. *Subject to the platform's current pricing and usage limits.");
+    } else {
+      paragraph("Deployment platform not selected yet. Hosting, domain and platform charges will always be itemized separately from development and deployment service fees.");
+    }
+
+    sectionTitle("11. Next Steps");
+    paragraph("Reply on WhatsApp or email to confirm scope and timeline. Once confirmed, a formal quotation and project timeline will be shared before work begins.");
+
+    sectionTitle("12. Contact Information");
+    row("Name", "Jiten Kumar");
+    row("Phone / WhatsApp", "+91 76750 23149");
+    row("Email", "jiten.freelance@gmail.com");
+
+    paragraph("Final pricing is confirmed after reviewing the complete requirements and project scope.");
+    footer(4);
+
+    const fname = `JitenLabs_Proposal_${(state.business.name||"Project").replace(/[^a-z0-9]+/gi,"_")}.pdf`;
+    doc.save(fname);
+    const status2 = document.getElementById("copyStatus");
+    if(status2) status2.textContent = "Proposal PDF downloaded.";
+  }catch(err){
+    console.error(err);
+    if(status) status.textContent = "Unable to generate the proposal right now. Please try again.";
+  }
+}
+<!-- Phase 1 Foundation Work Complete -->
+<!--
+Foundation fixes applied:
+1. Color system: Fixed --blue, --violet, added --gold variables
+2. Interactive elements: Fixed CTA hover and planner shell shadows (removed glowing effects)
+3. Accessibility: Added skip link, made style cards keyboard accessible with :focus-within equivalents
+4. Verified: Form labels, semantic inputs, focus states, alt text, ARIA attributes
+-->
+</body>
+</html>
