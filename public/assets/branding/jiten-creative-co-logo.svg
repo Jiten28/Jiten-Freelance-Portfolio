@@ -1,9 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 220" role="img" aria-label="Jiten Creative Co.">
-  <defs><linearGradient id="gold" x1="30" y1="30" x2="185" y2="185"><stop offset="0" stop-color="#e6bd6a"/><stop offset=".55" stop-color="#b88428"/><stop offset="1" stop-color="#8b641c"/></linearGradient></defs>
-  <rect x="0" y="0" width="220" height="220" rx="44" fill="#fbfaf6"/>
-  <path d="M168 70c-13-16-33-26-56-26-39 0-71 30-71 66s32 66 71 66c23 0 43-10 56-26l-20-19c-8 11-21 18-36 18-24 0-43-18-43-40s19-40 43-40c15 0 28 7 36 18l20-17z" fill="url(#gold)"/>
-  <path d="M102 28h52v29h-20v72c0 33-20 53-51 53-19 0-34-7-45-19l17-22c7 8 16 12 26 12 15 0 24-10 24-27V57h-3V28z" fill="#050505"/>
-  <path d="M119 42h19v83c0 25-14 40-37 42" fill="none" stroke="#fbfaf6" stroke-width="8" stroke-linecap="round"/>
-  <text x="260" y="92" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900" fill="#f8f1e4">Jiten Creative Co.</text>
-  <text x="262" y="138" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="5" fill="#d3a35b">WEB DEVELOPER &amp; DIGITAL SOLUTIONS</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 220"><rect width="220" height="220" rx="34" fill="#fbfaf7"/><path d="M178 72c-13-18-34-29-58-29-39 0-70 30-70 67s31 67 70 67c24 0 45-11 58-29l-25-15c-8 11-20 17-34 17-24 0-43-18-43-40s19-40 43-40c14 0 26 6 34 17l25-15z" fill="#b88a2a"/><path d="M96 29h55v29h-19v70c0 31-21 52-53 52-18 0-34-7-45-20l19-20c7 8 15 12 25 12 15 0 24-10 24-25V58h-6V29z" fill="#050505"/><path d="M107 39h33" stroke="#fff" stroke-opacity=".82" stroke-width="5" stroke-linecap="round"/><text x="260" y="92" font-family="Arial" font-size="42" font-weight="900" fill="#f8f1e4">Jiten Creative Co.</text><text x="262" y="138" font-family="Arial" font-size="15" font-weight="800" letter-spacing="5" fill="#d3a35b">WEB DEVELOPER &amp; DIGITAL SOLUTIONS</text></svg>
