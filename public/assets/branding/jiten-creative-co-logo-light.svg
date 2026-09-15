@@ -5,7 +5,7 @@
 	<style>
 		tspan { white-space:pre } 
 		.s0 { fill: #d6a85f } 
-		.t1 { font-size: 56px;fill: #f8f1e7;font-family: "Georgia" } 
+		.t1 { font-size: 56px;fill: #181713;font-family: "Georgia" } 
 		.t2 { font-size: 27px;fill: #d6a85f;font-family: "Arial" } 
 	</style>
 	<g>
@@ -16,7 +16,7 @@
 		<tspan x="0" y="0" class="t1">Jiten Creative Co.
 </tspan>
 	</text>
-	<text id="WEB DEVELOPER &amp; DIGITAL SOLUTIONS" transform="translate(184,116)">
+	<text id="WEB DEVELOPER &amp; DIGITAL SOLUTION" transform="translate(184,116)">
 		<tspan x="0" y="0" class="t2">WEB DEVELOPER &amp; DIGITAL SOLUTIONS
 </tspan>
 	</text>
