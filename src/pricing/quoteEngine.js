@@ -40,9 +40,12 @@ export function estimateProject(data = {}) {
   let total = rule.base;
   const breakdown = [{ label: 'Base service', amount: rule.base }];
   for (const add of rule.addons) if (add.test.test(text)) { total += add.amount; breakdown.push(add); }
-  const min = rule.base;
-  const max = Math.min(rule.cap, Math.max(total, rule.base));
-  return { min, max, label: `${formatINR(min)} – ${formatINR(max)}`, requiresCustomDiscussion: false, breakdown, explanation: `The estimate starts from ${formatINR(rule.base)} and only increases for actual scope/complexity found in the requirements — not for design style selection.` };
+  const min = total;
+  const rangeAllowance = Math.max(700, Math.round(min * 0.18));
+  const max = Math.min(rule.cap, min + rangeAllowance);
+  breakdown.push({ label: 'Planning range allowance', amount: max - min });
+  const matched = breakdown.length > 2 ? breakdown.slice(1, -1).map(b => b.label.toLowerCase()).join(', ') : 'the selected service and current requirements';
+  return { min, max, label: `${formatINR(min)} – ${formatINR(max)}`, requiresCustomDiscussion: false, breakdown, explanation: `This estimate is based on ${service}, ${matched}, and a planning allowance for normal scope review. Design style selection alone does not increase pricing.` };
 }
 export function budgetLabel(id){return budgetRanges.find(b=>b.id===id)?.label || '—'}
 export function compareBudget(data={}, estimate){const b=budgetRanges.find(x=>x.id===data.clientBudgetRange);if(!b||!estimate||estimate.requiresCustomDiscussion)return 'Final estimate requires a requirements discussion.'; if(b.max!==null&&b.max<estimate.min)return 'Your selected budget is below the current planning estimate. We can review the scope and reduce features if needed, or proceed with the full feature list at the estimated range.'; if(b.min>estimate.max)return 'Your selected budget is above the current estimated range. The extra budget can support more refinement or added features.'; return 'Your selected budget overlaps with the estimated project range.'}
