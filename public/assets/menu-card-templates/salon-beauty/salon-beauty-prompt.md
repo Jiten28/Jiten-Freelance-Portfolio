@@ -1,50 +1,27 @@
-# Salon & Beauty — Reusable Menu Template Prompt
+# Salon & Beauty — reusable design prompt
 
-Business name: [CHANGE HERE]
-Business category: Salon & Beauty
-Design objective: Create a premium A4 printable menu and mobile digital menu based on the Velvet & Co. Studio sample system.
+Create an original, commercially usable **sample menu / service price-list template** for **Velvet & Co. Studio** as part of the Jiten Creative Co. portfolio. This is a concept design, not a real client case study.
 
-## Visual direction
-Elegant beauty service menu. Preserve the premium Jiten Creative Co. ecosystem feel while adapting colors, logo, photos, menu content, prices, contact details, and QR destination to the real client.
+## Art direction
+A refined beauty service list with a dark editorial rail, soft blush accents, and appointment-first information hierarchy. Use a flat, print-friendly composition with intentional spacing and no mockup scene. The artwork must be shown directly as the menu itself. Avoid fake claims, reviews, awards, customer counts, invented locations, or client proof.
 
-## Color behavior
-Brand colors: [CHANGE HERE]. Client brand colors override sample colors. Maintain strong contrast and printable readability.
+## Brand system
+- Business/sample name: Velvet & Co. Studio
+- Category: Service / Beauty
+- Palette: canvas #F3E8E7; primary #311E2E; accent #A65B73; soft surface #D5A7AD; secondary text #7C6870.
+- Typography: one editorial serif for display headlines plus a clean sans-serif for labels, item names, descriptions, and prices. Use no more than two families.
+- Iconography: one coherent line icon family only; icons support scanning and never become the main visual.
 
-## Typography
-Use 2 font families maximum. Display type for brand/category, readable sans for menu items, descriptions, prices, metadata and footer. Never reduce body text below readable print/mobile size.
+## Layout
+- A4 artwork: 210 × 297 mm ratio, print-safe inner margins, readable body text, clear category grouping, generous whitespace, and a visible but unobtrusive “Sample Template / Concept” label.
+- Mobile artwork: recompose as a single-column 9:16 layout; do not scale the A4 down. Use larger type, comfortable touch-sized spacing, clear sections, and a client-editable contact/CTA area.
+- Keep pricing aligned and easy to compare. Keep item descriptions short. Use dividers or structured blocks instead of decoration for decoration’s sake.
 
-## Grid and spacing
-A4 uses real portrait A4 ratio with safe margins, structured category separation, aligned prices and clean footer. Mobile is recomposed for phone scanning, not a shrunken A4.
+## Content placeholders
+Use realistic sample content for the category, but treat every item, description, price, contact line, logo mark, photo/graphic, and business detail as editable placeholders. Replace sample identity with a real client’s logo, brand colors, photography, menu/service copy, prices, hours, location, and contact details.
 
-## A4 specification
-210 × 297 mm portrait. Include brand/logo area, tagline, category groups, item descriptions, aligned prices, contact strip, opening hours/location, and clearly labeled QR placeholder: SCAN TO VIEW MENU.
+## Content direction
+Include Hair, Hair Treatments, Skin, Facial, Makeup, Nails, and Packages. Make pricing highly scannable and keep beauty graphics understated.
 
-## Mobile specification
-Single-column mobile-first design with clear category headers, cards/rows for items, large prices, comfortable spacing, contact CTA and QR/menu access concept. No horizontal overflow.
-
-## Icon system
-Use one coherent icon family only where helpful. Do not mix emoji, 3D, filled and outline styles randomly.
-
-## Photography rules
-Images: [CHANGE HERE]. Client photography replaces sample imagery. Never imply generated/sample imagery is actual client photography. If no real photos are provided, use refined typography, pattern, and geometry.
-
-## Logo rules
-CLIENT LOGO > SAMPLE LOGO. Always use the client's real logo when available. If missing, use an editable placeholder and request the logo.
-
-## Menu item and price structure
-Categories: [CHANGE HERE]. Content: [CHANGE HERE]. Pricing: [CHANGE HERE]. Keep prices easy to scan and consistently aligned. Descriptions must not overpower prices.
-
-## Contact / QR area
-Phone, WhatsApp, website, Instagram, location, opening hours: [CHANGE HERE]. Use a QR placeholder unless a real destination URL is supplied.
-
-## Content density rules
-Fewer items: increase whitespace and feature key items. More items: add rows/pages or use two columns; do not shrink text excessively. Long descriptions: edit or wrap consistently. Many photos: use only the best hero/category image. No photos: strengthen typography and layout.
-
-## Client customization rules
-Replace business name, logo, tagline, colors, fonts, menu categories, items, prices, descriptions, photos, icons, contact details and QR destination without redesigning the full system.
-
-## Source-of-truth rules
-CLIENT CONTENT > SAMPLE CONTENT. CLIENT LOGO > SAMPLE LOGO. CLIENT PHOTOS > SAMPLE PHOTOS. CLIENT BRAND COLORS > SAMPLE COLORS. CLIENT PRICES > SAMPLE PRICES. CLIENT BUSINESS INFORMATION > SAMPLE INFORMATION. Never invent missing client information.
-
-## Final quality check
-Check A4 ratio, margins, print readability, no clipping, clear prices, clear categories, professional hierarchy, mobile readability, no horizontal overflow, coherent icons, and commercial usability.
+## Output rules
+Deliver an A4 PNG, a mobile PNG, and a direct portfolio preview of the actual flat artwork. No hands, tables, phones, laptops, framed prints, paper mockups, or decorative scenes. Maintain contrast suitable for print and screen, and keep the system easy to customize without rebuilding the composition.
