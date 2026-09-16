@@ -716,8 +716,20 @@ function DesignChoice({ data, set }) {
   return (
     <>
       {websiteLike && (
-        <>
-          <p className="hint">Website Style — select up to 3 Website styles.</p>
+        <section
+          className="design-area"
+          aria-labelledby="website-style-heading"
+        >
+          <div className="planner-subhead">
+            <div>
+              <span className="field-status">Visual deliverable</span>
+              <h4 id="website-style-heading">Website Style</h4>
+            </div>
+            <span className="selection-rule">Select up to 3</span>
+          </div>
+          <p className="hint">
+            Choose the directions that best match your website.
+          </p>
           <div className="style-select-grid">
             {designStyles.map((st) => (
               <button
@@ -738,11 +750,23 @@ function DesignChoice({ data, set }) {
               {limitMessage}
             </p>
           )}
-        </>
+        </section>
       )}
       {(isDigital || isBundle) && (
-        <>
-          <p className="hint">Digital Menu Design — select 1 design.</p>
+        <section className="design-area" aria-labelledby="digital-menu-heading">
+          <div className="planner-subhead">
+            <div>
+              <span className="field-status">Separate visual deliverable</span>
+              <h4 id="digital-menu-heading">Digital Menu Design</h4>
+            </div>
+            <span className="selection-rule">Select 1</span>
+          </div>
+          {isBundle && (
+            <p className="hint">
+              This choice applies to the menu and is separate from the Website
+              Style above.
+            </p>
+          )}
           <DirectionGrid
             items={menuDirections}
             selected={data.selectedMenuTemplate}
@@ -755,11 +779,18 @@ function DesignChoice({ data, set }) {
               }
             }}
           />
-        </>
+        </section>
       )}
       {isGraphic && (
-        <>
-          <p className="hint">Existing Menu Designs</p>
+        <section className="design-area" aria-labelledby="graphic-menu-heading">
+          <div className="planner-subhead">
+            <div>
+              <span className="field-status">Visual deliverable</span>
+              <h4 id="graphic-menu-heading">Graphic Menu Design</h4>
+            </div>
+            <span className="selection-rule">Select 1</span>
+          </div>
+          <h5 className="choice-group-title">Existing Menu Designs</h5>
           <DirectionGrid
             items={graphicAssetMenuDirections}
             selected={data.designStyle}
@@ -768,7 +799,7 @@ function DesignChoice({ data, set }) {
               set("designStyleName", item.name);
             }}
           />
-          <p className="hint">Additional Design Directions</p>
+          <h5 className="choice-group-title">Additional Design Directions</h5>
           <DirectionGrid
             items={graphicMenuDirections}
             selected={data.designStyle}
@@ -777,7 +808,7 @@ function DesignChoice({ data, set }) {
               set("designStyleName", item.name);
             }}
           />
-        </>
+        </section>
       )}
     </>
   );
@@ -824,6 +855,123 @@ const complexityLabels = {
   interaction: "How interactive should it be?",
   design: "How customised should the design be?",
 };
+const complexityHelp = {
+  content:
+    "Consider the amount of copy, imagery, products, or menu information.",
+  functional: "Choose how many practical tools or workflows the project needs.",
+  interaction: "Choose how dynamic and responsive the experience should feel.",
+  design: "Choose the level of brand detail and custom visual treatment.",
+};
+const serviceDescriptions = {
+  "AI / Interactive Experience":
+    "AI-assisted tools and immersive digital experiences.",
+  "Business Website":
+    "A professional website built around your business goals.",
+  "Custom Digital Solution":
+    "A tailored system, workflow, dashboard, or digital product.",
+  "Digital Menu": "A mobile-friendly QR menu for easy customer access.",
+  "Graphic Menu Design":
+    "A polished menu designed for print, mobile, or social use.",
+  "Website + Digital Menu":
+    "A coordinated business website and separate digital menu.",
+  Other: "A project that does not fit the standard service categories.",
+};
+const stepDescriptions = [
+  "Tell us what kind of business or project you are planning.",
+  "Choose the service that best matches the outcome you need.",
+  "Choose a visual direction for your selected deliverable.",
+  "Shape the scope with relevant options and complexity choices.",
+  "Describe the result you need in your own words.",
+  "Choose a realistic delivery target and review the working days.",
+  "Select the budget range you are comfortable planning around.",
+  "Confirm the scope, add contact details, and sign when ready.",
+];
+const featureDescriptions = {
+  qr_access: "Let customers open the menu instantly from a QR code.",
+  whatsapp: "Give visitors a direct path to enquire on WhatsApp.",
+  call_button: "Add a prominent one-tap calling action.",
+  google_maps: "Help customers find the business location easily.",
+  pdf_download: "Allow visitors to download a portable menu copy.",
+  custom_icons: "Create a distinctive visual language with tailored icons.",
+  custom_graphics: "Add branded graphics created for the experience.",
+  multiple_languages: "Present key content in an additional language.",
+  advanced_interaction:
+    "Add richer motion and responsive interactive behavior.",
+  premium_visual: "Apply a more bespoke, premium visual treatment.",
+  image_cleanup: "Improve supplied images for a cleaner presentation.",
+  social_version: "Prepare an adapted version for mobile or social sharing.",
+  extra_revision: "Add another structured revision round.",
+  additional_pages: "Extend the website beyond its included page count.",
+  contact_form: "Collect customer enquiries through a clear form.",
+  gallery: "Showcase work, products, spaces, or highlights visually.",
+  booking: "Let customers request or schedule appointments.",
+  payment: "Support an online payment step in the experience.",
+  cms: "Make selected content easier to publish and maintain.",
+  analytics: "Measure visits and important user actions.",
+  seo: "Prepare essential pages for stronger search visibility.",
+  advanced_animation: "Use refined motion for key sections and transitions.",
+  api_integration: "Connect the experience to an external service or API.",
+  authentication: "Add secure sign-in and account access.",
+  dashboard: "Provide a focused dashboard for users or administrators.",
+  database: "Store and manage structured project information.",
+  automation: "Reduce repetitive work with automated actions.",
+  custom_workflows: "Support a tailored multi-step business process.",
+  admin_panel: "Manage content or operations from a dedicated interface.",
+  ai_api: "Connect an AI capability to the digital experience.",
+  ai_chatbot: "Add a conversational assistant for guided interactions.",
+  ai_recommendation: "Offer suggestions based on user inputs or context.",
+  ai_content: "Generate useful content through a guided AI workflow.",
+  interactive_experience: "Create a more immersive, participatory experience.",
+  webgl: "Use real-time 3D or graphics in the browser.",
+  advanced_3d: "Build a more detailed custom 3D experience.",
+  custom_interactions: "Create bespoke interaction patterns for the product.",
+};
+const featureGroupOrder = [
+  "Core & Conversion",
+  "Integrations",
+  "Design & Visual",
+  "Advanced Functionality",
+  "Interaction",
+];
+const featureGroups = {
+  qr_access: "Core & Conversion",
+  whatsapp: "Core & Conversion",
+  call_button: "Core & Conversion",
+  pdf_download: "Core & Conversion",
+  contact_form: "Core & Conversion",
+  booking: "Core & Conversion",
+  payment: "Core & Conversion",
+  extra_revision: "Core & Conversion",
+  google_maps: "Integrations",
+  analytics: "Integrations",
+  api_integration: "Integrations",
+  ai_api: "Integrations",
+  multiple_languages: "Integrations",
+  premium_visual: "Design & Visual",
+  custom_icons: "Design & Visual",
+  custom_graphics: "Design & Visual",
+  image_cleanup: "Design & Visual",
+  social_version: "Design & Visual",
+  gallery: "Design & Visual",
+  seo: "Design & Visual",
+  additional_pages: "Advanced Functionality",
+  cms: "Advanced Functionality",
+  authentication: "Advanced Functionality",
+  dashboard: "Advanced Functionality",
+  database: "Advanced Functionality",
+  automation: "Advanced Functionality",
+  custom_workflows: "Advanced Functionality",
+  admin_panel: "Advanced Functionality",
+  ai_chatbot: "Advanced Functionality",
+  ai_recommendation: "Advanced Functionality",
+  ai_content: "Advanced Functionality",
+  advanced_interaction: "Interaction",
+  advanced_animation: "Interaction",
+  interactive_experience: "Interaction",
+  webgl: "Interaction",
+  advanced_3d: "Interaction",
+  custom_interactions: "Interaction",
+};
 function FeaturesChoice({ data, set }) {
   const [quantityError, setQuantityError] = useState("");
   const numeric = (key, value) => {
@@ -854,6 +1002,15 @@ function FeaturesChoice({ data, set }) {
           : [...selected, id]
         ).join(","),
       );
+  const menuEstimate = numericMenu ? estimateProject(data) : null,
+    groupedFeatures = featureGroupOrder
+      .map((name) => ({
+        name,
+        ids: ids.filter(
+          (id) => (featureGroups[id] || "Core & Conversion") === name,
+        ),
+      }))
+      .filter((group) => group.ids.length);
   const tiers =
       data.service === "Digital Menu"
         ? pricingConfig.digitalMenuTiers
@@ -891,25 +1048,45 @@ function FeaturesChoice({ data, set }) {
         />
       )}{" "}
       {numericMenu && (
-        <div className="grid2">
-          <Field
-            label="Number of Menu Items"
-            type="number"
-            min="1"
-            max={MENU_ITEM_MAX}
-            step="1"
-            value={data.menuItemCount}
-            onChange={(v) => numeric("menuItemCount", v)}
-          />
-          <Field
-            label="Number of Menu Categories"
-            type="number"
-            min="1"
-            max={MENU_CATEGORY_MAX}
-            step="1"
-            value={data.menuCategoryCount}
-            onChange={(v) => numeric("menuCategoryCount", v)}
-          />
+        <div className="menu-quantity-panel">
+          <div className="planner-subhead compact">
+            <div>
+              <span className="field-status">Required scope</span>
+              <h4>Menu quantity</h4>
+            </div>
+            <div className="menu-page-estimate" aria-live="polite">
+              <span>Estimated Menu Pages</span>
+              <b>
+                {menuEstimate?.estimatedMenuPages
+                  ? `Approximately ${menuEstimate.estimatedMenuPages} page${menuEstimate.estimatedMenuPages === 1 ? "" : "s"}`
+                  : "Add quantities to estimate"}
+              </b>
+            </div>
+          </div>
+          <div className="grid2 quantity-grid">
+            <Field
+              label="Number of Menu Items"
+              type="number"
+              min="1"
+              max={MENU_ITEM_MAX}
+              step="1"
+              value={data.menuItemCount}
+              onChange={(v) => numeric("menuItemCount", v)}
+              required
+              helper="More items may require additional menu pages."
+            />
+            <Field
+              label="Number of Menu Categories"
+              type="number"
+              min="1"
+              max={MENU_CATEGORY_MAX}
+              step="1"
+              value={data.menuCategoryCount}
+              onChange={(v) => numeric("menuCategoryCount", v)}
+              required
+              helper="Use the main sections customers will browse."
+            />
+          </div>
         </div>
       )}
       {quantityError && (
@@ -917,26 +1094,42 @@ function FeaturesChoice({ data, set }) {
           {quantityError}
         </p>
       )}
-      <p className="hint">
-        Only relevant features are shown. Quantity fields cover menu volume, so
-        category/content add-ons are not charged again.
-      </p>
+      <div className="planner-subhead feature-heading">
+        <div>
+          <span className="field-status optional">Optional</span>
+          <h4>Choose useful features</h4>
+        </div>
+        <p>Only options relevant to this service are shown.</p>
+      </div>
       {ids.length ? (
-        <div className="style-select-grid">
-          {ids.map((id) => (
-            <button
-              key={id}
-              type="button"
-              className="select-card"
-              aria-pressed={id === "qr_access" || selected.includes(id)}
-              disabled={id === "qr_access"}
-              onClick={() => toggle(id)}
-            >
-              <b>{featureCatalog[id][0]}</b>
-              <small>
-                {id === "qr_access" ? "Included" : "Optional add-on"}
-              </small>
-            </button>
+        <div className="feature-groups">
+          {groupedFeatures.map((group) => (
+            <section className="feature-group" key={group.name}>
+              <h5>{group.name}</h5>
+              <div className="feature-grid">
+                {group.ids.map((id) => (
+                  <button
+                    key={id}
+                    type="button"
+                    className="select-card feature-card"
+                    aria-pressed={id === "qr_access" || selected.includes(id)}
+                    disabled={id === "qr_access"}
+                    onClick={() => toggle(id)}
+                  >
+                    <span className="feature-card-topline">
+                      <b>{featureCatalog[id][0]}</b>
+                      <span className="feature-status">
+                        {id === "qr_access" ? "Included" : "Optional"}
+                      </span>
+                    </span>
+                    <small>
+                      {featureDescriptions[id] ||
+                        "Add this option to the selected project scope."}
+                    </small>
+                  </button>
+                ))}
+              </div>
+            </section>
           ))}
         </div>
       ) : (
@@ -945,15 +1138,24 @@ function FeaturesChoice({ data, set }) {
           is assumed.
         </p>
       )}
+      <div className="planner-subhead complexity-heading">
+        <div>
+          <span className="field-status">Scope guidance</span>
+          <h4>Project complexity</h4>
+        </div>
+        <p>Choose the closest fit. These answers refine the estimate.</p>
+      </div>
       <div className="grid2 complexity-questions">
         {(complexityByService[data.service] || []).map((axis) => (
-          <CustomSelect
-            key={axis}
-            label={complexityLabels[axis]}
-            value={data[axis + "Complexity"]}
-            onChange={(v) => set(axis + "Complexity", v)}
-            options={complexityOptions[axis]}
-          />
+          <div className="complexity-card" key={axis}>
+            <CustomSelect
+              label={complexityLabels[axis]}
+              value={data[axis + "Complexity"]}
+              onChange={(v) => set(axis + "Complexity", v)}
+              options={complexityOptions[axis]}
+            />
+            <p>{complexityHelp[axis]}</p>
+          </div>
         ))}
       </div>
     </>
@@ -966,7 +1168,15 @@ function TimelineChoice({ data, set }) {
       : "";
   return (
     <>
-      <div className="summary">
+      <div className="timeline-overview" aria-live="polite">
+        <span>Planned delivery window</span>
+        <strong>
+          {formatProjectDate(data.startDate)} <i aria-hidden="true">→</i>{" "}
+          {formatProjectDate(data.targetDate)}
+        </strong>
+        <p>{days ? `${days} working days` : "Choose a target date"}</p>
+      </div>
+      <div className="summary timeline-summary">
         <Summary
           k="Project Start"
           v={"Tomorrow — " + formatProjectDate(data.startDate)}
@@ -986,8 +1196,14 @@ function TimelineChoice({ data, set }) {
         min={data.startDate}
         value={data.targetDate}
         onChange={(v) => set("targetDate", v)}
+        required
+        helper="Delivery days are counted Monday to Saturday."
       />
-      {error && <div className="error">{error}</div>}
+      {error && (
+        <div className="error" role="alert">
+          {error}
+        </div>
+      )}
       {days > 0 && days < 7 && (
         <p className="hint">
           The requested timeline is shorter than the standard 7-working-day
@@ -1032,6 +1248,30 @@ function Planner() {
     ],
     estimate = estimateProject(data),
     comparison = compareBudget(data, estimate);
+  function chooseService(service) {
+    setData((current) =>
+      normalizePlannerState({
+        ...current,
+        service,
+        designStyle: "",
+        designStyleName: "",
+        selectedMenuTemplate: "",
+        selectedMenuTemplateName: "",
+        selectedFeatures: "",
+        aiSuggestedFeatures: "",
+        serviceTier: "",
+        menuItemCount: "",
+        menuCategoryCount: "",
+        pageCount: ["Business Website", "Website + Digital Menu"].includes(
+          service,
+        )
+          ? "3"
+          : service === "Graphic Menu Design"
+            ? "1"
+            : "",
+      }),
+    );
+  }
   function valid() {
     if (step === 2) {
       const designError = validateDesignSelection(data);
@@ -1126,76 +1366,93 @@ function Planner() {
           {steps.map((x, i) => (
             <button
               key={x}
-              className={"step-dot " + (i === step ? "active" : "")}
+              className={`step-dot${i === step ? " active" : ""}${i < step ? " complete" : ""}${i > step ? " upcoming" : ""}`}
               disabled={i > step}
               onClick={() => i < step && setStep(i)}
+              aria-current={i === step ? "step" : undefined}
             >
-              <b>{i + 1}</b>
+              <b aria-hidden="true">{i < step ? "✓" : i + 1}</b>
               <span>{x}</span>
             </button>
           ))}
         </div>
-        <div>
+        <div className="planner-stage">
+          <div className="planner-stage-header">
+            <span className="kicker">
+              Step {step + 1} of {steps.length}
+            </span>
+            <h3>{steps[step]}</h3>
+            <p>{stepDescriptions[step]}</p>
+          </div>
           {step === 0 && (
             <Field
               label="Business / Project Type"
               value={data.businessType}
               onChange={(v) => set("businessType", v)}
+              required
+              placeholder="For example, neighbourhood café or new product"
+              helper="A short name or description is enough."
             />
           )}{" "}
           {step === 1 && (
-            <CustomSelect
-              label="Service"
-              value={data.service}
-              onChange={(v) =>
-                setData((d) =>
-                  normalizePlannerState({
-                    ...d,
-                    service: v,
-                    designStyle: "",
-                    designStyleName: "",
-                    selectedMenuTemplate: "",
-                    selectedMenuTemplateName: "",
-                    selectedFeatures: "",
-                    aiSuggestedFeatures: "",
-                    serviceTier: "",
-                    menuItemCount: "",
-                    menuCategoryCount: "",
-                    pageCount: [
-                      "Business Website",
-                      "Website + Digital Menu",
-                    ].includes(v)
-                      ? "3"
-                      : v === "Graphic Menu Design"
-                        ? "1"
-                        : "",
-                  }),
-                )
-              }
-              options={serviceTypes}
-            />
+            <div className="service-choice-grid" aria-label="Service Required">
+              {serviceTypes.map((service) => (
+                <button
+                  key={service}
+                  type="button"
+                  className="service-choice"
+                  aria-pressed={data.service === service}
+                  onClick={() => chooseService(service)}
+                >
+                  <span className="service-choice-mark" aria-hidden="true">
+                    {data.service === service ? "✓" : "→"}
+                  </span>
+                  <span>
+                    <b>{service}</b>
+                    <small>{serviceDescriptions[service]}</small>
+                  </span>
+                </button>
+              ))}
+            </div>
           )}{" "}
           {step === 2 && <DesignChoice data={data} set={set} />}{" "}
           {step === 3 && <FeaturesChoice data={data} set={set} />}{" "}
           {step === 4 && (
-            <div className="field">
+            <div className="field requirements-field">
+              <div className="requirements-heading">
+                <div>
+                  <span className="field-status">Required</span>
+                  <h4>Tell us what you need</h4>
+                </div>
+                <span className="micro">Plain language is perfect</span>
+              </div>
               <label>
-                Requirements
+                <span className="visually-hidden">Requirements</span>
                 <textarea
                   value={data.requirementsText}
                   onChange={(e) => set("requirementsText", e.target.value)}
                   placeholder="Describe pages, menu sections, features, content, integrations, and important requirements."
+                  aria-required="true"
                 />
               </label>
-              <button
-                className="btn"
-                type="button"
-                onClick={interpret}
-                disabled={aiLoading}
-              >
-                {aiLoading ? "Interpreting…" : "Interpret with Gemini"}
-              </button>
-              {ai && <p className="micro">{ai}</p>}
+              <div className="requirements-tools">
+                <button
+                  className={`btn ai-button${aiLoading ? " loading" : ""}`}
+                  type="button"
+                  onClick={interpret}
+                  disabled={aiLoading}
+                >
+                  {aiLoading && (
+                    <span className="button-spinner" aria-hidden="true" />
+                  )}
+                  {aiLoading ? "Interpreting…" : "Interpret with Gemini"}
+                </button>
+                {ai && (
+                  <p className="micro" role="status">
+                    {ai}
+                  </p>
+                )}
+              </div>
               {data.aiSummary && (
                 <p className="hint">
                   <b>AI summary:</b> {data.aiSummary}
@@ -1206,7 +1463,14 @@ function Planner() {
           {step === 5 && <TimelineChoice data={data} set={set} />}{" "}
           {step === 6 && (
             <>
-              <div className="style-select-grid">
+              <div className="planner-subhead compact">
+                <div>
+                  <span className="field-status">Required</span>
+                  <h4>Comfortable budget range</h4>
+                </div>
+                <p>This helps compare your selected scope with your budget.</p>
+              </div>
+              <div className="style-select-grid budget-grid">
                 {budgetRanges.map((b) => (
                   <button
                     key={b.id}
@@ -1218,7 +1482,9 @@ function Planner() {
                   </button>
                 ))}
               </div>
-              <p>{comparison}</p>
+              <p className="budget-comparison" aria-live="polite">
+                {comparison}
+              </p>
             </>
           )}{" "}
           {step === 7 && (
@@ -1227,43 +1493,94 @@ function Planner() {
                 label="Name"
                 value={data.name}
                 onChange={(v) => set("name", v)}
+                required
               />
               <Field
                 label="Email"
                 type="email"
                 value={data.email}
                 onChange={(v) => set("email", v)}
+                required
               />
               <Field
                 label="Phone"
                 type="tel"
                 value={data.phone}
                 onChange={(v) => set("phone", v)}
+                required
               />
-              <div className="summary">
-                <Summary k="Business" v={data.businessType} />
-                <Summary k="Service" v={data.service} />
-                <Summary k="Design Style" v={data.designStyleName} />
-                <Summary
-                  k="Features"
-                  v={getAcceptedFeatureIds(data)
-                    .map((id) => featureCatalog[id]?.[0])
-                    .filter(Boolean)
-                    .join(", ")}
-                />
-                <Summary k="Requirements" v={data.requirementsText} />
-                {estimate.menuItemCount > 0 && (
-                  <Summary
-                    k="Menu Content"
-                    v={`${estimate.menuItemCount} items, ${estimate.menuCategoryCount || "unspecified"} categories, approximately ${estimate.estimatedMenuPages} page${estimate.estimatedMenuPages === 1 ? "" : "s"}`}
-                  />
-                )}
-                <Summary
-                  k="Timeline"
-                  v={`${formatProjectDate(data.startDate)} – ${formatProjectDate(data.targetDate)} (${estimate.workingDays || 0} working days)`}
-                />
-                <Summary k="Budget" v={budgetLabel(data.clientBudgetRange)} />
-                <Summary k="Estimate" v={estimate.clientLabel} />
+              <div className="review-panel">
+                <section className="review-section">
+                  <h4>Project</h4>
+                  <div className="summary">
+                    <Summary k="Business / Project" v={data.businessType} />
+                    <Summary k="Service" v={data.service} />
+                  </div>
+                </section>
+                <section className="review-section">
+                  <h4>Design</h4>
+                  <div className="summary">
+                    {data.service.includes("Website") && (
+                      <Summary k="Website Style" v={data.designStyleName} />
+                    )}
+                    {["Digital Menu", "Website + Digital Menu"].includes(
+                      data.service,
+                    ) && (
+                      <Summary
+                        k="Digital Menu Design"
+                        v={data.selectedMenuTemplateName}
+                      />
+                    )}
+                    {data.service === "Graphic Menu Design" && (
+                      <Summary
+                        k="Graphic Menu Design"
+                        v={data.designStyleName}
+                      />
+                    )}
+                    {!data.service.includes("Website") &&
+                      !["Digital Menu", "Graphic Menu Design"].includes(
+                        data.service,
+                      ) && (
+                        <Summary k="Design Style" v={data.designStyleName} />
+                      )}
+                  </div>
+                </section>
+                <section className="review-section">
+                  <h4>Scope</h4>
+                  <div className="summary">
+                    <Summary
+                      k="Features & Add-ons"
+                      v={getAcceptedFeatureIds(data)
+                        .map((id) => featureCatalog[id]?.[0])
+                        .filter(Boolean)
+                        .join(", ")}
+                    />
+                    <Summary k="Requirements" v={data.requirementsText} />
+                    {estimate.menuItemCount > 0 && (
+                      <Summary
+                        k="Menu Content"
+                        v={`${estimate.menuItemCount} items, ${estimate.menuCategoryCount || "unspecified"} categories, approximately ${estimate.estimatedMenuPages} page${estimate.estimatedMenuPages === 1 ? "" : "s"}`}
+                      />
+                    )}
+                  </div>
+                </section>
+                <section className="review-section">
+                  <h4>Plan</h4>
+                  <div className="summary">
+                    <Summary
+                      k="Timeline"
+                      v={`${formatProjectDate(data.startDate)} – ${formatProjectDate(data.targetDate)} (${estimate.workingDays || 0} working days)`}
+                    />
+                    <Summary
+                      k="Budget"
+                      v={budgetLabel(data.clientBudgetRange)}
+                    />
+                    <Summary
+                      k="Estimated Project Range"
+                      v={estimate.clientLabel}
+                    />
+                  </div>
+                </section>
               </div>
               <details className="estimate-details" open>
                 <summary>How was this estimate calculated?</summary>
@@ -1274,14 +1591,18 @@ function Planner() {
                 ))}
                 <p>{estimate.explanation}</p>
               </details>
-              <SignaturePad
+              <ResponsiveSignaturePad
                 value={data.signature}
                 onChange={(v) => set("signature", v)}
               />
               <ProposalActions data={data} estimate={estimate} />
             </>
           )}{" "}
-          {err && <div className="error">{err}</div>}
+          {err && (
+            <div className="error planner-error" role="alert">
+              {err}
+            </div>
+          )}
           <div className="planner-actions">
             <button
               className="btn"
@@ -1402,11 +1723,12 @@ function ProposalActions({ data, estimate }) {
         </p>
       )}
       <button
-        className="btn primary"
+        className={`btn primary${generating ? " loading" : ""}`}
         type="button"
         disabled={generating}
         onClick={record?.proposalId ? downloadAgain : generate}
       >
+        {generating && <span className="button-spinner" aria-hidden="true" />}
         {generating
           ? "Generating…"
           : record?.proposalId
@@ -1431,11 +1753,27 @@ function ProposalActions({ data, estimate }) {
     </div>
   );
 }
-function Field({ label, value, onChange, type = "text", min, max, step }) {
+function Field({
+  label,
+  value,
+  onChange,
+  type = "text",
+  min,
+  max,
+  step,
+  required = false,
+  helper = "",
+  placeholder = "",
+}) {
   return (
     <div className="field">
       <label>
-        {label}
+        <span className="field-label-row">
+          <span>{label}</span>
+          <span className={`field-status${required ? "" : " optional"}`}>
+            {required ? "Required" : "Optional"}
+          </span>
+        </span>
         <input
           type={type}
           min={min}
@@ -1444,8 +1782,43 @@ function Field({ label, value, onChange, type = "text", min, max, step }) {
           inputMode={type === "number" ? "numeric" : undefined}
           value={value || ""}
           onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          aria-required={required}
         />
       </label>
+      {helper && <p className="field-helper">{helper}</p>}
+    </div>
+  );
+}
+function ResponsiveSignaturePad({ value, onChange }) {
+  const host = useRef(null),
+    previousWidth = useRef(0),
+    [renderKey, setRenderKey] = useState(0);
+  useEffect(() => {
+    const resize = new ResizeObserver(([entry]) => {
+        const width = Math.round(entry.contentRect.width);
+        if (
+          width >= 120 &&
+          previousWidth.current &&
+          width !== previousWidth.current
+        )
+          setRenderKey((key) => key + 1);
+        if (width >= 120) previousWidth.current = width;
+      }),
+      theme = new MutationObserver(() => setRenderKey((key) => key + 1));
+    if (host.current) resize.observe(host.current);
+    theme.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => {
+      resize.disconnect();
+      theme.disconnect();
+    };
+  }, []);
+  return (
+    <div className="signature-resize-host" ref={host}>
+      <SignaturePad key={renderKey} value={value} onChange={onChange} />
     </div>
   );
 }
