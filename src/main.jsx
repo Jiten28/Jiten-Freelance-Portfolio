@@ -39,9 +39,16 @@ import {
 } from "./utils/proposal.js";
 import {
   menuDirections,
+  graphicAssetMenuDirections,
   graphicMenuDirections,
   serviceTypes,
 } from "./data/menuDirections.js";
+import {
+  MENU_ITEM_MAX,
+  MENU_CATEGORY_MAX,
+  validateDesignSelection,
+  validateMenuQuantities,
+} from "./utils/plannerRules.js";
 const nav = [
   "Home",
   "Services",
@@ -212,7 +219,7 @@ function Header() {
               className="hamb"
               onClick={() => setOpen(!open)}
               aria-expanded={open}
-              aria-label="Open menu"
+              aria-label={open ? "Close menu" : "Open menu"}
             >
               ☰
             </button>
@@ -516,6 +523,11 @@ function Projects() {
 }
 function Styles() {
   const [modal, setModal] = useState(null);
+  useEffect(() => {
+    const closeOnEscape = (event) => event.key === "Escape" && setModal(null);
+    addEventListener("keydown", closeOnEscape);
+    return () => removeEventListener("keydown", closeOnEscape);
+  }, []);
   return (
     <section id="styles" className="section">
       <span className="kicker">Visual range</span>
@@ -531,12 +543,19 @@ function Styles() {
       {modal && (
         <div
           className="modal open"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${modal.name} style preview`}
           onClick={(e) =>
             e.target.className.includes("modal") && setModal(null)
           }
         >
           <div className="modal-box">
-            <button className="theme" onClick={() => setModal(null)}>
+            <button
+              className="theme"
+              onClick={() => setModal(null)}
+              aria-label="Close style preview"
+            >
               ×
             </button>
             <h3>{modal.name}</h3>
@@ -664,6 +683,7 @@ function DirectionGrid({ items, selected, onSelect }) {
   );
 }
 function DesignChoice({ data, set }) {
+  const [limitMessage, setLimitMessage] = useState("");
   const isDigital = data.service === "Digital Menu",
     isBundle = data.service === "Website + Digital Menu",
     isGraphic = data.service === "Graphic Menu Design",
@@ -676,11 +696,14 @@ function DesignChoice({ data, set }) {
     ].includes(data.service);
   const selected = (data.designStyle || "").split(",").filter(Boolean);
   function toggle(st) {
+    if (!selected.includes(st.id) && selected.length >= 3) {
+      setLimitMessage("Choose up to three Website Styles.");
+      return;
+    }
+    setLimitMessage("");
     const arr = selected.includes(st.id)
       ? selected.filter((x) => x !== st.id)
-      : selected.length >= 3
-        ? selected
-        : [...selected, st.id];
+      : [...selected, st.id];
     set("designStyle", arr.join(","));
     set(
       "designStyleName",
@@ -694,9 +717,7 @@ function DesignChoice({ data, set }) {
     <>
       {websiteLike && (
         <>
-          <p className="hint">
-            Website Visual Direction — choose up to 3 directions.
-          </p>
+          <p className="hint">Website Style — select up to 3 Website styles.</p>
           <div className="style-select-grid">
             {designStyles.map((st) => (
               <button
@@ -712,11 +733,16 @@ function DesignChoice({ data, set }) {
               </button>
             ))}
           </div>
+          {limitMessage && (
+            <p className="error" role="status">
+              {limitMessage}
+            </p>
+          )}
         </>
       )}
       {(isDigital || isBundle) && (
         <>
-          <p className="hint">Digital Menu Design Direction</p>
+          <p className="hint">Digital Menu Design — select 1 design.</p>
           <DirectionGrid
             items={menuDirections}
             selected={data.selectedMenuTemplate}
@@ -733,7 +759,16 @@ function DesignChoice({ data, set }) {
       )}
       {isGraphic && (
         <>
-          <p className="hint">Graphic Menu Design Direction</p>
+          <p className="hint">Existing Menu Designs</p>
+          <DirectionGrid
+            items={graphicAssetMenuDirections}
+            selected={data.designStyle}
+            onSelect={(item) => {
+              set("designStyle", item.id);
+              set("designStyleName", item.name);
+            }}
+          />
+          <p className="hint">Additional Design Directions</p>
           <DirectionGrid
             items={graphicMenuDirections}
             selected={data.designStyle}
@@ -755,8 +790,8 @@ const complexityOptions = {
   ],
   functional: [
     { value: "low", label: "Basic" },
-    { value: "medium", label: "Some extra functions" },
-    { value: "high", label: "Advanced functionality" },
+    { value: "medium", label: "Some Extra Functions" },
+    { value: "high", label: "Advanced Functionality" },
   ],
   interaction: [
     { value: "low", label: "Simple / Static" },
@@ -771,7 +806,7 @@ const complexityOptions = {
 };
 const complexityByService = {
   "Graphic Menu Design": ["content", "design"],
-  "Digital Menu": ["content", "interaction", "design"],
+  "Digital Menu": ["content", "functional", "interaction", "design"],
   "Website + Digital Menu": ["content", "functional", "interaction", "design"],
   "Business Website": ["content", "functional", "interaction", "design"],
   "Custom Digital Solution": ["content", "functional", "interaction", "design"],
@@ -790,8 +825,18 @@ const complexityLabels = {
   design: "How customised should the design be?",
 };
 function FeaturesChoice({ data, set }) {
+  const [quantityError, setQuantityError] = useState("");
   const numeric = (key, value) => {
-    if (value === "" || /^[1-9]\d*$/.test(value)) set(key, value);
+    const max = key === "menuItemCount" ? MENU_ITEM_MAX : MENU_CATEGORY_MAX;
+    if (value === "") {
+      set(key, value);
+      setQuantityError("");
+    } else if (/^[1-9]\d*$/.test(value) && Number(value) <= max) {
+      set(key, value);
+      setQuantityError("");
+    } else {
+      setQuantityError(`Enter a whole number from 1 to ${max}.`);
+    }
   };
   const numericMenu = ["Digital Menu", "Website + Digital Menu"].includes(
     data.service,
@@ -851,6 +896,7 @@ function FeaturesChoice({ data, set }) {
             label="Number of Menu Items"
             type="number"
             min="1"
+            max={MENU_ITEM_MAX}
             step="1"
             value={data.menuItemCount}
             onChange={(v) => numeric("menuItemCount", v)}
@@ -859,11 +905,17 @@ function FeaturesChoice({ data, set }) {
             label="Number of Menu Categories"
             type="number"
             min="1"
+            max={MENU_CATEGORY_MAX}
             step="1"
             value={data.menuCategoryCount}
             onChange={(v) => numeric("menuCategoryCount", v)}
           />
         </div>
+      )}
+      {quantityError && (
+        <p className="error" role="status">
+          {quantityError}
+        </p>
       )}
       <p className="hint">
         Only relevant features are shown. Quantity fields cover menu volume, so
@@ -958,7 +1010,9 @@ function Planner() {
   const [data, setData] = useState(initial),
     [step, setStep] = useState(0),
     [err, setErr] = useState(""),
-    [ai, setAi] = useState("");
+    [ai, setAi] = useState(""),
+    [aiLoading, setAiLoading] = useState(false),
+    aiInFlight = useRef(false);
   useEffect(() => {
     try {
       localStorage.plannerReact = JSON.stringify(data);
@@ -979,14 +1033,27 @@ function Planner() {
     estimate = estimateProject(data),
     comparison = compareBudget(data, estimate);
   function valid() {
+    if (step === 2) {
+      const designError = validateDesignSelection(data);
+      if (designError) {
+        setErr(designError);
+        return false;
+      }
+    }
+    if (
+      step === 3 &&
+      ["Digital Menu", "Website + Digital Menu"].includes(data.service)
+    ) {
+      const quantityError = validateMenuQuantities(data);
+      if (quantityError) {
+        setErr(quantityError);
+        return false;
+      }
+    }
     const req = [
       ["businessType"],
       ["service"],
-      [
-        data.service === "Digital Menu"
-          ? "selectedMenuTemplate"
-          : "designStyle",
-      ],
+      [],
       [],
       ["requirementsText"],
       ["targetDate"],
@@ -1016,7 +1083,10 @@ function Planner() {
     return true;
   }
   async function interpret() {
+    if (aiInFlight.current) return;
     if (!data.requirementsText.trim()) return setAi("Add requirements first.");
+    aiInFlight.current = true;
+    setAiLoading(true);
     setAi("Interpreting requirements…");
     try {
       const r = await fetch("/.netlify/functions/ai-planner", {
@@ -1042,6 +1112,9 @@ function Planner() {
       setAi(
         "AI interpretation is temporarily unavailable. Manual selections and pricing are still available.",
       );
+    } finally {
+      aiInFlight.current = false;
+      setAiLoading(false);
     }
   }
   return (
@@ -1054,6 +1127,7 @@ function Planner() {
             <button
               key={x}
               className={"step-dot " + (i === step ? "active" : "")}
+              disabled={i > step}
               onClick={() => i < step && setStep(i)}
             >
               <b>{i + 1}</b>
@@ -1113,8 +1187,13 @@ function Planner() {
                   placeholder="Describe pages, menu sections, features, content, integrations, and important requirements."
                 />
               </label>
-              <button className="btn" type="button" onClick={interpret}>
-                Interpret with Gemini
+              <button
+                className="btn"
+                type="button"
+                onClick={interpret}
+                disabled={aiLoading}
+              >
+                {aiLoading ? "Interpreting…" : "Interpret with Gemini"}
               </button>
               {ai && <p className="micro">{ai}</p>}
               {data.aiSummary && (
@@ -1246,20 +1325,43 @@ function formatCurrency(n) {
   return "₹" + Number(n).toLocaleString("en-IN");
 }
 function ProposalActions({ data, estimate }) {
-  const [record, setRecord] = useState(null);
+  const [record, setRecord] = useState(null),
+    [error, setError] = useState(""),
+    [generating, setGenerating] = useState(false),
+    generationInFlight = useRef(false);
   function generate() {
+    if (generationInFlight.current) return;
     if (!data.signature)
-      return setRecord({
-        error:
-          "Please capture the client signature before generating the signed proposal.",
-      });
+      return setError(
+        "Please capture the client signature before generating the signed proposal.",
+      );
+    generationInFlight.current = true;
+    setGenerating(true);
+    setError("");
+    const popup = open("", "_blank");
+    if (!popup) {
+      generationInFlight.current = false;
+      setGenerating(false);
+      setError("The proposal window was blocked. Allow popups and try again.");
+      return;
+    }
     const proposalId = createProposalId(),
-      rec = saveProposal({
+      rec = {
         proposalId,
         createdAt: new Date().toISOString(),
         ...data,
         clientName: data.name,
         clientEmail: data.email,
+        websiteStyle: data.service.includes("Website")
+          ? data.designStyleName
+          : "",
+        digitalMenuDesign: ["Digital Menu", "Website + Digital Menu"].includes(
+          data.service,
+        )
+          ? data.selectedMenuTemplateName
+          : "",
+        graphicMenuDesign:
+          data.service === "Graphic Menu Design" ? data.designStyleName : "",
         designDirection: [
           ...new Set(
             [data.designStyleName, data.selectedMenuTemplateName].filter(
@@ -1269,16 +1371,31 @@ function ProposalActions({ data, estimate }) {
         ].join(" / "),
         estimate,
         status: "signed-local",
-      });
-    setRecord(rec);
-    downloadProposalPdf(rec);
+      };
+    if (!downloadProposalPdf(rec, popup)) {
+      popup.close();
+      generationInFlight.current = false;
+      setGenerating(false);
+      setError("The proposal could not be opened. Please try again.");
+      return;
+    }
+    setRecord(saveProposal(rec));
+    setTimeout(() => {
+      generationInFlight.current = false;
+      setGenerating(false);
+    }, 650);
+  }
+  function downloadAgain() {
+    setError("");
+    if (!downloadProposalPdf(record))
+      setError("The proposal window was blocked. Allow popups and try again.");
   }
   return (
     <div className="proposal-actions card">
       <h3>
         {record?.proposalId ? "Proposal Ready" : "Generate Signed Proposal"}
       </h3>
-      {record?.error && <p className="error">{record.error}</p>}
+      {error && <p className="error">{error}</p>}
       {record?.proposalId && (
         <p>
           <b>Proposal ID:</b> {record.proposalId}
@@ -1287,11 +1404,14 @@ function ProposalActions({ data, estimate }) {
       <button
         className="btn primary"
         type="button"
-        onClick={
-          record?.proposalId ? () => downloadProposalPdf(record) : generate
-        }
+        disabled={generating}
+        onClick={record?.proposalId ? downloadAgain : generate}
       >
-        {record?.proposalId ? "Download PDF" : "Generate Signed PDF"}
+        {generating
+          ? "Generating…"
+          : record?.proposalId
+            ? "Download PDF"
+            : "Generate Signed PDF"}
       </button>
       {record?.proposalId && (
         <>
@@ -1311,7 +1431,7 @@ function ProposalActions({ data, estimate }) {
     </div>
   );
 }
-function Field({ label, value, onChange, type = "text", min, step }) {
+function Field({ label, value, onChange, type = "text", min, max, step }) {
   return (
     <div className="field">
       <label>
@@ -1319,6 +1439,7 @@ function Field({ label, value, onChange, type = "text", min, step }) {
         <input
           type={type}
           min={min}
+          max={max}
           step={step}
           inputMode={type === "number" ? "numeric" : undefined}
           value={value || ""}

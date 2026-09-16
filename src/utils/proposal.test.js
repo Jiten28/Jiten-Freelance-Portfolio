@@ -15,6 +15,7 @@ const data = {
   businessType: "Laxy",
   service: "Graphic Menu Design",
   designDirection: "Minimal Menu",
+  graphicMenuDesign: "Minimal Menu",
   designStyle: "minimal-menu",
   pageCount: "1",
   selectedFeatures: "social_version,custom_icons",
@@ -56,4 +57,26 @@ test("proposal has exactly two sheets and one feature section", () => {
   assert.match(html, /class="item wide requirements"/);
   assert.match(html, /Client signature/);
   assert.doesNotMatch(html, />FEATURES<|>ADD-ONS</);
+  assert.doesNotMatch(html, /slice\(0,\s*7\)/);
+  assert.match(html, /function paginateProposal/);
+  assert.match(html, /Business \/ Project/);
+  assert.match(html, /Graphic Menu Design/);
+  assert.doesNotMatch(
+    html,
+    /Content Scope|Functional Scope|Interaction Scope|Design Scope/,
+  );
+});
+test("bundle proposal keeps Website Style and Digital Menu Design separate", () => {
+  const bundle = {
+    ...data,
+    service: "Website + Digital Menu",
+    websiteStyle: "Glassmorphism, Minimalistic",
+    digitalMenuDesign: "Modern Cafe",
+    graphicMenuDesign: "",
+  };
+  const html = buildProposalHtml(bundle);
+  assert.match(html, /Website Style/);
+  assert.match(html, /Glassmorphism, Minimalistic/);
+  assert.match(html, /Digital Menu Design/);
+  assert.match(html, /Modern Cafe/);
 });

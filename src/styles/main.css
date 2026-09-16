@@ -449,6 +449,10 @@ p {
   color: var(--text);
   font-weight: 800;
 }
+.step-dot:disabled {
+  cursor: default;
+  opacity: 0.62;
+}
 .field {
   margin: 15px 0;
 }
@@ -1173,15 +1177,26 @@ html.light .signature-canvas {
 /* Phase 1 functional controls — preserve the existing visual system. */
 .custom-select {
   position: relative;
-  z-index: 40;
-  isolation: isolate;
+  z-index: auto;
+}
+.custom-select.open {
+  z-index: 41;
 }
 .select-menu {
-  z-index: 120;
+  z-index: 2;
   background: var(--surface);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   opacity: 1;
+}
+.custom-select.drop-up .select-menu {
+  bottom: calc(100% + 8px);
+  margin-top: 0;
+}
+.select-trigger:focus-visible,
+.select-menu button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 .select-menu button {
   background: var(--surface);

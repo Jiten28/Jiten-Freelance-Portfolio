@@ -4,6 +4,7 @@ import {
   featureCatalog,
   knownFeatureIds,
   pricingConfig,
+  serviceFeatureIds,
 } from "./pricingRules.js";
 import { countWorkingDays } from "../utils/workdays.js";
 export const formatINR = (n) =>
@@ -14,6 +15,10 @@ const positiveInt = (v) => {
   return Number.isInteger(n) && n > 0 ? n : 0;
 };
 export function getAcceptedFeatureIds(data = {}) {
+  const allowed =
+    data.service && serviceFeatureIds[data.service]
+      ? new Set(serviceFeatureIds[data.service])
+      : new Set(knownFeatureIds);
   return [
     ...new Set(
       [
@@ -23,7 +28,7 @@ export function getAcceptedFeatureIds(data = {}) {
         ...(Array.isArray(data.aiSuggestedFeatures)
           ? data.aiSuggestedFeatures
           : String(data.aiSuggestedFeatures || "").split(",")),
-      ].filter((id) => knownFeatureIds.includes(id)),
+      ].filter((id) => allowed.has(id)),
     ),
   ];
 }
@@ -135,7 +140,11 @@ function designWeight(data, service) {
       pricingConfig.digitalMenuDesignWeights[data.selectedMenuTemplate] || 0
     );
   if (service === "Graphic Menu Design")
-    return pricingConfig.graphicMenuDesignWeights[data.designStyle] || 0;
+    return data.designStyle?.startsWith("existing-")
+      ? pricingConfig.digitalMenuDesignWeights[
+          data.designStyle.replace(/^existing-/, "")
+        ] || 0
+      : pricingConfig.graphicMenuDesignWeights[data.designStyle] || 0;
   return 0;
 }
 export function estimateProject(data = {}) {
@@ -215,20 +224,29 @@ export function estimateProject(data = {}) {
   }
   subtotal += featureCost;
   let complexityCost = 0;
+  const hasSpecificFeatures = getAcceptedFeatureIds(data).some(
+    (id) => !["qr_access", "additional_pages"].includes(id),
+  );
   for (const axis of ["content", "functional", "interaction", "design"]) {
     if (usedComplexityAxes.has(axis)) continue;
+    if (axis === "content" && (volume.items || base.pages)) continue;
+    if (
+      axis === "design" &&
+      (data.designStyle || data.selectedMenuTemplate || designWeightCost)
+    )
+      continue;
+    if (["functional", "interaction"].includes(axis) && hasSpecificFeatures)
+      continue;
     const amount =
       pricingConfig.complexity[axis][level(data[axis + "Complexity"])];
-    if (amount) {
-      complexityCost += amount;
-      breakdown.push({
-        type: "complexity",
-        axis,
-        label: `${axis[0].toUpperCase() + axis.slice(1)} Scope`,
-        amount,
-      });
-    }
+    if (amount) complexityCost += amount;
   }
+  if (complexityCost)
+    breakdown.push({
+      type: "complexity",
+      label: "Complexity Adjustment",
+      amount: complexityCost,
+    });
   subtotal += complexityCost;
   const workingDays = countWorkingDays(data.startDate, data.targetDate),
     urgencyRate =

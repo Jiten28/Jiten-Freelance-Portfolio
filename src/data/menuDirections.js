@@ -124,6 +124,15 @@ export const graphicMenuDirections = [
   ],
 ].map(([id, name, description]) => ({ id, name, description }));
 
+// Reuse the existing asset-backed menu designs for Graphic Menu selection.
+// Prefixed IDs keep them independent from similarly named generic directions.
+export const graphicAssetMenuDirections = menuDirections
+  .slice(0, 7)
+  .map((item) => ({
+    ...item,
+    id: `existing-${item.id}`,
+  }));
+
 export const serviceTypes = [
   "AI / Interactive Experience",
   "Business Website",

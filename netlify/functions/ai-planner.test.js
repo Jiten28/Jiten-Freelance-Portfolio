@@ -65,6 +65,15 @@ test("normalizes IDs, complexity, and strips HTML markers", () => {
   assert.equal(value.functionalComplexity, "medium");
   assert.equal(value.summary.includes("<"), false);
 });
+test("removes valid feature IDs that belong to another service", () => {
+  const value = validatePlannerInterpretation(
+    {
+      suggestedFeatures: ["booking", "ai_chatbot", "whatsapp"],
+    },
+    "Business Website",
+  );
+  assert.deepEqual(value.suggestedFeatures, ["booking", "whatsapp"]);
+});
 test("missing both provider keys returns manual fallback", async () => {
   clear();
   const result = await createHandler({

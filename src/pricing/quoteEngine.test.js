@@ -6,7 +6,12 @@ import {
   getAcceptedFeatureIds,
   getDigitalMenuVolume,
 } from "./quoteEngine.js";
-import { serviceTypes, menuDirections } from "../data/menuDirections.js";
+import {
+  serviceTypes,
+  menuDirections,
+  graphicAssetMenuDirections,
+  graphicMenuDirections,
+} from "../data/menuDirections.js";
 const base = {
   startDate: "2026-09-17",
   targetDate: "2026-09-25",
@@ -38,6 +43,14 @@ test("preserves requested service order and seven asset-backed directions", () =
     ],
   );
   assert.equal(menuDirections[7].id, "custom-menu-design");
+  assert.deepEqual(
+    graphicAssetMenuDirections.map((x) => x.name),
+    menuDirections.slice(0, 7).map((x) => x.name),
+  );
+  assert.ok(
+    graphicAssetMenuDirections.some((x) => x.name === "Laundry & Dry Cleaning"),
+  );
+  assert.equal(graphicMenuDirections.length, 16);
 });
 test("preserves service matrices and graphic page pricing", () => {
   assert.equal(
@@ -153,6 +166,55 @@ test("deduplicates manual and accepted AI feature IDs", () => {
       aiSuggestedFeatures: "booking,ai_chatbot,unsupported",
     }),
     ["booking", "whatsapp", "ai_chatbot"],
+  );
+});
+test("rejects cross-service AI features and ignores menu text for other services", () => {
+  assert.deepEqual(
+    getAcceptedFeatureIds({
+      service: "Business Website",
+      selectedFeatures: "booking",
+      aiSuggestedFeatures: "booking,ai_chatbot,whatsapp",
+    }),
+    ["booking", "whatsapp"],
+  );
+  const estimate = estimateProject({
+    ...base,
+    service: "AI / Interactive Experience",
+    requirementsText: "Build an experience containing the phrase 20 item menu",
+    menuItemCount: "20",
+    menuCategoryCount: "4",
+  });
+  assert.equal(estimate.contentVolumeCost, 0);
+  assert.equal(estimate.estimatedMenuPages, 0);
+});
+test("complexity is a single non-duplicating adjustment", () => {
+  const menu = estimateProject({
+    ...base,
+    service: "Digital Menu",
+    menuItemCount: "30",
+    menuCategoryCount: "4",
+    selectedMenuTemplate: "modern-cafe",
+    contentComplexity: "high",
+    designComplexity: "high",
+  });
+  assert.equal(menu.complexityCost, 0);
+  assert.equal(
+    menu.breakdown.some((x) => /Content Scope|Design Scope/.test(x.label)),
+    false,
+  );
+  const custom = estimateProject({
+    ...base,
+    service: "Custom Digital Solution",
+    functionalComplexity: "high",
+    interactionComplexity: "medium",
+  });
+  assert.equal(
+    custom.breakdown.filter((x) => x.type === "complexity").length,
+    1,
+  );
+  assert.equal(
+    custom.breakdown.find((x) => x.type === "complexity").label,
+    "Complexity Adjustment",
   );
 });
 test("priority, budget, and custom review behavior remain intact", () => {
