@@ -376,10 +376,15 @@ p {
 .project:hover img {
   transform: scale(1.015);
 }
-.styles,
-.style-select-grid {
+.styles {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.style-select-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 14px;
 }
 .style-card,
@@ -402,11 +407,16 @@ p {
   color: var(--muted);
 }
 .mini {
+  width: 100%;
   height: 84px;
   border-radius: 11px;
   margin-bottom: 10px;
   overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 84px;
   background: linear-gradient(135deg, var(--surface2), var(--bg));
 }
 .pricing {
