@@ -443,16 +443,6 @@ function MenuModal({ project, onClose }) {
             />
           ))}
         </div>
-        <p>
-          <a
-            className="btn"
-            target="_blank"
-            rel="noopener"
-            href={project.promptFile}
-          >
-            Open prompt file
-          </a>
-        </p>
       </div>
     </div>
   );
