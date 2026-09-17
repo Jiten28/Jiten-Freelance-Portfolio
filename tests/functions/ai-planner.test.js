@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createHandler, validatePlannerInterpretation } from "./ai-planner.js";
+import { createHandler, validatePlannerInterpretation } from "../../netlify/functions/ai-planner.js";
 const request = {
   httpMethod: "POST",
   body: JSON.stringify({
