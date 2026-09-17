@@ -1435,7 +1435,7 @@ function Planner() {
                   {aiLoading && (
                     <span className="button-spinner" aria-hidden="true" />
                   )}
-                  {aiLoading ? "Interpreting…" : "Interpret with Gemini"}
+                  {aiLoading ? "Interpreting…" : "Interpret with Ai"}
                 </button>
                 {ai && (
                   <p className="micro" role="status">
